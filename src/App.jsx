@@ -27,7 +27,24 @@ import {
   Link,
   Download,
   Globe,
-  Folder
+  Folder,
+  Shield,
+  HardDrive,
+  Monitor,
+  Copy,
+  ArrowDown,
+  ExternalLink,
+  BookOpen,
+  Cpu,
+  Key,
+  Info,
+  Wrench,
+  RefreshCw,
+  Eye,
+  UploadCloud,
+  Undo2,
+  Scissors,
+  Tag
 } from 'lucide-react';
 
 // --- Shared Components ---
@@ -80,7 +97,8 @@ const TerminalSim = ({ logs, onCommand, promptLabel = "~/project (main)", height
   const endRef = useRef(null);
 
   useEffect(() => {
-    endRef.current?.scrollIntoView({ behavior: "smooth" });
+    const container = endRef.current?.parentElement;
+    if (container) container.scrollTop = container.scrollHeight;
   }, [logs]);
 
   const handleSubmit = (e) => {
@@ -129,6 +147,7 @@ const ChapterConcept = () => (
   <div className="space-y-8 animate-fade-in">
     <SectionTitle title="1. 什麼是 Git？" subtitle="時光機與平行宇宙的結合" />
     
+    {/* --- 原有概念卡 --- */}
     <div className="grid md:grid-cols-2 gap-6">
       <Card>
         <div className="flex items-center gap-3 mb-4">
@@ -170,49 +189,373 @@ const ChapterConcept = () => (
         </div>
       </Card>
     </div>
+
+    {/* --- 安裝 Git --- */}
+    <div>
+      <h3 className="text-lg font-bold text-slate-800 mb-4 flex items-center gap-2">
+        <Download size={20} className="text-indigo-500" /> 如何安裝 Git？
+      </h3>
+      <div className="grid sm:grid-cols-3 gap-4">
+        {/* Windows */}
+        <Card className="text-center">
+          <div className="mx-auto mb-3 w-12 h-12 rounded-xl bg-blue-100 text-blue-600 flex items-center justify-center">
+            <Monitor size={24} />
+          </div>
+          <h4 className="font-bold text-sm mb-2">Windows</h4>
+          <ul className="text-xs text-slate-500 space-y-1 text-left">
+            <li className="flex items-start gap-1.5"><span className="text-indigo-400 mt-0.5">•</span>下載 <a href="https://git-scm.com" target="_blank" rel="noreferrer" className="text-indigo-600 underline">git-scm.com</a> 安裝包</li>
+            <li className="flex items-start gap-1.5"><span className="text-indigo-400 mt-0.5">•</span>或用 <code className="bg-slate-100 px-1 rounded text-[11px]">winget install Git.Git</code></li>
+          </ul>
+        </Card>
+        {/* macOS */}
+        <Card className="text-center">
+          <div className="mx-auto mb-3 w-12 h-12 rounded-xl bg-slate-100 text-slate-600 flex items-center justify-center">
+            <Laptop size={24} />
+          </div>
+          <h4 className="font-bold text-sm mb-2">macOS</h4>
+          <ul className="text-xs text-slate-500 space-y-1 text-left">
+            <li className="flex items-start gap-1.5"><span className="text-indigo-400 mt-0.5">•</span>內建 Xcode CLI：<code className="bg-slate-100 px-1 rounded text-[11px]">xcode-select --install</code></li>
+            <li className="flex items-start gap-1.5"><span className="text-indigo-400 mt-0.5">•</span>或 Homebrew：<code className="bg-slate-100 px-1 rounded text-[11px]">brew install git</code></li>
+          </ul>
+        </Card>
+        {/* Linux */}
+        <Card className="text-center">
+          <div className="mx-auto mb-3 w-12 h-12 rounded-xl bg-orange-100 text-orange-600 flex items-center justify-center">
+            <Cpu size={24} />
+          </div>
+          <h4 className="font-bold text-sm mb-2">Linux</h4>
+          <ul className="text-xs text-slate-500 space-y-1 text-left">
+            <li className="flex items-start gap-1.5"><span className="text-indigo-400 mt-0.5">•</span>Debian/Ubuntu：<code className="bg-slate-100 px-1 rounded text-[11px]">sudo apt install git</code></li>
+            <li className="flex items-start gap-1.5"><span className="text-indigo-400 mt-0.5">•</span>Fedora：<code className="bg-slate-100 px-1 rounded text-[11px]">sudo dnf install git</code></li>
+          </ul>
+        </Card>
+      </div>
+      <div className="mt-3 bg-green-50 border border-green-200 rounded-lg px-4 py-2 text-sm text-green-800 flex items-center gap-2">
+        <CheckCircle size={16} className="shrink-0" />
+        安裝完成後，在 Terminal 輸入 <code className="bg-green-100 px-1.5 py-0.5 rounded font-mono text-xs">git --version</code> 確認是否安裝成功。
+      </div>
+    </div>
+
+    {/* --- 設置身份 --- */}
+    <div>
+      <h3 className="text-lg font-bold text-slate-800 mb-4 flex items-center gap-2">
+        <Key size={20} className="text-amber-500" /> Local 端身份設定
+      </h3>
+      <Card className="bg-slate-50">
+        <p className="text-sm text-slate-600 mb-3">每次 Commit 都會記錄「是誰做的」。安裝完 Git 後，第一件事就是設定你的身份：</p>
+        <div className="bg-slate-900 rounded-lg p-4 font-mono text-sm text-slate-200 space-y-2">
+          <div><span className="text-green-400">$</span> git config --global user.name <span className="text-amber-300">"Your Name"</span></div>
+          <div><span className="text-green-400">$</span> git config --global user.email <span className="text-amber-300">"you@example.com"</span></div>
+          <div className="border-t border-slate-700 pt-2 mt-2">
+            <span className="text-slate-500"># 確認設定</span>
+          </div>
+          <div><span className="text-green-400">$</span> git config --list</div>
+        </div>
+        <div className="mt-3 grid sm:grid-cols-2 gap-3">
+          <div className="bg-amber-50 border border-amber-200 rounded-lg p-3 text-xs text-amber-800 flex items-start gap-2">
+            <Info size={14} className="shrink-0 mt-0.5" />
+            <span><strong>--global</strong> 代表全域設定，適用於你電腦上所有 Git 專案。若某個專案需要不同身份，在該專案內執行不加 --global 的版本即可。</span>
+          </div>
+          <div className="bg-blue-50 border border-blue-200 rounded-lg p-3 text-xs text-blue-800 flex items-start gap-2">
+            <Info size={14} className="shrink-0 mt-0.5" />
+            <span>如果你未來要推上 GitHub，這裡的 <strong>email 需要和 GitHub 帳號一致</strong>，否則 GitHub 不會正確顯示你的大頭貼。</span>
+          </div>
+        </div>
+      </Card>
+    </div>
+
+    {/* --- .git 資料夾警告 --- */}
+    <div>
+      <h3 className="text-lg font-bold text-slate-800 mb-4 flex items-center gap-2">
+        <Folder size={20} className="text-red-500" /> .git 資料夾 = 你的存檔本體
+      </h3>
+      <Card className="border-red-200 bg-red-50/30">
+        <div className="grid md:grid-cols-2 gap-6 items-center">
+          {/* 左邊文字 */}
+          <div>
+            <div className="bg-red-100 border border-red-200 rounded-lg p-3 mb-4 text-sm text-red-800 flex items-start gap-2">
+              <AlertCircle size={16} className="shrink-0 mt-0.5" />
+              <span><strong>刪除 <code>.git</code> = 刪除所有歷史紀錄！</strong>除非你已經 Push 到遠端（如 GitHub），否則一切無法復原。</span>
+            </div>
+            <ul className="text-sm text-slate-600 space-y-2">
+              <li className="flex items-start gap-2">
+                <HardDrive size={14} className="text-slate-400 mt-1 shrink-0" />
+                <span>執行 <code className="bg-slate-100 px-1 rounded text-xs">git init</code> 後，專案根目錄會產生隱藏的 <code className="bg-slate-100 px-1 rounded text-xs">.git/</code> 資料夾</span>
+              </li>
+              <li className="flex items-start gap-2">
+                <Database size={14} className="text-slate-400 mt-1 shrink-0" />
+                <span>所有 Commit 歷史、Branch、Tag 都存在這裡面</span>
+              </li>
+              <li className="flex items-start gap-2">
+                <Cloud size={14} className="text-slate-400 mt-1 shrink-0" />
+                <span>只有<strong>已 Push 到 Remote</strong> 的記錄，才有「異地備份」</span>
+              </li>
+            </ul>
+          </div>
+          {/* 右邊圖示 */}
+          <div className="flex flex-col items-center">
+            <div className="relative flex items-center gap-6">
+              {/* Local */}
+              <div className="flex flex-col items-center">
+                <div className="w-16 h-16 rounded-2xl bg-indigo-600 text-white flex items-center justify-center shadow-lg">
+                  <Laptop size={28} />
+                </div>
+                <div className="mt-1 bg-yellow-100 border-2 border-yellow-300 rounded px-2 py-0.5 text-[10px] font-bold text-yellow-700 flex items-center gap-1">
+                  <Folder size={10} /> .git/
+                </div>
+                <span className="text-xs text-slate-500 mt-1">Local</span>
+              </div>
+              {/* Arrow */}
+              <div className="flex flex-col items-center gap-1">
+                <ArrowRight size={20} className="text-green-500" />
+                <span className="text-[10px] text-green-600 font-bold">git push</span>
+              </div>
+              {/* Remote */}
+              <div className="flex flex-col items-center">
+                <div className="w-16 h-16 rounded-2xl bg-slate-800 text-white flex items-center justify-center shadow-lg">
+                  <Github size={28} />
+                </div>
+                <div className="mt-1 bg-green-100 border border-green-300 rounded px-2 py-0.5 text-[10px] font-bold text-green-700 flex items-center gap-1">
+                  <Shield size={10} /> 安全備份
+                </div>
+                <span className="text-xs text-slate-500 mt-1">GitHub</span>
+              </div>
+            </div>
+            <p className="text-xs text-slate-400 mt-3 text-center">只有 Push 過的內容才會存在 GitHub 上</p>
+          </div>
+        </div>
+      </Card>
+    </div>
+
+    {/* --- GitHub CLI (gh) --- */}
+    <div>
+      <h3 className="text-lg font-bold text-slate-800 mb-4 flex items-center gap-2">
+        <Terminal size={20} className="text-purple-500" /> GitHub CLI (gh) — 選配加速工具
+      </h3>
+      <Card className="bg-purple-50/30 border-purple-200">
+        <p className="text-sm text-slate-600 mb-3">安裝 GitHub 後，可額外安裝官方的 <strong>gh CLI</strong>，在 Terminal 中直接管理 GitHub：</p>
+        <div className="grid sm:grid-cols-2 gap-4 mb-4">
+          <div className="bg-white rounded-lg border border-purple-100 p-3">
+            <h4 className="font-bold text-xs text-purple-700 mb-2 uppercase tracking-wide">安裝方式</h4>
+            <div className="space-y-1.5 text-xs text-slate-600">
+              <div className="flex items-center gap-1.5"><Monitor size={12} className="text-blue-500 shrink-0" /><span>Windows：<code className="bg-slate-100 px-1 rounded">winget install GitHub.cli</code></span></div>
+              <div className="flex items-center gap-1.5"><Laptop size={12} className="text-slate-500 shrink-0" /><span>macOS：<code className="bg-slate-100 px-1 rounded">brew install gh</code></span></div>
+              <div className="flex items-center gap-1.5"><Cpu size={12} className="text-orange-500 shrink-0" /><span>Linux：<code className="bg-slate-100 px-1 rounded">sudo apt install gh</code></span></div>
+            </div>
+          </div>
+          <div className="bg-white rounded-lg border border-purple-100 p-3">
+            <h4 className="font-bold text-xs text-purple-700 mb-2 uppercase tracking-wide">常用指令</h4>
+            <div className="bg-slate-900 rounded p-2 font-mono text-[11px] text-slate-200 space-y-1">
+              <div><span className="text-green-400">$</span> gh auth login <span className="text-slate-500"># 登入帳號</span></div>
+              <div><span className="text-green-400">$</span> gh auth status <span className="text-slate-500"># 檢查狀態</span></div>
+              <div><span className="text-green-400">$</span> gh repo create <span className="text-slate-500"># 建立 Repo</span></div>
+            </div>
+          </div>
+        </div>
+        <div className="bg-purple-100 border border-purple-200 rounded-lg px-3 py-2 text-xs text-purple-800 flex items-start gap-2">
+          <Info size={14} className="shrink-0 mt-0.5" />
+          <span><strong>gh 不是必要工具</strong>，但它可以讓你不用離開 Terminal 就能操作 GitHub（建 Repo、發 PR、查看 Issue 等），熟悉後非常高效。</span>
+        </div>
+      </Card>
+    </div>
+
+    {/* --- Git 常用指令速查表 --- */}
+    <div>
+      <h3 className="text-lg font-bold text-slate-800 mb-4 flex items-center gap-2">
+        <BookOpen size={20} className="text-green-600" /> Git 常用指令速查表 (Cheatsheet)
+      </h3>
+      <div className="grid sm:grid-cols-2 lg:grid-cols-3 gap-4">
+        {/* 初始化與設定 */}
+        <Card className="bg-slate-50 border-slate-200">
+          <h4 className="font-bold text-xs text-slate-500 uppercase tracking-wide mb-3 flex items-center gap-1.5">
+            <Wrench size={12} /> 初始化與設定
+          </h4>
+          <div className="space-y-2 font-mono text-xs">
+            <div className="bg-white rounded border border-slate-200 px-2 py-1.5">
+              <code className="text-indigo-700">git init</code>
+              <span className="text-slate-400 block text-[10px]">初始化本地 Repo</span>
+            </div>
+            <div className="bg-white rounded border border-slate-200 px-2 py-1.5">
+              <code className="text-indigo-700">git clone &lt;url&gt;</code>
+              <span className="text-slate-400 block text-[10px]">下載遠端 Repo</span>
+            </div>
+            <div className="bg-white rounded border border-slate-200 px-2 py-1.5">
+              <code className="text-indigo-700">git remote add origin &lt;url&gt;</code>
+              <span className="text-slate-400 block text-[10px]">連結遠端 Repo</span>
+            </div>
+          </div>
+        </Card>
+
+        {/* 日常操作 */}
+        <Card className="bg-slate-50 border-slate-200">
+          <h4 className="font-bold text-xs text-slate-500 uppercase tracking-wide mb-3 flex items-center gap-1.5">
+            <RefreshCw size={12} /> 日常操作
+          </h4>
+          <div className="space-y-2 font-mono text-xs">
+            <div className="bg-white rounded border border-slate-200 px-2 py-1.5">
+              <code className="text-indigo-700">git status</code>
+              <span className="text-slate-400 block text-[10px]">查看工作區狀態</span>
+            </div>
+            <div className="bg-white rounded border border-slate-200 px-2 py-1.5">
+              <code className="text-indigo-700">git add .</code>
+              <span className="text-slate-400 block text-[10px]">加入全部檔案到暫存區</span>
+            </div>
+            <div className="bg-white rounded border border-slate-200 px-2 py-1.5">
+              <code className="text-indigo-700">git commit -m "msg"</code>
+              <span className="text-slate-400 block text-[10px]">提交並附上訊息</span>
+            </div>
+            <div className="bg-white rounded border border-slate-200 px-2 py-1.5">
+              <code className="text-indigo-700">git log --oneline</code>
+              <span className="text-slate-400 block text-[10px]">查看簡潔歷史</span>
+            </div>
+          </div>
+        </Card>
+
+        {/* 同步遠端 */}
+        <Card className="bg-slate-50 border-slate-200">
+          <h4 className="font-bold text-xs text-slate-500 uppercase tracking-wide mb-3 flex items-center gap-1.5">
+            <UploadCloud size={12} /> 同步遠端
+          </h4>
+          <div className="space-y-2 font-mono text-xs">
+            <div className="bg-white rounded border border-slate-200 px-2 py-1.5">
+              <code className="text-indigo-700">git push</code>
+              <span className="text-slate-400 block text-[10px]">推送到遠端</span>
+            </div>
+            <div className="bg-white rounded border border-slate-200 px-2 py-1.5">
+              <code className="text-indigo-700">git pull</code>
+              <span className="text-slate-400 block text-[10px]">拉取並合併遠端更新</span>
+            </div>
+            <div className="bg-white rounded border border-slate-200 px-2 py-1.5">
+              <code className="text-indigo-700">git fetch</code>
+              <span className="text-slate-400 block text-[10px]">僅拉取資訊不合併</span>
+            </div>
+          </div>
+        </Card>
+
+        {/* 分支操作 */}
+        <Card className="bg-slate-50 border-slate-200">
+          <h4 className="font-bold text-xs text-slate-500 uppercase tracking-wide mb-3 flex items-center gap-1.5">
+            <GitBranch size={12} /> 分支操作
+          </h4>
+          <div className="space-y-2 font-mono text-xs">
+            <div className="bg-white rounded border border-slate-200 px-2 py-1.5">
+              <code className="text-indigo-700">git branch</code>
+              <span className="text-slate-400 block text-[10px]">列出所有分支</span>
+            </div>
+            <div className="bg-white rounded border border-slate-200 px-2 py-1.5">
+              <code className="text-indigo-700">git checkout -b &lt;name&gt;</code>
+              <span className="text-slate-400 block text-[10px]">建立並切換分支</span>
+            </div>
+            <div className="bg-white rounded border border-slate-200 px-2 py-1.5">
+              <code className="text-indigo-700">git merge &lt;branch&gt;</code>
+              <span className="text-slate-400 block text-[10px]">合併分支</span>
+            </div>
+          </div>
+        </Card>
+
+        {/* 查看與比較 */}
+        <Card className="bg-slate-50 border-slate-200">
+          <h4 className="font-bold text-xs text-slate-500 uppercase tracking-wide mb-3 flex items-center gap-1.5">
+            <Eye size={12} /> 查看與比較
+          </h4>
+          <div className="space-y-2 font-mono text-xs">
+            <div className="bg-white rounded border border-slate-200 px-2 py-1.5">
+              <code className="text-indigo-700">git diff</code>
+              <span className="text-slate-400 block text-[10px]">查看未暫存的修改</span>
+            </div>
+            <div className="bg-white rounded border border-slate-200 px-2 py-1.5">
+              <code className="text-indigo-700">git diff --staged</code>
+              <span className="text-slate-400 block text-[10px]">查看已暫存的修改</span>
+            </div>
+            <div className="bg-white rounded border border-slate-200 px-2 py-1.5">
+              <code className="text-indigo-700">git show &lt;commit&gt;</code>
+              <span className="text-slate-400 block text-[10px]">查看某次提交</span>
+            </div>
+          </div>
+        </Card>
+
+        {/* 復原與清理 */}
+        <Card className="bg-slate-50 border-slate-200">
+          <h4 className="font-bold text-xs text-slate-500 uppercase tracking-wide mb-3 flex items-center gap-1.5">
+            <Undo2 size={12} /> 復原與清理
+          </h4>
+          <div className="space-y-2 font-mono text-xs">
+            <div className="bg-white rounded border border-slate-200 px-2 py-1.5">
+              <code className="text-indigo-700">git restore &lt;file&gt;</code>
+              <span className="text-slate-400 block text-[10px]">撤銷未暫存的修改</span>
+            </div>
+            <div className="bg-white rounded border border-slate-200 px-2 py-1.5">
+              <code className="text-indigo-700">git reset HEAD~1</code>
+              <span className="text-slate-400 block text-[10px]">回退最近 1 次 Commit</span>
+            </div>
+            <div className="bg-white rounded border border-slate-200 px-2 py-1.5">
+              <code className="text-indigo-700">git stash</code>
+              <span className="text-slate-400 block text-[10px]">暫存未提交的修改</span>
+            </div>
+          </div>
+        </Card>
+      </div>
+    </div>
   </div>
 );
 
 // Chapter 2: Repo Setup (Modified)
 const ChapterSetup = () => {
   const [mode, setMode] = useState('init'); // 'init' or 'clone'
-  const [repoUrl, setRepoUrl] = useState('https://github.com/blake/demo-project.git'); // Preset URL
+  const [repoUrl, setRepoUrl] = useState('https://github.com/blake/demo-project.git');
   const [isInitialized, setIsInitialized] = useState(false);
   const [isLinked, setIsLinked] = useState(false);
+  const [isCloning, setIsCloning] = useState(false);
   const [logs, setLogs] = useState([{ prefix: '$', text: 'Ready to setup repository.' }]);
 
-  const addLog = (text, type = 'info') => {
-    setLogs(prev => [...prev, { text, type, prefix: '>' }]);
+  const addLog = (text, type = 'info', prefix = '>') => {
+    setLogs(prev => [...prev, { text, type, prefix }]);
   };
 
-  const handleInitConnect = () => {
-    if (!isInitialized) {
-        addLog('Initialized empty Git repository in /project/.git/', 'success');
-        setIsInitialized(true);
-    }
-    
+  // 情境 A: Step 1 — git init
+  const handleInit = () => {
+    if (isInitialized) return;
+    addLog('git init', 'input', '$');
     setTimeout(() => {
-        if (repoUrl && !isLinked) {
-            addLog(`remote "origin" added. Linked to ${repoUrl}`, 'success');
-            setIsLinked(true);
-        }
-    }, 800);
+      addLog('Initialized empty Git repository in /project/.git/', 'success');
+      setIsInitialized(true);
+    }, 300);
   };
 
+  // 情境 A: Step 2 — git remote add
+  const handleLink = () => {
+    if (!isInitialized || isLinked || !repoUrl) return;
+    addLog(`git remote add origin ${repoUrl}`, 'input', '$');
+    setTimeout(() => {
+      addLog(`remote "origin" added. Linked to ${repoUrl}`, 'success');
+      setIsLinked(true);
+    }, 300);
+  };
+
+  // 情境 B: git clone
   const handleClone = () => {
-    addLog(`Cloning into 'project'...`, 'info');
+    if (isLinked) return;
+    setIsCloning(true);
+    addLog(`git clone ${repoUrl}`, 'input', '$');
+    setTimeout(() => {
+      addLog(`Cloning into 'demo-project'...`, 'info');
+    }, 300);
     setTimeout(() => {
       addLog(`remote: Enumerating objects: 12, done.`, 'info');
       addLog(`remote: Total 12 (delta 3), reused 0 (delta 0)`, 'info');
+    }, 800);
+    setTimeout(() => {
       addLog(`Unpacking objects: 100% (12/12), done.`, 'success');
       setIsInitialized(true);
       setIsLinked(true);
-    }, 800);
+      setIsCloning(false);
+    }, 1400);
   };
 
   const reset = () => {
     setIsLinked(false);
     setIsInitialized(false);
+    setIsCloning(false);
     setRepoUrl('https://github.com/blake/demo-project.git');
     setLogs([{ prefix: '$', text: 'Ready.' }]);
   };
@@ -255,85 +598,143 @@ const ChapterSetup = () => {
             <div className="space-y-4">
               <div>
                 <label className="block text-xs font-bold text-slate-500 mb-1">GitHub Repository URL</label>
-                <div className="flex gap-2">
-                  <input 
-                    type="text" 
-                    value={repoUrl}
-                    onChange={(e) => setRepoUrl(e.target.value)}
-                    className="flex-1 px-3 py-2 rounded border border-slate-300 text-sm focus:outline-none focus:border-indigo-500 text-slate-600 bg-slate-100"
-                  />
-                  {mode === 'init' ? (
-                    <button 
-                      onClick={handleInitConnect}
-                      disabled={isLinked}
-                      className={`px-4 py-2 rounded text-sm font-bold text-white transition-all ${isLinked ? 'bg-green-500' : 'bg-slate-800 hover:bg-slate-700'}`}
-                    >
-                      {isLinked ? 'Linked!' : 'Run Init & Link'}
-                    </button>
-                  ) : (
-                    <button 
-                      onClick={handleClone}
-                      disabled={isLinked}
-                      className={`px-4 py-2 rounded text-sm font-bold text-white transition-all ${isLinked ? 'bg-green-500' : 'bg-slate-800 hover:bg-slate-700'}`}
-                    >
-                      {isLinked ? 'Cloned!' : 'Clone'}
-                    </button>
-                  )}
-                </div>
+                <input 
+                  type="text" 
+                  value={repoUrl}
+                  onChange={(e) => setRepoUrl(e.target.value)}
+                  className="w-full px-3 py-2 rounded border border-slate-300 text-sm focus:outline-none focus:border-indigo-500 text-slate-600 bg-slate-100"
+                />
               </div>
 
               <div className="p-4 bg-white rounded border border-slate-200 text-sm text-slate-600">
                 {mode === 'init' ? (
-                  <>
-                    <p className={`font-mono p-1 mb-2 rounded transition-colors ${isInitialized ? 'bg-green-100 text-green-800' : 'bg-slate-100'}`}>$ git init</p>
-                    <p className={`font-mono p-1 rounded transition-colors ${isLinked ? 'bg-green-100 text-green-800' : 'bg-slate-100'}`}>$ git remote add origin {repoUrl}</p>
-                  </>
+                  <div className="space-y-2">
+                    {/* git init 行 + 按鈕 */}
+                    <div className="flex items-center gap-2">
+                      <p className={`font-mono p-1.5 rounded transition-colors flex-1 ${isInitialized ? 'bg-green-100 text-green-800' : 'bg-slate-100'}`}>$ git init</p>
+                      <button
+                        onClick={handleInit}
+                        disabled={isInitialized}
+                        className={`px-3 py-1.5 rounded text-xs font-bold text-white transition-all whitespace-nowrap shrink-0 ${isInitialized ? 'bg-green-500 cursor-default' : 'bg-indigo-600 hover:bg-indigo-700 active:scale-95 shadow-sm'}`}
+                      >
+                        {isInitialized ? '✓ Initialized' : '▶ Run'}
+                      </button>
+                    </div>
+                    {/* git remote add 行 + 按鈕 */}
+                    <div className="flex items-center gap-2">
+                      <p className={`font-mono p-1.5 rounded transition-colors flex-1 min-w-0 truncate ${isLinked ? 'bg-green-100 text-green-800' : 'bg-slate-100'}`}>$ git remote add origin {repoUrl}</p>
+                      <button
+                        onClick={handleLink}
+                        disabled={!isInitialized || isLinked}
+                        className={`px-3 py-1.5 rounded text-xs font-bold text-white transition-all whitespace-nowrap shrink-0 ${isLinked ? 'bg-green-500 cursor-default' : !isInitialized ? 'bg-slate-300 cursor-not-allowed' : 'bg-indigo-600 hover:bg-indigo-700 active:scale-95 shadow-sm'}`}
+                      >
+                        {isLinked ? '✓ Linked' : '▶ Run'}
+                      </button>
+                    </div>
+                  </div>
                 ) : (
-                  <p className={`font-mono p-1 rounded transition-colors ${isLinked ? 'bg-green-100 text-green-800' : 'bg-slate-100'}`}>$ git clone {repoUrl}</p>
+                  <div className="flex items-center gap-2">
+                    <p className={`font-mono p-1.5 rounded transition-colors flex-1 min-w-0 truncate ${isLinked ? 'bg-green-100 text-green-800' : 'bg-slate-100'}`}>$ git clone {repoUrl}</p>
+                    <button
+                      onClick={handleClone}
+                      disabled={isLinked || isCloning}
+                      className={`px-3 py-1.5 rounded text-xs font-bold text-white transition-all whitespace-nowrap shrink-0 ${isLinked ? 'bg-green-500 cursor-default' : isCloning ? 'bg-slate-400 cursor-wait' : 'bg-purple-600 hover:bg-purple-700 active:scale-95 shadow-sm'}`}
+                    >
+                      {isLinked ? '✓ Cloned' : isCloning ? 'Cloning...' : '▶ Clone'}
+                    </button>
+                  </div>
                 )}
               </div>
             </div>
           </Card>
-          
-          <TerminalSim logs={logs} onCommand={() => {}} height="h-40" />
         </div>
 
         {/* Visual Feedback */}
         <div className="flex items-center justify-center bg-slate-100 rounded-xl border border-slate-200 p-8">
-          <div className="relative flex items-center gap-16">
-             {/* Local */}
+          <div className="relative flex items-center gap-20">
+             {/* Local Folder */}
              <div className="flex flex-col items-center z-10 relative">
-               <div className={`w-20 h-20 rounded-2xl flex items-center justify-center shadow-lg transition-all duration-500 ${isInitialized ? 'bg-indigo-600 text-white' : 'bg-white text-slate-300'}`}>
+               <div className={`w-20 h-20 rounded-2xl flex items-center justify-center shadow-lg transition-all duration-500 ${isInitialized ? 'bg-indigo-600 text-white ring-4 ring-indigo-200' : 'bg-white text-slate-300 border border-slate-200'}`}>
                  <Laptop size={40} />
                </div>
+               {/* .git 資料夾圖示 */}
                {isInitialized && (
-                   <div className="absolute -right-2 -top-2 w-8 h-8 bg-slate-200 rounded-lg flex items-center justify-center text-slate-500 shadow-md animate-fade-in" title=".git folder created">
-                       <Folder size={14} className="fill-slate-400" />
-                       <span className="absolute text-[8px] font-bold text-slate-600 top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 mt-1 ml-0.5">.git</span>
-                   </div>
+                 <div className="absolute -right-3 -top-3 w-9 h-9 bg-yellow-100 border-2 border-yellow-300 rounded-lg flex items-center justify-center shadow-md animate-fade-in" title=".git folder created">
+                   <Folder size={14} className="text-yellow-600" />
+                   <span className="absolute text-[7px] font-black text-yellow-700 -bottom-0.5">.git</span>
+                 </div>
                )}
-               <span className="mt-3 font-bold text-slate-600">Local Folder</span>
+               {/* git 控管標記 */}
+               {isInitialized && !isLinked && mode === 'init' && (
+                 <div className="absolute -bottom-1 left-1/2 -translate-x-1/2 bg-indigo-100 text-indigo-700 text-[10px] px-2 py-0.5 rounded-full font-bold animate-fade-in whitespace-nowrap border border-indigo-200">
+                   Git 已初始化
+                 </div>
+               )}
+               <span className="mt-4 font-bold text-slate-600">Local Folder</span>
+
+               {/* Clone 時顯示下載的檔案 */}
+               {isLinked && mode === 'clone' && (
+                 <div className="absolute -left-6 top-1 flex flex-col gap-0.5 animate-fade-in">
+                   <div className="flex items-center gap-1 bg-white rounded px-1.5 py-0.5 shadow-sm border border-slate-200 text-[9px] text-slate-600 font-mono">
+                     <FileText size={8} className="text-blue-500 shrink-0" />README.md
+                   </div>
+                   <div className="flex items-center gap-1 bg-white rounded px-1.5 py-0.5 shadow-sm border border-slate-200 text-[9px] text-slate-600 font-mono">
+                     <FileCode size={8} className="text-green-500 shrink-0" />index.html
+                   </div>
+                   <div className="flex items-center gap-1 bg-white rounded px-1.5 py-0.5 shadow-sm border border-slate-200 text-[9px] text-slate-600 font-mono">
+                     <FileCode size={8} className="text-orange-500 shrink-0" />app.js
+                   </div>
+                 </div>
+               )}
              </div>
 
              {/* Connection Line */}
-             <div className="absolute left-10 right-10 top-10 h-1 bg-slate-200 -z-0">
-               <div className={`h-full bg-green-500 transition-all duration-1000 ease-out ${isLinked ? 'w-full' : 'w-0'}`}></div>
+             <div className="absolute left-10 right-10 top-10 h-1 bg-slate-200 -z-0 rounded-full">
+               <div className={`h-full rounded-full transition-all duration-1000 ease-out ${isLinked ? 'w-full' : 'w-0'} ${mode === 'clone' ? 'bg-purple-500' : 'bg-green-500'}`}></div>
              </div>
+             {/* Linked / Cloned Label — 居中 */}
              {isLinked && (
-               <div className="absolute left-1/2 -translate-x-1/2 top-6 bg-green-100 text-green-700 text-xs px-2 py-1 rounded-full font-bold animate-fade-in">
-                 {mode === 'init' ? 'Linked' : 'Cloned'}
+               <div className={`absolute top-4 z-20 animate-fade-in px-3 py-1 rounded-full text-xs font-bold ${mode === 'clone' ? 'bg-purple-100 text-purple-700' : 'bg-green-100 text-green-700'}`}
+                    style={{ left: '50%', transform: 'translateX(-50%)' }}
+               >
+                 {mode === 'init' ? '✓ Linked' : '✓ Cloned'}
+               </div>
+             )}
+             {/* Clone 方向箭頭動畫 */}
+             {isCloning && (
+               <div className="absolute top-7 z-20 animate-pulse"
+                    style={{ left: '50%', transform: 'translateX(-50%)' }}
+               >
+                 <Download size={16} className="text-purple-500" />
                </div>
              )}
 
-             {/* Remote */}
-             <div className="flex flex-col items-center z-10">
+             {/* GitHub Repo */}
+             <div className="flex flex-col items-center z-10 relative">
                <div className="w-20 h-20 rounded-2xl bg-slate-800 text-white flex items-center justify-center shadow-lg">
                  <Github size={40} />
                </div>
-               <span className="mt-3 font-bold text-slate-600">GitHub Repo</span>
+               <span className="mt-4 font-bold text-slate-600">GitHub Repo</span>
+
+               {/* Clone 時 GitHub 端顯示檔案來源 */}
+               {(isCloning || (isLinked && mode === 'clone')) && (
+                 <div className="absolute -right-5 top-1 flex flex-col gap-0.5 animate-fade-in">
+                   <div className="flex items-center gap-1 bg-slate-700 rounded px-1.5 py-0.5 shadow-sm text-[9px] text-slate-300 font-mono">
+                     <FileText size={8} className="text-slate-400 shrink-0" />src/
+                   </div>
+                   <div className="flex items-center gap-1 bg-slate-700 rounded px-1.5 py-0.5 shadow-sm text-[9px] text-slate-300 font-mono">
+                     <FileText size={8} className="text-slate-400 shrink-0" />docs/
+                   </div>
+                 </div>
+               )}
              </div>
           </div>
         </div>
+      </div>
+
+      {/* Full-width Terminal at bottom */}
+      <div className="mt-8">
+        <TerminalSim logs={logs} onCommand={() => {}} height="h-64" />
       </div>
     </div>
   );
@@ -383,8 +784,8 @@ const ChapterFileStatus = () => {
     }
   };
 
-  const handleCommand = (cmd) => {
-    const command = cmd.trim();
+  const handleCommand = (cmd, fileName = null) => {
+    const command = fileName ? `git add ${fileName}` : cmd.trim();
     addLog(command, 'input', '$');
 
     if (command === 'git status') {
@@ -409,12 +810,22 @@ const ChapterFileStatus = () => {
       } else if (files.length === 0) {
          addLog('No files in directory.', 'info');
       }
-    } else if (command === 'git add .') {
-      const newFiles = files.map(f => f.status === 'untracked' ? { ...f, status: 'staged' } : f);
-      const count = newFiles.filter(f => f.status === 'staged' && !files.find(old => old.name === f.name && old.status === 'staged')).length;
+    } else if (command === 'git add .' || command.startsWith('git add ')) {
+      let newFiles;
+      let count = 0;
+      
+      if (command === 'git add .') {
+        newFiles = files.map(f => f.status === 'untracked' ? { ...f, status: 'staged' } : f);
+        count = newFiles.filter(f => f.status === 'staged' && !files.find(old => old.name === f.name && old.status === 'staged')).length;
+      } else {
+        const targetFile = fileName || command.split(' ')[2];
+        newFiles = files.map(f => f.name === targetFile && f.status === 'untracked' ? { ...f, status: 'staged' } : f);
+        count = newFiles.find(f => f.name === targetFile && f.status === 'staged') ? 1 : 0;
+      }
+
       setFiles(newFiles);
       if (count > 0) addLog(`Staged ${count} files. Ready to commit.`, 'success');
-      else addLog('No new files to stage.', 'warning');
+      else if (!fileName) addLog('No new files to stage.', 'warning');
     } else if (command.includes('git commit')) {
       const stagedFiles = files.filter(f => f.status === 'staged');
       if (stagedFiles.length === 0) {
@@ -434,11 +845,52 @@ const ChapterFileStatus = () => {
 
       <InstructionalText title="暫存區 (Staging Area) 的概念">
         <p>Git 不是你一存檔就會記錄歷史，它有一個「中轉站」叫做暫存區。</p>
+        
+        {/* 3-A: Three Areas Diagram */}
+        <div className="my-6 bg-white border border-slate-200 rounded-xl p-4 shadow-sm">
+          <div className="flex flex-col md:flex-row items-center justify-between gap-4 md:gap-2">
+            {/* Working Directory */}
+            <div className="flex flex-col items-center flex-1">
+              <div className="w-full h-24 rounded-lg bg-red-50 border-2 border-red-200 flex flex-col items-center justify-center relative group">
+                <Monitor size={32} className="text-red-400" />
+                <span className="text-[10px] font-bold text-red-600 mt-1 uppercase tracking-tighter">Working Directory</span>
+                <div className="absolute -right-4 top-1/2 -translate-y-1/2 z-10 hidden md:block">
+                  <ArrowRight size={16} className="text-slate-300" />
+                </div>
+              </div>
+              <p className="text-[10px] text-slate-400 mt-1">本地工作區 (Untracked)</p>
+            </div>
+
+            {/* Staging Area */}
+            <div className="flex flex-col items-center flex-1">
+              <div className="w-full h-24 rounded-lg bg-green-50 border-2 border-green-200 flex flex-col items-center justify-center relative">
+                <Save size={32} className="text-green-400" />
+                <span className="text-[10px] font-bold text-green-600 mt-1 uppercase tracking-tighter">Staging Area</span>
+                <div className="absolute -right-4 top-1/2 -translate-y-1/2 z-10 hidden md:block">
+                  <ArrowRight size={16} className="text-slate-300" />
+                </div>
+                <div className="absolute top-0 left-1/2 -translate-x-1/2 -translate-y-1/2 bg-white px-2 text-[9px] font-bold text-slate-400 border border-slate-200 rounded-full italic">git add</div>
+              </div>
+              <p className="text-[10px] text-slate-400 mt-1">暫存中轉站 (Staged)</p>
+            </div>
+
+            {/* Repository */}
+            <div className="flex flex-col items-center flex-1">
+              <div className="w-full h-24 rounded-lg bg-indigo-50 border-2 border-indigo-200 flex flex-col items-center justify-center relative">
+                <Database size={32} className="text-indigo-400" />
+                <span className="text-[10px] font-bold text-indigo-600 mt-1 uppercase tracking-tighter">Local Repository</span>
+                <div className="absolute top-0 left-1/2 -translate-x-1/2 -translate-y-1/2 bg-white px-2 text-[9px] font-bold text-slate-400 border border-slate-200 rounded-full italic">git commit</div>
+              </div>
+              <p className="text-[10px] text-slate-400 mt-1">版本資料庫 (Committed)</p>
+            </div>
+          </div>
+        </div>
+
         <ul className="list-decimal pl-5 mt-2 space-y-1">
           <li><strong>Untracked (紅色)</strong>：新檔案，Git 還不認識它。</li>
-          <li><strong>Git Add (變綠色)</strong>：你告訴 Git：「這個檔案我要記錄」，它就會進入暫存區。</li>
-          <li><strong>Git Commit (變藍色)</strong>：這是正式的「存檔」，Git 會拍下暫存區所有檔案的快照，永久保存。</li>
-          <li><strong>Ignore (灰色)</strong>：像密碼檔 (.env) 這種東西，我們希望 Git 永遠假裝沒看到。</li>
+          <li><strong>Staged (綠色)</strong>：你告訴 Git：「這個檔案我要記錄」，它就會進入暫存區。</li>
+          <li><strong>Committed (藍色)</strong>：這是正式的「存檔」，Git 會拍下暫存區所有檔案的快照，永久保存。</li>
+          <li><strong>Ignored (灰色)</strong>：像密碼檔 (.env) 這種東西，我們希望 Git 永遠假裝沒看到。</li>
         </ul>
       </InstructionalText>
       
@@ -496,7 +948,7 @@ const ChapterFileStatus = () => {
             <div className="space-y-2">
               <button onClick={() => handleCommand('git add .')} className="w-full bg-indigo-600 hover:bg-indigo-700 text-white rounded-lg px-4 py-2 text-sm font-medium flex items-center justify-between transition-all shadow-sm active:scale-95">
                  <span>git add .</span>
-                 <span className="text-indigo-200 text-xs font-normal">加入追蹤</span>
+                 <span className="text-indigo-200 text-xs font-normal">加入全部</span>
               </button>
               <button onClick={() => handleCommand('git commit -m "save"')} className="w-full bg-slate-800 hover:bg-slate-900 text-white rounded-lg px-4 py-2 text-sm font-medium flex items-center justify-between transition-all shadow-sm active:scale-95">
                  <span>git commit</span>
@@ -506,6 +958,22 @@ const ChapterFileStatus = () => {
                  <span>git status</span>
                  <span className="text-slate-400 text-xs font-normal">查看狀態</span>
               </button>
+            </div>
+
+            {/* 3-B: Commit Message Tips */}
+            <div className="mt-4 pt-4 border-t border-slate-200">
+              <h4 className="text-[10px] font-bold text-slate-400 uppercase tracking-widest mb-2">Commit 訊息建議</h4>
+              <div className="space-y-1.5">
+                <div className="flex items-center gap-1.5 text-[11px] text-green-600 font-medium">
+                  <CheckCircle size={10} /> <span>feat: 新增登入功能</span>
+                </div>
+                <div className="flex items-center gap-1.5 text-[11px] text-green-600 font-medium">
+                  <CheckCircle size={10} /> <span>fix: 修復計算錯誤</span>
+                </div>
+                <div className="flex items-center gap-1.5 text-[11px] text-red-500 font-medium opacity-60">
+                  <AlertCircle size={10} /> <span>update</span>
+                </div>
+              </div>
             </div>
           </Card>
         </div>
@@ -530,7 +998,7 @@ const ChapterFileStatus = () => {
                 </div>
               )}
               {files.map((f, i) => (
-                <div key={i} className={`p-3 rounded border flex items-center gap-2 transition-all duration-300 animate-fade-in
+                <div key={i} className={`group p-3 rounded border flex items-center gap-2 transition-all duration-300 animate-fade-in relative
                   ${f.status === 'untracked' ? 'bg-red-50 border-red-200 text-red-700' : 
                     f.status === 'staged' ? 'bg-green-50 border-green-200 text-green-700 shadow-sm' : 
                     f.status === 'committed' ? 'bg-indigo-50 border-indigo-200 text-indigo-700' :
@@ -539,7 +1007,19 @@ const ChapterFileStatus = () => {
                 `}>
                   {f.type === 'secret' ? <Lock size={16} /> : <FileText size={16} />}
                   <span className="text-sm font-mono truncate">{f.name}</span>
+                  
+                  {/* 3-C: Individual git add button */}
+                  {f.status === 'untracked' && (
+                    <button 
+                      onClick={() => handleCommand('git add', f.name)}
+                      className="absolute right-2 opacity-0 group-hover:opacity-100 bg-green-500 text-white text-[9px] font-bold px-1.5 py-0.5 rounded shadow-sm transition-all hover:bg-green-600 flex items-center gap-1"
+                    >
+                      <Plus size={8} strokeWidth={4} /> git add
+                    </button>
+                  )}
+
                   {f.status === 'ignored' && <EyeOff size={14} className="ml-auto" />}
+                  {f.status === 'staged' && <span className="ml-auto text-[9px] font-bold bg-green-100 px-1 rounded">Staged</span>}
                   {f.status === 'committed' && <CheckCircle size={14} className="ml-auto" />}
                 </div>
               ))}
@@ -550,9 +1030,12 @@ const ChapterFileStatus = () => {
               )}
             </div>
           </div>
-
-          <TerminalSim logs={logs} onCommand={handleCommand} height="h-48" />
         </div>
+      </div>
+
+      {/* Full-width Terminal at bottom */}
+      <div className="mt-8">
+        <TerminalSim logs={logs} onCommand={handleCommand} height="h-64" />
       </div>
     </div>
   );
@@ -651,11 +1134,32 @@ const ChapterPushPull = () => {
 
       <InstructionalText title="上傳與下載的原理">
         <p>你的電腦 (Local) 和 GitHub (Remote) 是兩個分開的資料庫。</p>
-        <ul className="list-disc pl-5 mt-2 space-y-1">
+        <ul className="list-disc pl-5 mt-2 space-y-1 text-sm">
           <li><strong>Git Push (推)</strong>：把你電腦上「多出來」的 Commit 記錄，複製一份丟上去 GitHub。</li>
           <li><strong>Git Pull (拉)</strong>：把 GitHub 上「多出來」的 Commit 記錄 (可能是同事寫的)，複製一份抓下來，並合併到你的電腦。</li>
           <li><strong>黃金法則</strong>：在 Push 之前，永遠先 Pull，確保你的進度是最新的，避免衝突。</li>
         </ul>
+
+        {/* 4-B: Fetch vs Pull */}
+        <div className="mt-4 p-3 bg-blue-50 border border-blue-100 rounded-lg">
+          <h4 className="text-xs font-bold text-blue-700 mb-1 flex items-center gap-1">
+            <Info size={14} /> 補充：Fetch vs Pull
+          </h4>
+          <p className="text-[11px] text-blue-600 leading-relaxed">
+            <code className="bg-blue-100 px-1 rounded">git fetch</code> 像是在手機上看 App Store 的更新選單（只下載資訊但不安裝）；<br/>
+            <code className="bg-blue-100 px-1 rounded">git pull</code> 則是直接點擊更新按鈕（下載 + 合併到你的程式碼）。
+          </p>
+        </div>
+
+        {/* 4-C: Push Rejected */}
+        <div className="mt-3 p-3 bg-red-50 border border-red-100 rounded-lg">
+          <h4 className="text-xs font-bold text-red-700 mb-1 flex items-center gap-1">
+            <AlertCircle size={14} /> 為什麼 Push 會被拒絕 (Rejected)？
+          </h4>
+          <p className="text-[11px] text-red-600 leading-relaxed">
+            如果 GitHub 上有你電腦裡「沒有」的 Commit（例如同事先推了），Git 會為了保護代碼不被覆蓋而拒絕你的 Push。解決方法：<strong>先 Pull 回來解決衝突，再重新 Push。</strong>
+          </p>
+        </div>
       </InstructionalText>
 
       <div className="grid lg:grid-cols-3 gap-8 items-start">
@@ -702,13 +1206,25 @@ const ChapterPushPull = () => {
                 disabled={!needPull}
                 className={`w-full flex items-center gap-2 justify-between transition-all font-medium px-4 py-2 rounded-lg ${needPull ? 'bg-green-600 text-white shadow hover:bg-green-700 active:scale-95' : 'bg-slate-200 text-slate-400 cursor-not-allowed'}`}
               >
-                <span className="flex items-center gap-2"><ArrowLeft size={16} /> 下載更新 (Pull)</span>
-                {needPull && <Badge color="red">New</Badge>}
+                <div className="flex items-center gap-2">
+                  <ArrowLeft size={16} /> 下載更新 (Pull)
+                </div>
+                {needPull && <span className="bg-red-500 text-white text-[10px] px-1.5 py-0.5 rounded-full animate-bounce">New Update</span>}
+              </button>
+
+              {/* 4-A: Push button in Control Panel */}
+              <button 
+                onClick={doPush}
+                disabled={!canPush || needPull}
+                className={`w-full flex items-center gap-2 justify-between transition-all font-medium px-4 py-2 rounded-lg ${canPush && !needPull ? 'bg-indigo-600 text-white shadow hover:bg-indigo-700 active:scale-95' : 'bg-slate-200 text-slate-400 cursor-not-allowed'}`}
+              >
+                <div className="flex items-center gap-2">
+                  <ArrowRight size={16} /> 上傳進度 (Push)
+                </div>
+                {canPush && !needPull && <span className="bg-indigo-400 text-white text-[10px] px-1.5 py-0.5 rounded-full">Ready</span>}
               </button>
             </div>
           </Card>
-
-          <TerminalSim logs={logs} onCommand={handleCommand} height="h-64" />
         </div>
 
         {/* Right Column: Visualization */}
@@ -825,6 +1341,11 @@ const ChapterPushPull = () => {
           </div>
 
         </div>
+      </div>
+
+      {/* Full-width Terminal at bottom */}
+      <div className="mt-8">
+        <TerminalSim logs={logs} onCommand={handleCommand} height="h-64" />
       </div>
     </div>
   );
@@ -1039,12 +1560,12 @@ const ChapterTeam = () => {
 
         <div className="grid md:grid-cols-2 gap-8">
           {/* Solo */}
-          <div className="border border-slate-200 rounded-xl overflow-hidden hover:shadow-lg transition-shadow bg-white">
+          <div className="border border-slate-200 rounded-xl overflow-hidden hover:shadow-lg transition-shadow bg-white flex flex-col">
             <div className="bg-slate-100 p-4 border-b border-slate-200 flex items-center gap-2">
               <User className="text-slate-600" />
               <h3 className="font-bold text-slate-700">獨立作業 (Solo)</h3>
             </div>
-            <div className="p-6 space-y-4">
+            <div className="p-6 space-y-4 flex-1">
               <div className="flex items-center gap-2">
                 <Badge color="blue">目標</Badge>
                 <span className="text-sm">備份程式碼、記錄開發歷程</span>
@@ -1052,50 +1573,130 @@ const ChapterTeam = () => {
               <ul className="space-y-3 text-sm text-slate-600">
                 <li className="flex items-start gap-2">
                   <span className="font-mono bg-slate-100 px-1 rounded text-pink-600">Branch</span>
-                  通常只用 <span className="font-bold">main</span> 或 <span className="font-bold">master</span> 一個分支到底。
+                  通常只用 <span className="font-bold border-b border-indigo-200">main</span> 一個分支到底。
                 </li>
                 <li className="flex items-start gap-2">
                   <span className="font-mono bg-slate-100 px-1 rounded text-pink-600">Frequency</span>
                   想到就 Commit，寫完一段就 Push。
-                </li>
-                <li className="flex items-start gap-2">
-                  <span className="font-mono bg-slate-100 px-1 rounded text-pink-600">Conflict</span>
-                  幾乎不會發生衝突。
                 </li>
               </ul>
             </div>
           </div>
 
           {/* Team */}
-          <div className="border border-slate-200 rounded-xl overflow-hidden hover:shadow-lg transition-shadow bg-white">
+          <div className="border border-slate-200 rounded-xl overflow-hidden hover:shadow-lg transition-shadow bg-white flex flex-col">
             <div className="bg-indigo-50 p-4 border-b border-indigo-100 flex items-center gap-2">
               <Users className="text-indigo-600" />
               <h3 className="font-bold text-indigo-700">團隊協作 (Team)</h3>
             </div>
-            <div className="p-6 space-y-4">
+            <div className="p-6 space-y-4 flex-1">
               <div className="flex items-center gap-2">
                 <Badge color="purple">目標</Badge>
-                <span className="text-sm">功能隔離、代碼品質審查、穩定發布</span>
+                <span className="text-sm">功能隔離、代碼審查、穩定發布</span>
               </div>
               <ul className="space-y-3 text-sm text-slate-600">
                 <li className="flex items-start gap-2">
                   <span className="font-mono bg-slate-100 px-1 rounded text-pink-600">Branch</span>
-                  主程式 (main) 神聖不可侵犯。每個人都在自己的 Feature Branch 開發。
+                  主程式 (main) 神聖不可侵犯。每個人都在自己的 <span className="font-bold border-b border-purple-200">Feature Branch</span> 開發。
                 </li>
                 <li className="flex items-start gap-2">
                   <span className="font-mono bg-slate-100 px-1 rounded text-pink-600">PR</span>
-                  必須透過 Pull Request 進行合併，不能直接 Push 到 main。
-                </li>
-                <li className="flex items-start gap-2">
-                  <span className="font-mono bg-slate-100 px-1 rounded text-pink-600">Conflict</span>
-                  家常便飯。需要經常 `git pull` 保持更新，解決衝突。
+                  必須透過 <span className="font-bold underline">Pull Request</span> 進行合併。
                 </li>
               </ul>
+              
+              {/* 5-D: Branch Naming Tips */}
+              <div className="mt-4 p-3 bg-purple-50 rounded-lg border border-purple-100">
+                <h4 className="text-[10px] font-bold text-purple-700 uppercase mb-2">分支命名慣例 (Best Practice)</h4>
+                <div className="grid grid-cols-2 gap-2 text-[10px] font-mono">
+                  <div className="bg-white p-1.5 rounded border border-purple-100 text-slate-600"><span className="text-purple-500">feat/</span>login-v2</div>
+                  <div className="bg-white p-1.5 rounded border border-purple-100 text-slate-600"><span className="text-red-500">fix/</span>bug-123</div>
+                  <div className="bg-white p-1.5 rounded border border-purple-100 text-slate-600"><span className="text-orange-500">hotfix/</span>api-down</div>
+                  <div className="bg-white p-1.5 rounded border border-purple-100 text-slate-600"><span className="text-blue-500">refactor/</span>ui</div>
+                </div>
+              </div>
             </div>
           </div>
         </div>
         
-        <div className="mt-8 bg-yellow-50 p-6 rounded-xl border border-yellow-200 text-yellow-800">
+        {/* 5-A: Pull Request Workflow */}
+        <div className="mt-12">
+          <div className="flex items-center gap-2 mb-6">
+            <Badge color="blue">Part 3</Badge>
+            <h3 className="text-xl font-bold text-slate-800">現代團隊核心：Pull Request (PR) 流程</h3>
+          </div>
+          <Card className="bg-white border-slate-200 p-8 shadow-inner overflow-x-auto">
+            <div className="flex items-start justify-between min-w-[800px] gap-4 relative">
+              {/* Connecting Line */}
+              <div className="absolute top-6 left-[10%] right-[10%] h-0.5 bg-slate-100 -z-0"></div>
+              
+              {[
+                { step: "1", title: "Checkout", desc: "建立新的分支", icon: <GitBranch size={20}/>, cmd: "git checkout -b feat/A" },
+                { step: "2", title: "Develop", desc: "寫 Code + Commit", icon: <FileCode size={20}/>, cmd: "git commit -m '...'" },
+                { step: "3", title: "Push", desc: "推送到 GitHub", icon: <ArrowRight size={20}/>, cmd: "git push origin feat/A" },
+                { step: "4", title: "Open PR", desc: "平台上發起合併請求", icon: <GitPullRequest size={20}/>, cmd: "GitHub Web UI" },
+                { step: "5", title: "Review", desc: "同事審核與討論", icon: <Users size={20}/>, cmd: "Code Review" },
+                { step: "6", title: "Merge", desc: "正式併入主程式", icon: <CheckCircle size={20}/>, cmd: "Merged!" }
+              ].map((item, idx) => (
+                <div key={idx} className="flex flex-col items-center gap-3 relative z-10 flex-1">
+                  <div className="w-12 h-12 rounded-full bg-indigo-600 text-white flex items-center justify-center shadow-lg border-4 border-white">
+                    {item.icon}
+                  </div>
+                  <div className="text-center">
+                    <div className="text-xs font-black text-slate-400">STEP 0{item.step}</div>
+                    <div className="font-bold text-sm text-slate-800">{item.title}</div>
+                    <div className="text-[10px] text-slate-500 mt-1">{item.desc}</div>
+                    <code className="text-[9px] block mt-2 bg-slate-100 px-1.5 py-0.5 rounded text-indigo-600 font-mono whitespace-nowrap">{item.cmd}</code>
+                  </div>
+                </div>
+              ))}
+            </div>
+          </Card>
+        </div>
+
+        {/* 5-B: Conflict Resolution Guide */}
+        <div className="mt-12">
+          <div className="flex items-center gap-2 mb-6">
+            <Badge color="red">Part 4</Badge>
+            <h3 className="text-xl font-bold text-slate-800">克服恐懼：如何解決衝突 (Conflict)？</h3>
+          </div>
+          <div className="grid md:grid-cols-2 gap-6">
+            <Card className="bg-slate-50 border-red-100">
+              <h4 className="font-bold text-slate-700 mb-3 flex items-center gap-2">
+                <AlertCircle size={18} className="text-red-500" /> 1. 識別衝突樣貌
+              </h4>
+              <p className="text-sm text-slate-600 mb-4">當兩個人修改同一行，Git 會在檔案中插入標記：</p>
+              <div className="bg-slate-900 rounded-lg p-4 font-mono text-[11px] leading-relaxed text-slate-200">
+                <div className="text-slate-500">{"<<<<<<< HEAD (你的修改)"}</div>
+                <div className="text-indigo-400">  return a + b + 10;</div>
+                <div className="text-slate-500">{"======="}</div>
+                <div className="text-purple-400">  return a + b + 20;</div>
+                <div className="text-slate-500">{">>>>>>> main (遠端的修改)"}</div>
+              </div>
+            </Card>
+            <Card className="bg-slate-50 border-green-100">
+              <h4 className="font-bold text-slate-700 mb-3 flex items-center gap-2">
+                <CheckCircle size={18} className="text-green-500" /> 2. 解決步驟指南
+              </h4>
+              <ul className="space-y-3">
+                <li className="flex gap-3 text-sm">
+                  <div className="w-5 h-5 rounded bg-green-500 text-white flex items-center justify-center shrink-0 font-bold text-xs uppercase">1</div>
+                  <span className="text-slate-600"><strong>手動編輯</strong>：打開衝突檔案，刪除標記並選擇要留下的代碼。</span>
+                </li>
+                <li className="flex gap-3 text-sm">
+                  <div className="w-5 h-5 rounded bg-green-500 text-white flex items-center justify-center shrink-0 font-bold text-xs uppercase">2</div>
+                  <span className="text-slate-600"><strong>Add 標記</strong>：執行 <code className="bg-white px-1 border rounded text-[11px]">git add .</code> 告訴 Git 已經修好了。</span>
+                </li>
+                <li className="flex gap-3 text-sm">
+                  <div className="w-5 h-5 rounded bg-green-500 text-white flex items-center justify-center shrink-0 font-bold text-xs uppercase">3</div>
+                  <span className="text-slate-600"><strong>完成合併</strong>：執行 <code className="bg-white px-1 border rounded text-[11px]">git commit</code> 產生完成合併的存檔。</span>
+                </li>
+              </ul>
+            </Card>
+          </div>
+        </div>
+
+        <div className="mt-12 bg-yellow-50 p-6 rounded-xl border border-yellow-200 text-yellow-800">
           <h4 className="font-bold flex items-center gap-2 mb-2">
             <AlertCircle size={20} />
             團隊協作黃金法則：

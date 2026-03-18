@@ -1,196 +1,129 @@
-# Git Time Machine
+# Git Time Machine 🚀
 
-一個用來教學 Git、前端基本操作、跨裝置協作的互動專案。
+一個互動式 Git 教學網頁應用，透過視覺化模擬讓初學者從零開始理解版本控制。
 
-實習生可透過本專案練習：
+## ✨ 功能特色
 
-* git clone / pull / push
-* npm install / npm run dev
-* 在 localhost 上開啟網頁並互動
-* 按講義完成指定修改並提交 PR 或直接 push
-* 學習版本控制與多人協作的基本操作
+### 📖 五大互動章節
 
----
+| 章節 | 內容 | 互動方式 |
+|------|------|----------|
+| **1. 觀念與區別** | Git vs GitHub、安裝指南、身份設定、Cheatsheet | 靜態圖解 |
+| **2. 建立與連結** | `git init` / `git remote add` / `git clone` | 分步按鈕 + 視覺動畫 + 模擬終端 |
+| **3. Add, Commit & Ignore** | 三區域概念、檔案狀態管理、`.gitignore` | 個別檔案 Add + 模擬終端 |
+| **4. Push 與 Pull** | 同步流程、Fetch vs Pull、Push Rejected 處理 | Timeline 視覺化 + 模擬終端 |
+| **5. 團隊協作** | Merge vs Rebase、PR 流程、衝突解決指南 | 動態圖表 + 程式碼 Diff |
 
-## 1. 環境需求（Requirements）
-
-請確認你的設備已安裝：
-
-1. **Node.js 18+ 或 20+**
-
-   建議下載 LTS 版本：[https://nodejs.org](https://nodejs.org)
-
-**Git**
-
-下載：[https://git-scm.com](https://git-scm.com)
-
-1. 推薦工具：
-   * VSCode（含 Git Graph / GitLens 等插件）
-   * Chrome 或任何現代瀏覽器
+### 🎨 設計亮點
+- 全寬模擬終端機，真實還原指令操作體驗
+- 即時視覺回饋（動畫、狀態變化、連線效果）
+- 響應式設計，支援桌面與平板
+- 繁體中文介面
 
 ---
 
-## 2. 第一次使用（Setup）
+## 🛠 環境需求
 
-第一次在你的電腦開啟專案時，請依序執行：
-
-### 2.1 下載專案（只有第一次需要）
-
-<pre class="overflow-visible! px-0!" data-start="627" data-end="695"><div class="contain-inline-size rounded-2xl corner-superellipse/1.1 relative bg-token-sidebar-surface-primary"><div class="overflow-y-auto p-4" dir="ltr"><code class="whitespace-pre! language-bash"><span><span>git </span><span>clone</span><span> https://github.com/BlekZz/git-time-machine.git
-</span></span></code></div></div></pre>
-
-或你在 Windows 上也可以使用：
-
-<pre class="overflow-visible! px-0!" data-start="718" data-end="763"><div class="contain-inline-size rounded-2xl corner-superellipse/1.1 relative bg-token-sidebar-surface-primary"><div class="overflow-y-auto p-4" dir="ltr"><code class="whitespace-pre!"><span><span>gh repo </span><span>clone</span><span> BlekZz/git-time-machine
-</span></span></code></div></div></pre>
-
-進入專案資料夾：
-
-<pre class="overflow-visible! px-0!" data-start="775" data-end="806"><div class="contain-inline-size rounded-2xl corner-superellipse/1.1 relative bg-token-sidebar-surface-primary"><div class="overflow-y-auto p-4" dir="ltr"><code class="whitespace-pre! language-bash"><span><span>cd</span><span> git-time-machine
-</span></span></code></div></div></pre>
+- **Node.js** 18+ ([下載](https://nodejs.org))
+- **Git** ([下載](https://git-scm.com))
+- 推薦：VSCode + Git Graph / GitLens 插件
 
 ---
 
-### 2.2 安裝套件（只有第一次需要）
+## 🚀 快速開始
 
-<pre class="overflow-visible! px-0!" data-start="836" data-end="859"><div class="contain-inline-size rounded-2xl corner-superellipse/1.1 relative bg-token-sidebar-surface-primary"><div class="overflow-y-auto p-4" dir="ltr"><code class="whitespace-pre! language-bash"><span><span>npm install
-</span></span></code></div></div></pre>
+### 1. 下載專案
 
-這會安裝 Vite、React、TailwindCSS 等所有必要依賴。
+```bash
+git clone https://github.com/BlekZz/git-time-machine.git
+cd git-time-machine
+```
 
----
+### 2. 安裝依賴
 
-## 3. 啟動專案（Run Locally）
+```bash
+npm install
+```
 
-每次想啟動本地開發伺服器時：
+> **提示**：若出現 npm vulnerability 警告，執行 `npm audit fix` 即可。
 
-<pre class="overflow-visible! px-0!" data-start="945" data-end="968"><div class="contain-inline-size rounded-2xl corner-superellipse/1.1 relative bg-token-sidebar-surface-primary"><div class="overflow-y-auto p-4" dir="ltr"><code class="whitespace-pre! language-bash"><span><span>npm run dev
-</span></span></code></div></div></pre>
+### 3. 啟動開發伺服器
 
-執行後會看到類似：
+```bash
+npm run dev
+```
 
-<pre class="overflow-visible! px-0!" data-start="981" data-end="1018"><div class="contain-inline-size rounded-2xl corner-superellipse/1.1 relative bg-token-sidebar-surface-primary"><div class="overflow-y-auto p-4" dir="ltr"><code class="whitespace-pre!"><span><span>Local: http:</span><span>//localhost:5173/</span><span>
-</span></span></code></div></div></pre>
-
-用瀏覽器打開此網址即可開始互動教學。
-
----
-
-## 4. 實習生 Git 練習流程
-
-以下為每台電腦、每位實習生每日進來要做的基本操作。
-
-### 4.1 取得最新版本（每天開始前做）
-
-<pre class="overflow-visible! px-0!" data-start="1116" data-end="1136"><div class="contain-inline-size rounded-2xl corner-superellipse/1.1 relative bg-token-sidebar-surface-primary"><div class="overflow-y-auto p-4" dir="ltr"><code class="whitespace-pre! language-bash"><span><span>git pull
-</span></span></code></div></div></pre>
-
-### 4.2 進行指定任務（修改程式碼）
-
-在 VSCode 中修改 `src/` 裡面的內容即可。
+瀏覽器開啟 `http://localhost:5173/` 即可開始互動學習。
 
 ---
 
-## 5. 提交你的修改（Commit & Push）
+## 📁 專案結構
 
-完成任務後，請使用：
+```
+git-time-machine/
+├── src/
+│   ├── App.jsx          # 主要應用程式（含全部 5 個章節元件）
+│   ├── main.jsx         # React 入口
+│   └── index.css        # 全域樣式（Tailwind）
+├── public/              # 靜態資源
+├── package.json
+├── vite.config.js
+├── tailwind.config.js
+└── README.md
+```
 
-<pre class="overflow-visible! px-0!" data-start="1237" data-end="1309"><div class="contain-inline-size rounded-2xl corner-superellipse/1.1 relative bg-token-sidebar-surface-primary"><div class="overflow-y-auto p-4" dir="ltr"><code class="whitespace-pre! language-bash"><span><span>git add .
-git commit -m </span><span>"Describe what you changed"</span><span>
+---
+
+## 👨‍💻 實習生操作指南
+
+### 每日流程
+
+```bash
+# 1. 取得最新版本
+git pull
+
+# 2. 啟動本地伺服器
+npm run dev
+
+# 3. 完成修改後提交
+git add .
+git commit -m "feat: 完成指定任務"
 git push
-</span></span></code></div></div></pre>
+```
 
-若是多人協作，你也可以使用分支：
+### 分支協作（進階）
 
-<pre class="overflow-visible! px-0!" data-start="1329" data-end="1421"><div class="contain-inline-size rounded-2xl corner-superellipse/1.1 relative bg-token-sidebar-surface-primary"><div class="overflow-y-auto p-4" dir="ltr"><code class="whitespace-pre! language-bash"><span><span>git checkout -b feature/your-name-task
+```bash
+git checkout -b feature/your-name-task
+# ... 修改程式碼 ...
 git push -u origin feature/your-name-task
-</span></span></code></div></div></pre>
-
-再到 GitHub 開 PR。
-
----
-
-## 6. 常見問題（FAQ）
-
-### Q1：`npm install` 失敗怎麼辦？
-
-可能原因：
-
-* Node 版本太舊（請用 Node 18+）
-* Windows 權限問題（請用 Powershell 或 VSCode Terminal）
-
-### Q2：`npm run dev` 執行後沒有畫面？
-
-請確認：
-
-* 瀏覽器是否打開 `http://localhost:5173/`
-* Terminal 是否被防火牆或公司網路限制
-
-### Q3：`git push` 顯示沒有權限？
-
-請確認你已：
-
-* 登入 GitHub（使用 git credential）
-* 或使用 SSH key
-* 或是你 fork 的專案，需要 PR 才能合併
+# 到 GitHub 開 Pull Request
+```
 
 ---
 
-## 7. 專案結構（Project Structure）
+## ❓ 常見問題
 
-<pre class="overflow-visible! px-0!" data-start="1812" data-end="2151"><div class="contain-inline-size rounded-2xl corner-superellipse/1.1 relative bg-token-sidebar-surface-primary"><div class="overflow-y-auto p-4" dir="ltr"><code class="whitespace-pre!"><span><span>git-time-machine/
-│
-├── src/                  </span><span># 前端主要程式碼</span><span>
-│   ├── App.jsx
-│   ├── main.jsx
-│   └── index.css
-│
-├── </span><span>public</span><span>/               </span><span># 靜態資源</span><span>
-│
-├── package.json          </span><span># 專案設定 / Scripts / Dependencies</span><span>
-├── vite.config.js        </span><span># Vite 設定</span><span>
-├── tailwind.config.js    </span><span># Tailwind 設定</span><span>
-├── postcss.config.js
-└── README.md             </span><span># 本文件</span><span>
-</span></span></code></div></div></pre>
+| 問題 | 解決方法 |
+|------|----------|
+| `npm install` 失敗 | 確認 Node.js 版本 ≥ 18，使用 PowerShell 或 VSCode Terminal |
+| `npm run dev` 無畫面 | 確認瀏覽器已開啟 `http://localhost:5173/` |
+| `git push` 沒權限 | 確認已登入 GitHub（git credential 或 SSH key） |
 
 ---
 
-## 8. 教學者用（你的角度）
+## 🔧 教學者快速重置
 
-若你是教學者（Blake）使用本 repo 作為訓練教材，可用以下方式管理實習生流程：
+若實習生環境損壞：
 
-### 8.1 教學指令組合（投影片／講義可直接用）
-
-* 第一次下載：
-
-  `git clone`
-* 每天更新：
-
-  `git pull`
-* 修改程式碼：
-
-  VSCode
-* 本地執行：
-
-  `npm run dev`
-* 查看結果：
-
-  [http://localhost:5173]()
-
-### 8.2 如何快速重置專案
-
-若實習生弄壞環境，可執行：
-
-<pre class="overflow-visible! px-0!" data-start="2411" data-end="2460"><div class="contain-inline-size rounded-2xl corner-superellipse/1.1 relative bg-token-sidebar-surface-primary"><div class="overflow-y-auto p-4" dir="ltr"><code class="whitespace-pre! language-bash"><span><span>git reset --hard
+```bash
+git reset --hard
 git pull
 npm install
-</span></span></code></div></div></pre>
-
-（會回到最新乾淨版本）
+```
 
 ---
 
-## 9. License
+## 📄 License
 
 MIT
