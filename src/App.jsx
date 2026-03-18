@@ -44,7 +44,8 @@ import {
   UploadCloud,
   Undo2,
   Scissors,
-  Tag
+  Tag,
+  Rocket
 } from 'lucide-react';
 
 // --- Shared Components ---
@@ -1710,6 +1711,165 @@ const ChapterTeam = () => {
   );
 };
 
+// --- Chapter 6: Real-World PR Practice ---
+const ChapterPractice = () => {
+  return (
+    <div className="space-y-12 animate-fade-in">
+      <SectionTitle title="6. 實戰演練" subtitle="發起你的第一個 Pull Request" />
+
+      {/* Part 1: The Mission */}
+      <section>
+        <div className="flex items-center gap-2 mb-4">
+          <Badge color="indigo">Part 1</Badge>
+          <h3 className="text-xl font-bold text-slate-800">任務說明：留下你的足跡！</h3>
+        </div>
+        <Card className="bg-gradient-to-br from-indigo-50 to-white border-indigo-100 p-6">
+          <p className="text-slate-600 mb-4 leading-relaxed">
+            現在你已經學會了基礎的 Git 觀念，是時候在這個專案中留下你的專屬印記了！你需要建立一個與你同名的分支，新增一個 Markdown 筆記，然後發起 Pull Request (PR)。
+          </p>
+          <div className="bg-white rounded-lg p-4 border border-slate-200">
+            <h4 className="font-bold text-slate-700 mb-2">🎯 目標：</h4>
+            <ol className="list-decimal pl-5 space-y-2 text-sm text-slate-600">
+              <li>在本地端建立 <code>learner-commits</code> 資料夾。</li>
+              <li>新增以你名字命名的 Markdown 筆記（例如：<code>blake.md</code>）。</li>
+              <li>將分支推送到 GitHub，並發起 PR 等待維護者 (Owner) 的 Approve 與 Merge。</li>
+            </ol>
+          </div>
+        </Card>
+      </section>
+
+      {/* Part 2: Step-by-Step Hands-on */}
+      <section>
+        <div className="flex items-center gap-2 mb-4">
+          <Badge color="blue">Part 2</Badge>
+          <h3 className="text-xl font-bold text-slate-800">操作指南 (Step-by-Step)</h3>
+        </div>
+        
+        <div className="grid md:grid-cols-2 gap-6">
+          {/* Step 1 */}
+          <Card className="bg-white border-slate-200 hover:shadow-lg transition-all">
+             <div className="flex items-center gap-3 mb-4">
+               <div className="w-8 h-8 rounded bg-blue-100 text-blue-600 flex items-center justify-center font-bold">1</div>
+               <h4 className="font-bold text-slate-700">建立專屬分支</h4>
+             </div>
+             <p className="text-sm text-slate-600 mb-3">
+               為了不干擾主程式，我們建立自己的特徵分支 (Feature Branch)。
+             </p>
+             <div className="bg-slate-900 rounded p-3 font-mono text-xs text-green-400">
+               $ git checkout -b feat/your-name
+             </div>
+          </Card>
+
+          {/* Step 2 */}
+          <Card className="bg-white border-slate-200 hover:shadow-lg transition-all">
+             <div className="flex items-center gap-3 mb-4">
+               <div className="w-8 h-8 rounded bg-blue-100 text-blue-600 flex items-center justify-center font-bold">2</div>
+               <h4 className="font-bold text-slate-700">提交與推送 (Push)</h4>
+             </div>
+             <p className="text-sm text-slate-600 mb-3">
+               將新增的檔案加入追蹤、Commit 後推送。<code>-u</code>用來建立追蹤關係。
+             </p>
+             <div className="bg-slate-900 rounded p-3 font-mono text-[11px] text-slate-300 space-y-1">
+               <div className="text-green-400">$ git add learner-commits/your-name.md</div>
+               <div className="text-green-400">$ git commit -m "docs: add your-name"</div>
+               <div className="text-green-400">$ git push -u origin feat/your-name</div>
+             </div>
+          </Card>
+
+          {/* Step 3 */}
+          <Card className="bg-white border-slate-200 hover:shadow-lg transition-all md:col-span-2">
+             <div className="flex items-center gap-3 mb-4">
+               <div className="w-8 h-8 rounded bg-blue-100 text-blue-600 flex items-center justify-center font-bold">3</div>
+               <h4 className="font-bold text-slate-700 flex items-center gap-2">在 GitHub 發起 Pull Request <GitPullRequest size={18} className="text-slate-500" /></h4>
+             </div>
+             <div className="flex flex-col md:flex-row gap-6">
+                <div className="flex-1 text-sm text-slate-600 space-y-3">
+                  <p>這一步需要到瀏覽器上的 GitHub 頁面完成！</p>
+                  <ul className="list-disc pl-5 space-y-2">
+                    <li>打開 Repository 頁面。</li>
+                    <li>點擊黃色框框 <strong>"Compare & pull request"</strong>。</li>
+                    <li>填寫標題與描述，點擊 <strong>"Create pull request"</strong>。</li>
+                  </ul>
+                  <p className="text-purple-600 font-bold mt-2">🎉 恭喜發起第一個 PR！等待維護者合併回主程式。</p>
+                </div>
+                <div className="flex-1 bg-slate-50 rounded border border-slate-200 p-4 flex flex-col items-center justify-center text-slate-400">
+                  <div className="bg-green-600 text-white px-4 py-2 rounded text-sm font-bold mb-2 cursor-pointer shadow">
+                    Create pull request
+                  </div>
+                  <span className="text-xs italic">GitHub 介面示意圖</span>
+                </div>
+             </div>
+          </Card>
+        </div>
+      </section>
+
+      {/* Part 3: Owner Review & Merge Modes */}
+      <section>
+        <div className="flex items-center gap-2 mb-4">
+          <Badge color="purple">Part 3</Badge>
+          <h3 className="text-xl font-bold text-slate-800">維護者視角：Review 與 Merge</h3>
+        </div>
+        <p className="text-slate-600 mb-6">送出 PR 後，Repo Owner 會進行 Code Review，確認無誤後選擇一種方式合併 (Merge)。GitHub 提供了三種方式：</p>
+        
+        <div className="grid md:grid-cols-3 gap-4">
+           {/* Merge Commit */}
+           <Card className="bg-white border-slate-200 flex flex-col">
+              <h4 className="font-bold text-slate-700 mb-2 border-b pb-2 flex items-center gap-2">
+                <GitMerge size={16} className="text-indigo-600" /> 1. Create a merge commit
+              </h4>
+              <p className="text-xs text-slate-600 mb-4 flex-1">保留所有 Commit 紀錄，並新增一個「合併節點」。歷史完整，但分支多時會很雜亂。</p>
+              <div className="bg-slate-900 rounded p-2 font-mono text-[10px] text-indigo-400 mt-auto">
+                $ git merge --no-ff feat/name
+              </div>
+           </Card>
+
+           {/* Squash and Merge */}
+           <Card className="bg-white border-slate-200 flex flex-col">
+              <h4 className="font-bold text-slate-700 mb-2 border-b pb-2 flex items-center gap-2">
+                <FileCode size={16} className="text-green-600" /> 2. Squash and merge
+              </h4>
+              <p className="text-xs text-slate-600 mb-4 flex-1">「壓縮合併」，把分支的多個 Commit 揉成單一個乾淨的 Commit 放進 main。主線極度乾淨。</p>
+              <div className="bg-slate-900 rounded p-2 font-mono text-[10px] text-green-400 mt-auto">
+                $ git merge --squash feat/name<br/>$ git commit
+              </div>
+           </Card>
+
+           {/* Rebase and Merge */}
+           <Card className="bg-white border-slate-200 flex flex-col">
+              <h4 className="font-bold text-slate-700 mb-2 border-b pb-2 flex items-center gap-2">
+                <ArrowRight size={16} className="text-orange-600" /> 3. Rebase and merge
+              </h4>
+              <p className="text-xs text-slate-600 mb-4 flex-1">「變基合併」，沒有合併節點，直接把你的 Commit 整串接在 main 最尾端，形成直線紀錄。</p>
+              <div className="bg-slate-900 rounded p-2 font-mono text-[10px] text-orange-400 mt-auto">
+                $ git rebase main feat/name<br/>$ git merge feat/name
+              </div>
+           </Card>
+        </div>
+      </section>
+
+      {/* Part 4: Sync Back */}
+      <section>
+        <div className="flex flex-col md:flex-row items-center justify-between bg-green-50 border border-green-200 rounded-xl p-6 shadow-sm gap-6">
+           <div className="flex-1">
+             <h3 className="text-lg font-bold text-green-800 mb-2 flex items-center gap-2">
+               <RefreshCw size={20} /> 最後一步：更新本地端 (Sync Back)
+             </h3>
+             <p className="text-sm text-green-700 leading-relaxed">
+               當 Owner 按下 Merge 後，遠端的 <code>main</code> 已經有了你的名字。但你電腦裡的 <code>main</code> 還不知道這件事！請切換回主分支並拉取最新狀態，完成整個開發閉環！
+             </p>
+           </div>
+           <div className="flex-1 w-full bg-slate-900 rounded p-4 font-mono text-sm text-slate-300 space-y-1 shadow-inner">
+             <div className="text-slate-500"># 收割成果囉！</div>
+             <div className="text-green-400">$ git checkout main</div>
+             <div className="text-green-400">$ git pull</div>
+             <div className="text-slate-500 mt-2"># 看看左側檔案總管，你的檔案出現了！</div>
+           </div>
+        </div>
+      </section>
+    </div>
+  );
+};
+
 // --- Main App Component ---
 
 const App = () => {
@@ -1721,6 +1881,7 @@ const App = () => {
     { id: 'filestatus', label: '3. Add, Commit, Ignore', icon: <FileText size={18} /> },
     { id: 'pushpull', label: '4. Push 與 Pull', icon: <Terminal size={18} /> },
     { id: 'team', label: '5. 團隊協作', icon: <Users size={18} /> },
+    { id: 'practice', label: '6. 實戰演練', icon: <Rocket size={18} /> },
   ];
 
   return (
@@ -1767,6 +1928,7 @@ const App = () => {
           {activeTab === 'filestatus' && <ChapterFileStatus />}
           {activeTab === 'pushpull' && <ChapterPushPull />}
           {activeTab === 'team' && <ChapterTeam />}
+          {activeTab === 'practice' && <ChapterPractice />}
         </div>
 
       </main>

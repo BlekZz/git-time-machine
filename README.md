@@ -13,6 +13,7 @@
 | **3. Add, Commit & Ignore** | 三區域概念、檔案狀態管理、`.gitignore` | 個別檔案 Add + 模擬終端 |
 | **4. Push 與 Pull** | 同步流程、Fetch vs Pull、Push Rejected 處理 | Timeline 視覺化 + 模擬終端 |
 | **5. 團隊協作** | Merge vs Rebase、PR 流程、衝突解決指南 | 動態圖表 + 程式碼 Diff |
+| **6. 實戰演練** | 新增個人筆記、建立分支、發起 Pull Request、Owner 合併 | Hands-on PR 實戰指南 |
 
 ### 🎨 設計亮點
 - 全寬模擬終端機，真實還原指令操作體驗
