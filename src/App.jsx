@@ -360,6 +360,67 @@ const ChapterConcept = () => (
       </Card>
     </div>
 
+    {/* --- 時間線與分支示意圖 --- */}
+    <div>
+      <h3 className="text-lg font-bold text-slate-800 mb-4 flex items-center gap-2">
+        <GitBranch size={20} className="text-pink-500" /> Git 核心概念：時間線與分支示意圖
+      </h3>
+      <Card className="bg-slate-50 overflow-x-auto border-slate-200">
+        <p className="text-sm text-slate-600 mb-6">Git 就像多重宇宙。你可以從主線 (main) 分岔出新的宇宙 (Branch)，在裡面大膽嘗試做新功能。完成且測試沒問題後，再把這個宇宙合併 (Merge) 回主線，這樣就不用擔心寫錯程式碼把主線搞壞！</p>
+        <div className="min-w-[600px] h-32 relative mt-8 mb-4">
+          {/* Main Branch Line */}
+          <div className="absolute top-1/2 left-8 right-8 h-1.5 bg-indigo-200 -translate-y-1/2 rounded-full"></div>
+          
+          {/* Feature Branch Line */}
+          <div className="absolute top-4 left-[28%] right-[25%] h-1.5 bg-pink-200 rounded-full"></div>
+          
+          {/* Connections (SVG curves) */}
+          <svg className="absolute inset-0 w-full h-full pointer-events-none" style={{ zIndex: 0 }}>
+             <path d="M 120 64 C 140 64, 150 16, 170 16" fill="none" stroke="#fbcfe8" strokeWidth="4" />
+             <path d="M 430 16 C 450 16, 460 64, 480 64" fill="none" stroke="#fbcfe8" strokeWidth="4" />
+          </svg>
+
+          {/* Commits */}
+          {/* Base Commit */}
+          <div className="absolute top-1/2 -translate-y-1/2 left-[10%] group">
+            <div className="w-5 h-5 rounded-full bg-indigo-500 ring-4 ring-indigo-100 group-hover:scale-125 transition-transform shadow-md cursor-help"></div>
+            <span className="absolute top-6 left-1/2 -translate-x-1/2 text-[11px] font-mono font-bold text-indigo-700 whitespace-nowrap">v1.0 (main)</span>
+            <div className="absolute bottom-8 left-1/2 -translate-x-1/2 opacity-0 group-hover:opacity-100 transition-opacity text-xs bg-white border border-slate-200 p-2 rounded shadow-lg text-slate-600 whitespace-nowrap pointer-events-none z-20">穩定版本發布</div>
+          </div>
+
+          {/* Main continues */}
+          <div className="absolute top-1/2 -translate-y-1/2 left-[30%] group">
+            <div className="w-5 h-5 rounded-full bg-indigo-500 ring-4 ring-indigo-100 group-hover:scale-125 transition-transform shadow-md cursor-help"></div>
+            <span className="absolute top-6 left-1/2 -translate-x-1/2 text-[11px] font-mono font-bold text-indigo-700 whitespace-nowrap">v1.1 (main)</span>
+            <div className="absolute bottom-8 left-1/2 -translate-x-1/2 opacity-0 group-hover:opacity-100 transition-opacity text-xs bg-white border border-slate-200 p-2 rounded shadow-lg text-slate-600 whitespace-nowrap pointer-events-none z-20">修復緊急 Bug</div>
+          </div>
+
+          {/* Feature Branch Commits */}
+          <div className="absolute top-4 -translate-y-1/2 left-[40%] group z-10">
+            <div className="w-5 h-5 rounded-full bg-pink-500 ring-4 ring-pink-100 group-hover:scale-125 transition-transform shadow-md cursor-help"></div>
+            <span className="absolute -top-6 left-1/2 -translate-x-1/2 text-[11px] font-mono font-bold text-pink-600 whitespace-nowrap">feat/login</span>
+            <div className="absolute top-8 left-1/2 -translate-x-1/2 opacity-0 group-hover:opacity-100 transition-opacity text-xs bg-white border border-pink-200 p-2 rounded shadow-lg text-slate-600 whitespace-nowrap pointer-events-none z-20">設計登入畫面</div>
+          </div>
+
+          <div className="absolute top-4 -translate-y-1/2 left-[60%] group z-10">
+            <div className="w-5 h-5 rounded-full bg-pink-500 ring-4 ring-pink-100 group-hover:scale-125 transition-transform shadow-md cursor-help"></div>
+            <span className="absolute -top-6 left-1/2 -translate-x-1/2 text-[11px] font-mono font-bold text-pink-600 whitespace-nowrap">feat/login</span>
+            <div className="absolute top-8 left-1/2 -translate-x-1/2 opacity-0 group-hover:opacity-100 transition-opacity text-xs bg-white border border-pink-200 p-2 rounded shadow-lg text-slate-600 whitespace-nowrap pointer-events-none z-20">串接登入 API</div>
+          </div>
+
+          {/* Merge Commit */}
+          <div className="absolute top-1/2 -translate-y-1/2 left-[80%] group z-10">
+            <div className="w-6 h-6 rounded-full bg-indigo-600 ring-4 ring-indigo-200 group-hover:scale-125 transition-transform shadow-md flex items-center justify-center text-white cursor-help">
+              <GitMerge size={12} strokeWidth={3} />
+            </div>
+            <span className="absolute top-6 left-1/2 -translate-x-1/2 text-[11px] font-mono font-bold text-indigo-700 whitespace-nowrap">Merge (main)</span>
+            <div className="absolute bottom-8 left-1/2 -translate-x-1/2 opacity-0 group-hover:opacity-100 transition-opacity text-xs bg-white border border-indigo-200 p-2 rounded shadow-lg text-slate-600 whitespace-nowrap pointer-events-none z-20">合併登入功能分支到主線</div>
+          </div>
+        </div>
+        <div className="text-center text-xs text-slate-400 mt-2 italic">提示：游標移到點點上可以看細節！</div>
+      </Card>
+    </div>
+
     {/* --- Git 常用指令速查表 --- */}
     <div>
       <h3 className="text-lg font-bold text-slate-800 mb-4 flex items-center gap-2">
@@ -894,6 +955,44 @@ const ChapterFileStatus = () => {
           <li><strong>Ignored (灰色)</strong>：像密碼檔 (.env) 這種東西，我們希望 Git 永遠假裝沒看到。</li>
         </ul>
       </InstructionalText>
+
+      {/* 3-A2: Real World Example of git status */}
+      <Card className="mb-6 bg-slate-50 border-slate-200">
+        <h4 className="font-bold text-slate-700 mb-3 flex items-center gap-2">
+          <Terminal size={18} className="text-slate-500" /> 實際比較：看懂 git status 的回饋
+        </h4>
+        <div className="grid md:grid-cols-2 gap-4">
+          <div>
+            <div className="bg-slate-800 rounded-t-lg px-4 py-2 text-xs text-slate-400 font-mono flex items-center gap-2">
+              <div className="w-2.5 h-2.5 rounded-full bg-red-500"></div><div className="w-2.5 h-2.5 rounded-full bg-yellow-500"></div><div className="w-2.5 h-2.5 rounded-full bg-green-500"></div>
+              <span>Terminal - 存檔前</span>
+            </div>
+            <div className="bg-slate-900 rounded-b-lg p-4 font-mono text-[11px] leading-relaxed text-slate-300 h-full">
+              <div className="text-green-400">$ git status</div>
+              <div className="text-slate-300">On branch main</div>
+              <div className="text-slate-300 mt-2">Changes not staged for commit:</div>
+              <div className="text-red-400">  modified:   index.html</div>
+              <div className="text-slate-300 mt-2">Untracked files:</div>
+              <div className="text-red-400">  style.css</div>
+              <div className="text-slate-500 mt-2">no changes added to commit (use "git add" and/or "git commit -a")</div>
+            </div>
+          </div>
+          <div>
+            <div className="bg-slate-800 rounded-t-lg px-4 py-2 text-xs text-slate-400 font-mono flex items-center gap-2">
+              <div className="w-2.5 h-2.5 rounded-full bg-red-500"></div><div className="w-2.5 h-2.5 rounded-full bg-yellow-500"></div><div className="w-2.5 h-2.5 rounded-full bg-green-500"></div>
+              <span>Terminal - git add . 之後</span>
+            </div>
+            <div className="bg-slate-900 rounded-b-lg p-4 font-mono text-[11px] leading-relaxed text-slate-300 h-full">
+              <div className="text-green-400">$ git status</div>
+              <div className="text-slate-300">On branch main</div>
+              <div className="text-slate-300 mt-2">Changes to be committed:</div>
+              <div className="text-green-400">  modified:   index.html</div>
+              <div className="text-green-400">  new file:   style.css</div>
+              <div className="text-slate-500 mt-4 italic">現在只要執行 git commit 就會正式記錄這兩個檔案囉！</div>
+            </div>
+          </div>
+        </div>
+      </Card>
       
       <div className="grid lg:grid-cols-3 gap-6">
         {/* Left: Controls - Beautified */}
@@ -1730,8 +1829,8 @@ const ChapterPractice = () => {
           <div className="bg-white rounded-lg p-4 border border-slate-200">
             <h4 className="font-bold text-slate-700 mb-2">🎯 目標：</h4>
             <ol className="list-decimal pl-5 space-y-2 text-sm text-slate-600">
-              <li>在本地端建立 <code>learner-commits</code> 資料夾。</li>
-              <li>新增以你名字命名的 Markdown 筆記（例如：<code>blake.md</code>）。</li>
+              <li><strong>【非常重要】確認你是在教學專案中操作！</strong><br/>如果你之前在練習章節 2/3 時 Clone 了 demo-project，請先關閉它。然後在終端機執行 <code>git clone 本專案的網址</code> 來下載真正的 <strong>git-time-machine</strong> 作業專案。</li>
+              <li>在專案的 <code>learner-commits</code> 資料夾中，新增以你名字命名的 Markdown 筆記（例如：<code>blake.md</code>）。</li>
               <li>將分支推送到 GitHub，並發起 PR 等待維護者 (Owner) 的 Approve 與 Merge。</li>
             </ol>
           </div>
@@ -1750,13 +1849,16 @@ const ChapterPractice = () => {
           <Card className="bg-white border-slate-200 hover:shadow-lg transition-all">
              <div className="flex items-center gap-3 mb-4">
                <div className="w-8 h-8 rounded bg-blue-100 text-blue-600 flex items-center justify-center font-bold">1</div>
-               <h4 className="font-bold text-slate-700">建立專屬分支</h4>
+               <h4 className="font-bold text-slate-700">準備專案與建立分支</h4>
              </div>
              <p className="text-sm text-slate-600 mb-3">
-               為了不干擾主程式，我們建立自己的特徵分支 (Feature Branch)。
+               確認你已經 Clone 了作業專案 (git-time-machine)，然後建立你的專屬分支 (Feature Branch)。
              </p>
-             <div className="bg-slate-900 rounded p-3 font-mono text-xs text-green-400">
-               $ git checkout -b feat/your-name
+             <div className="bg-slate-900 rounded p-3 font-mono text-[11px] text-slate-300 space-y-1">
+               <div className="text-slate-500"># 確保你進到了正確的作業資料夾</div>
+               <div className="text-green-400">$ cd git-time-machine</div>
+               <div className="text-slate-500 mt-2"># 建立並切換到你專屬的特徵分支</div>
+               <div className="text-green-400">$ git checkout -b feat/your-name</div>
              </div>
           </Card>
 

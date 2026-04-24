@@ -2,6 +2,11 @@
 
 一個互動式 Git 教學網頁應用，透過視覺化模擬讓初學者從零開始理解版本控制。
 
+> ⚠️ **【完全零基礎的新手請注意】** ⚠️
+>
+> 如果你是完全沒有接觸過寫程式、終端機（Terminal）或 Git 的小白，請**務必先閱讀** [👶 零基礎新手安裝與準備指南](./Beginner-Setup-Guide.md)！
+> 它會教你如何打開終端機，並一步一步在 Windows/Mac 上安裝必備軟體。請完成那份指南後，再回來繼續往下看。
+
 ## ✨ 功能特色
 
 ### 📖 五大互動章節
@@ -25,36 +30,39 @@
 
 ## 🛠 環境需求
 
-- **Node.js** 18+ ([下載](https://nodejs.org))
-- **Git** ([下載](https://git-scm.com))
-- 推薦：VSCode + Git Graph / GitLens 插件
+請確保你已經根據 [零基礎新手安裝與準備指南](./Beginner-Setup-Guide.md) 安裝好以下軟體：
+- **Node.js** 18+ 
+- **Git** 
+- **VSCode** 搭配 Git Graph / GitLens 插件
 
 ---
 
-## 🚀 快速開始
+## 🚀 快速開始 (適合已經裝好 Node.js 與 Git 的人)
 
-### 1. 下載專案
+### 1. 下載本專案
+
+打開你的終端機 (Terminal / PowerShell)，輸入：
 
 ```bash
 git clone https://github.com/BlekZz/git-time-machine.git
 cd git-time-machine
 ```
 
-### 2. 安裝依賴
+### 2. 安裝依賴 (下載魔法工具包)
 
 ```bash
 npm install
 ```
 
-> **提示**：若出現 npm vulnerability 警告，執行 `npm audit fix` 即可。
+> **提示**：若出現 npm vulnerability 警告，不用理會，或是執行 `npm audit fix` 即可。
 
-### 3. 啟動開發伺服器
+### 3. 啟動開發伺服器 (讓網頁跑起來)
 
 ```bash
 npm run dev
 ```
 
-瀏覽器開啟 `http://localhost:5173/` 即可開始互動學習。
+接著，打開你的瀏覽器，輸入網址 `http://localhost:5173/` 就可以開始互動學習啦！
 
 ---
 
