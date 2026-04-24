@@ -9,16 +9,18 @@
 
 ## ✨ 功能特色
 
-### 📖 五大互動章節
+### 📖 八大互動章節
 
 | 章節 | 內容 | 互動方式 |
 |------|------|----------|
-| **1. 觀念與區別** | Git vs GitHub、安裝指南、身份設定、Cheatsheet | 靜態圖解 |
-| **2. 建立與連結** | `git init` / `git remote add` / `git clone` | 分步按鈕 + 視覺動畫 + 模擬終端 |
-| **3. Add, Commit & Ignore** | 三區域概念、檔案狀態管理、`.gitignore` | 個別檔案 Add + 模擬終端 |
-| **4. Push 與 Pull** | 同步流程、Fetch vs Pull、Push Rejected 處理 | Timeline 視覺化 + 模擬終端 |
-| **5. 團隊協作** | Merge vs Rebase、PR 流程、衝突解決指南 | 動態圖表 + 程式碼 Diff |
-| **6. 實戰演練** | 新增個人筆記、建立分支、發起 Pull Request、Owner 合併 | Hands-on PR 實戰指南 |
+| **1. 觀念與準備** | Git/GitHub/GitLab 比較表、Local 端身份設定、Git 時間線圖 | 靜態圖解 + 比較表 |
+| **2. 流程總覽** | 情境 A (從零開始) 與 情境 B (參與現有專案) 路線差異 | 視覺化流程圖 |
+| **3. 情境 A** | `git init` -> `add/commit` -> `remote add` -> `push` | 分步按鈕 + 動畫連線 + 模擬終端 |
+| **4. 情境 B** | `git clone` -> `cd` -> `status` -> `add/commit` -> `push` | 分步按鈕 + 動畫連線 + 模擬終端 |
+| **5. 分支跳躍** | 建立分支、切換分支、`checkout -b` | 平行宇宙狀態圖 + 模擬終端 |
+| **6. 同步與衝突** | Push/Pull 差異、防呆模擬、衝突(Conflict)解決、Merge vs Rebase | 雙向 Timeline + 衝突解碼 + 程式碼 Diff |
+| **7. 團隊與 PR** | PR 觀念解析 (版本迭代 vs 分支合併)、GitHub CLI 發起教學 | PR 一生流程圖 |
+| **8. 實戰演練** | 新增個人筆記、建立分支、發起 Pull Request | Hands-on PR 實戰指南 + 驗證機制 |
 
 ### 🎨 設計亮點
 - 全寬模擬終端機，真實還原指令操作體驗
@@ -48,13 +50,15 @@ git clone https://github.com/BlekZz/git-time-machine.git
 cd git-time-machine
 ```
 
+> **✅ 驗證**：如果你在終端機看到類似 `Receiving objects: 100%` 的字樣，且沒有報錯，代表下載完畢！
+
 ### 2. 安裝依賴 (下載魔法工具包)
 
 ```bash
 npm install
 ```
 
-> **提示**：若出現 npm vulnerability 警告，不用理會，或是執行 `npm audit fix` 即可。
+> **⏳ 等待與驗證**：這一步會去網路上抓取執行網頁所需的工具，**如果畫面卡住還在跑，請耐心等待安裝**。如果看到 `added X packages, and audited X packages in X s`，代表已經安裝完畢！若出現 npm vulnerability 警告，不用理會即可。
 
 ### 3. 啟動開發伺服器 (讓網頁跑起來)
 
@@ -62,16 +66,17 @@ npm install
 npm run dev
 ```
 
-接著，打開你的瀏覽器，輸入網址 `http://localhost:5173/` 就可以開始互動學習啦！
+> **✅ 驗證**：如果你在終端機看到 `VITE vX.X.X  ready in X ms` 並且有一行綠色的字寫著 `➜  Local:   http://localhost:5173/`，代表已經啟動成功！接著，打開你的瀏覽器，輸入網址 `http://localhost:5173/` 就可以開始互動學習啦！
 
 ---
 
 ## 📁 專案結構
 
-```
+```text
 git-time-machine/
 ├── src/
-│   ├── App.jsx          # 主要應用程式（含全部 5 個章節元件）
+│   ├── components/      # 各個互動章節的獨立元件 (Chapter 1 ~ 8)
+│   ├── App.jsx          # 主要應用程式（匯整所有章節）
 │   ├── main.jsx         # React 入口
 │   └── index.css        # 全域樣式（Tailwind）
 ├── public/              # 靜態資源
@@ -79,34 +84,6 @@ git-time-machine/
 ├── vite.config.js
 ├── tailwind.config.js
 └── README.md
-```
-
----
-
-## 👨‍💻 實習生操作指南
-
-### 每日流程
-
-```bash
-# 1. 取得最新版本
-git pull
-
-# 2. 啟動本地伺服器
-npm run dev
-
-# 3. 完成修改後提交
-git add .
-git commit -m "feat: 完成指定任務"
-git push
-```
-
-### 分支協作（進階）
-
-```bash
-git checkout -b feature/your-name-task
-# ... 修改程式碼 ...
-git push -u origin feature/your-name-task
-# 到 GitHub 開 Pull Request
 ```
 
 ---

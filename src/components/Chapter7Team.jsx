@@ -1,0 +1,120 @@
+import React from 'react';
+import { SectionTitle, Card, Badge, InstructionalText } from './Shared';
+import { Users, GitBranch, ArrowRight, GitPullRequest, AlertCircle, CheckCircle, Terminal, Github, GitMerge } from 'lucide-react';
+
+export const Chapter7Team = () => {
+  return (
+    <div className="animate-fade-in space-y-12">
+      <SectionTitle title="7. 團隊合併與 PR" subtitle="Pull Request：不是請求你拉取，而是請求你合併" />
+
+      {/* Part 1: PR Concepts */}
+      <section>
+        <InstructionalText title="核心觀念：版本推拉 vs 分支合併" icon={<AlertCircle size={18} className="text-indigo-600" />}>
+          <p className="mb-4">新手最常搞混的是「什麼時候用 Pull」跟「什麼時候發 PR」。<br/><strong>PR (Pull Request)</strong> 的本質是「請求管理員將我的分支拉進主線」。</p>
+          
+          <div className="grid md:grid-cols-2 gap-6">
+            {/* Same Timeline */}
+            <div className="bg-white p-5 rounded-xl border border-indigo-200 shadow-sm relative overflow-hidden">
+               <div className="absolute top-0 left-0 w-full h-1 bg-indigo-500"></div>
+               <h4 className="font-bold text-indigo-800 mb-3 text-lg">1. 同一條時間線上的更新</h4>
+               <p className="text-sm text-slate-600 mb-4 leading-relaxed">
+                 你和同事<strong>都在 main 分支</strong>上工作。同事上傳了新版本，你的電腦版本舊了。<br/>
+                 這時候你只需要 <code>git pull</code> 把更新拉下來，修改完後再 <code>git push</code>。這是<strong>日常的版本迭代</strong>。
+               </p>
+               <div className="flex items-center justify-between text-indigo-500 font-mono text-sm bg-indigo-50 p-3 rounded">
+                  <span>main (你)</span>
+                  <div className="flex items-center gap-1">
+                     <ArrowRight size={14} />
+                     <span className="text-[10px] bg-indigo-200 text-indigo-800 px-1 rounded">pull/push</span>
+                     <ArrowRight size={14} />
+                  </div>
+                  <span>main (遠端)</span>
+               </div>
+            </div>
+
+            {/* Different Timelines */}
+            <div className="bg-white p-5 rounded-xl border border-purple-200 shadow-sm relative overflow-hidden">
+               <div className="absolute top-0 left-0 w-full h-1 bg-purple-500"></div>
+               <h4 className="font-bold text-purple-800 mb-3 text-lg">2. 完全不同的時間線</h4>
+               <p className="text-sm text-slate-600 mb-4 leading-relaxed">
+                 你在 <strong>feat/login</strong> 分支，而主線是 <strong>main</strong>。你想把你的功能整包裝進主線裡。<br/>
+                 這時候你不能只用 pull，你必須到 GitHub 上發起 <strong>Pull Request (PR)</strong>。
+               </p>
+               <div className="flex items-center justify-between text-purple-500 font-mono text-sm bg-purple-50 p-3 rounded">
+                  <span>feat/login</span>
+                  <div className="flex flex-col items-center">
+                     <GitPullRequest size={18} className="text-purple-600" />
+                     <span className="text-[10px] font-bold mt-1 text-purple-700">發起 PR 請求合併</span>
+                  </div>
+                  <span>main</span>
+               </div>
+            </div>
+          </div>
+        </InstructionalText>
+      </section>
+
+      {/* Part 2: The PR Flow */}
+      <section>
+        <div className="flex items-center gap-2 mb-6">
+          <Badge color="purple">PR 流程解析</Badge>
+          <h3 className="text-xl font-bold text-slate-800">一個 PR 從誕生到合併的一生</h3>
+        </div>
+
+        <div className="space-y-4 relative before:absolute before:inset-0 before:ml-5 before:-translate-x-px md:before:mx-auto md:before:translate-x-0 before:h-full before:w-0.5 before:bg-gradient-to-b before:from-transparent before:via-slate-300 before:to-transparent">
+           
+           {/* Step 1 */}
+           <div className="relative flex items-center justify-between md:justify-normal md:odd:flex-row-reverse group is-active">
+              <div className="flex items-center justify-center w-10 h-10 rounded-full border-4 border-white bg-slate-200 text-slate-600 font-bold shrink-0 md:order-1 md:group-odd:-translate-x-1/2 md:group-even:translate-x-1/2 shadow-sm z-10">1</div>
+              <div className="w-[calc(100%-4rem)] md:w-[calc(50%-2.5rem)] p-4 rounded border border-slate-200 bg-white shadow-sm">
+                 <h4 className="font-bold text-slate-800 mb-2 flex items-center gap-2"><GitBranch size={16}/> 開發與上傳</h4>
+                 <p className="text-sm text-slate-600">在你自己的分支上完成開發，並使用 <code>git push -u origin 分支名</code> 將整條分支推上 GitHub。</p>
+              </div>
+           </div>
+
+           {/* Step 2 */}
+           <div className="relative flex items-center justify-between md:justify-normal md:odd:flex-row-reverse group is-active">
+              <div className="flex items-center justify-center w-10 h-10 rounded-full border-4 border-white bg-purple-500 text-white font-bold shrink-0 md:order-1 md:group-odd:-translate-x-1/2 md:group-even:translate-x-1/2 shadow-sm z-10">
+                 <GitPullRequest size={18} />
+              </div>
+              <div className="w-[calc(100%-4rem)] md:w-[calc(50%-2.5rem)] p-4 rounded border border-purple-200 bg-purple-50 shadow-sm relative">
+                 <div className="absolute -right-2 -top-2 bg-purple-600 text-white text-[10px] px-2 py-1 rounded-full font-bold shadow animate-pulse">Action!</div>
+                 <h4 className="font-bold text-purple-900 mb-2 flex items-center gap-2"><Github size={16}/> 發起 Pull Request</h4>
+                 <p className="text-sm text-purple-800 mb-3">在 GitHub 網頁上點擊 "Compare & pull request"，寫下你做了什麼改變。</p>
+                 <div className="bg-slate-900 rounded p-2 text-xs font-mono text-green-400">
+                    # 或是使用超快的 gh CLI 指令<br/>
+                    $ gh pr create
+                 </div>
+              </div>
+           </div>
+
+           {/* Step 3 */}
+           <div className="relative flex items-center justify-between md:justify-normal md:odd:flex-row-reverse group is-active">
+              <div className="flex items-center justify-center w-10 h-10 rounded-full border-4 border-white bg-slate-200 text-slate-600 font-bold shrink-0 md:order-1 md:group-odd:-translate-x-1/2 md:group-even:translate-x-1/2 shadow-sm z-10">
+                 <Users size={18} />
+              </div>
+              <div className="w-[calc(100%-4rem)] md:w-[calc(50%-2.5rem)] p-4 rounded border border-slate-200 bg-white shadow-sm">
+                 <h4 className="font-bold text-slate-800 mb-2">Code Review (程式碼審查)</h4>
+                 <p className="text-sm text-slate-600">資深同事或維護者會進來檢查你的程式碼。如果需要修改，你可以繼續在本地修改並 push，PR 會自動更新。</p>
+              </div>
+           </div>
+
+           {/* Step 4 */}
+           <div className="relative flex items-center justify-between md:justify-normal md:odd:flex-row-reverse group is-active">
+              <div className="flex items-center justify-center w-10 h-10 rounded-full border-4 border-white bg-green-500 text-white font-bold shrink-0 md:order-1 md:group-odd:-translate-x-1/2 md:group-even:translate-x-1/2 shadow-sm z-10">
+                 <GitMerge size={18} />
+              </div>
+              <div className="w-[calc(100%-4rem)] md:w-[calc(50%-2.5rem)] p-4 rounded border border-green-200 bg-green-50 shadow-sm">
+                 <h4 className="font-bold text-green-900 mb-2 flex items-center gap-2"><CheckCircle size={16}/> Approve & Merge</h4>
+                 <p className="text-sm text-green-800">審查通過！維護者點擊 <strong>Merge pull request</strong>。你的分支完美融入 main 宇宙，任務圓滿達成！🎉</p>
+                 <div className="mt-3 p-2 bg-white rounded border border-green-200 text-xs text-green-700">
+                    <strong>💡 合併後會怎樣？</strong><br/>
+                    合併後，這個功能分支（如 feat/login）通常會被<strong>刪除或封存</strong>。因為它的階段性任務已經結束了。下次如果有新需求，請記得切回 main 並拉取最新進度後，<strong>再開一個全新的分支</strong>！
+                 </div>
+              </div>
+           </div>
+
+        </div>
+      </section>
+    </div>
+  );
+};

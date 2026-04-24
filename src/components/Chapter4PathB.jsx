@@ -1,0 +1,295 @@
+import React, { useState } from 'react';
+import { SectionTitle, Card, TerminalSim, InstructionalText } from './Shared';
+import { Laptop, ArrowRight, Github, Download, FileText, CheckCircle, Search, LifeBuoy } from 'lucide-react';
+
+export const Chapter4PathB = () => {
+  const [step, setStep] = useState(0); // 0: init, 1: clone, 2: cd, 3: status, 4: add/commit, 5: push
+  const [logs, setLogs] = useState([{ prefix: '$', text: '準備開始情境 B：下載現有專案。' }]);
+  const repoUrl = "https://github.com/company/cool-project.git";
+
+  const addLog = (text, type = 'info', prefix = '>') => {
+    setLogs(prev => [...prev, { text, type, prefix }]);
+  };
+
+  const handleClone = () => {
+    if (step >= 1) return;
+    addLog(`git clone ${repoUrl}`, 'input', '$');
+    setTimeout(() => {
+      addLog(`Cloning into 'cool-project'...`, 'info');
+    }, 300);
+    setTimeout(() => {
+      addLog(`remote: Enumerating objects: 42, done.`, 'info');
+      addLog(`Unpacking objects: 100% (42/42), done.`, 'success');
+      setStep(1);
+    }, 1200);
+  };
+
+  const handleCd = () => {
+    if (step >= 2) return;
+    addLog('cd cool-project', 'input', '$');
+    setTimeout(() => {
+      setStep(2);
+    }, 200);
+  };
+
+  const handleStatus = () => {
+    if (step >= 3) return;
+    addLog('git status', 'input', 'cool-project $');
+    setTimeout(() => {
+      addLog('On branch main', 'info');
+      addLog('Your branch is up to date with "origin/main".', 'info');
+      addLog('nothing to commit, working tree clean', 'success');
+      setStep(3);
+    }, 300);
+  };
+
+  const handleCommit = () => {
+    if (step >= 4) return;
+    addLog('echo "hello" > new_feature.txt', 'input', 'cool-project $');
+    addLog('git add .', 'input', 'cool-project $');
+    addLog('git commit -m "Add new feature"', 'input', 'cool-project $');
+    setTimeout(() => {
+      addLog('[main 7f8g9h] Add new feature', 'success');
+      setStep(4);
+    }, 400);
+  };
+
+  const handlePush = () => {
+    if (step >= 5) return;
+    addLog('git push', 'input', 'cool-project $');
+    setTimeout(() => {
+      addLog(`To ${repoUrl}`, 'success');
+      addLog(`   1a2b3c..7f8g9h  main -> main`, 'success');
+      setStep(5);
+    }, 800);
+  };
+
+  const reset = () => {
+    setStep(0);
+    setLogs([{ prefix: '$', text: '已重置。' }]);
+  };
+
+  return (
+    <div className="space-y-6 animate-fade-in">
+      <SectionTitle title="4. 情境 B：參與現有專案" subtitle="下載、修改、上傳的三部曲" />
+
+      <InstructionalText title="什麼時候會用到？">
+        <p>這是最常見的工作場景！你剛進公司，主管丟給你一個 GitHub 網址，你要把程式碼下載到電腦裡開始工作。</p>
+      </InstructionalText>
+
+      <div className="grid md:grid-cols-2 gap-8">
+        <div className="space-y-6">
+          <Card className="bg-slate-50">
+            <div className="flex justify-between items-center mb-4">
+              <h3 className="font-bold text-slate-700 flex items-center gap-2"><Download size={18} /> 操作步驟</h3>
+              <button onClick={reset} className="text-xs text-slate-500 hover:text-purple-600 underline">重新開始</button>
+            </div>
+            
+            <div className="space-y-3">
+              {/* Step 1 */}
+              <div className={`p-3 border rounded-lg transition-all ${step === 0 ? 'bg-white border-purple-300 shadow-md ring-2 ring-purple-50' : step > 0 ? 'bg-green-50 border-green-200 opacity-60' : 'bg-slate-50 border-slate-200 opacity-40'}`}>
+                <div className="flex items-center justify-between">
+                  <div className="font-mono text-sm text-slate-700 truncate mr-2" title={`$ git clone ${repoUrl}`}>$ git clone ...cool-project.git</div>
+                  <button onClick={handleClone} disabled={step !== 0} className={`px-3 py-1 rounded text-xs font-bold text-white shrink-0 ${step > 0 ? 'bg-green-500' : step === 0 ? 'bg-purple-600 hover:bg-purple-700' : 'bg-slate-300'}`}>
+                    {step > 0 ? '完成' : '執行'}
+                  </button>
+                </div>
+                <div className="text-xs text-slate-500 mt-2">把雲端的專案完整打包下載到電腦。這會自動建立 .git 與 origin 連結！</div>
+              </div>
+
+              {/* Step 2 */}
+              <div className={`p-3 border rounded-lg transition-all ${step === 1 ? 'bg-white border-purple-300 shadow-md ring-2 ring-purple-50' : step > 1 ? 'bg-green-50 border-green-200 opacity-60' : 'bg-slate-50 border-slate-200 opacity-40'}`}>
+                <div className="flex items-center justify-between">
+                  <div className="font-mono text-sm text-slate-700">$ cd cool-project</div>
+                  <button onClick={handleCd} disabled={step !== 1} className={`px-3 py-1 rounded text-xs font-bold text-white ${step > 1 ? 'bg-green-500' : step === 1 ? 'bg-purple-600 hover:bg-purple-700' : 'bg-slate-300'}`}>
+                    {step > 1 ? '完成' : '執行'}
+                  </button>
+                </div>
+                <div className="text-xs text-red-500 font-bold mt-2">⚠️ 新手最常忘記這步！下載完記得用 cd (change directory) 進入資料夾，否則你後面的指令都會找不到 git！</div>
+              </div>
+
+              {/* Step 3 */}
+              <div className={`p-3 border rounded-lg transition-all ${step === 2 ? 'bg-white border-purple-300 shadow-md ring-2 ring-purple-50' : step > 2 ? 'bg-green-50 border-green-200 opacity-60' : 'bg-slate-50 border-slate-200 opacity-40'}`}>
+                <div className="flex items-center justify-between">
+                  <div className="font-mono text-sm text-slate-700">$ git status</div>
+                  <button onClick={handleStatus} disabled={step !== 2} className={`px-3 py-1 rounded text-xs font-bold text-white ${step > 2 ? 'bg-green-500' : step === 2 ? 'bg-purple-600 hover:bg-purple-700' : 'bg-slate-300'}`}>
+                    {step > 2 ? '完成' : '執行'}
+                  </button>
+                </div>
+                <div className="text-xs text-slate-500 mt-2">好習慣：養成隨時看 status 的習慣，確認目前狀態是否乾淨。</div>
+              </div>
+
+              {/* Step 4 */}
+              <div className={`p-3 border rounded-lg transition-all ${step === 3 ? 'bg-white border-purple-300 shadow-md ring-2 ring-purple-50' : step > 3 ? 'bg-green-50 border-green-200 opacity-60' : 'bg-slate-50 border-slate-200 opacity-40'}`}>
+                <div className="flex items-center justify-between">
+                  <div className="font-mono text-sm text-slate-700">$ git add . <br/>$ git commit -m "..."</div>
+                  <button onClick={handleCommit} disabled={step !== 3} className={`px-3 py-1 rounded text-xs font-bold text-white shrink-0 ${step > 3 ? 'bg-green-500' : step === 3 ? 'bg-purple-600 hover:bg-purple-700' : 'bg-slate-300'}`}>
+                    {step > 3 ? '完成' : '執行'}
+                  </button>
+                </div>
+                <div className="text-xs text-slate-500 mt-2">（模擬）你修改了程式碼，然後把它們存檔。</div>
+              </div>
+
+              {/* Step 5 */}
+              <div className={`p-3 border rounded-lg transition-all ${step === 4 ? 'bg-white border-purple-300 shadow-md ring-2 ring-purple-50' : step > 4 ? 'bg-green-50 border-green-200' : 'bg-slate-50 border-slate-200 opacity-40'}`}>
+                <div className="flex items-center justify-between">
+                  <div className="font-mono text-sm text-slate-700">$ git push</div>
+                  <button onClick={handlePush} disabled={step !== 4} className={`px-3 py-1 rounded text-xs font-bold text-white ${step > 4 ? 'bg-green-500' : step === 4 ? 'bg-purple-600 hover:bg-purple-700 animate-pulse' : 'bg-slate-300'}`}>
+                    {step > 4 ? '完成' : '執行'}
+                  </button>
+                </div>
+                <div className="text-xs text-slate-500 mt-2">因為 Clone 時已經有 origin 連結了，所以以後修改完直接 push 即可！</div>
+              </div>
+            </div>
+          </Card>
+        </div>
+
+        {/* Visual Feedback */}
+        <div className="flex items-center justify-center bg-slate-100 rounded-xl border border-slate-200 p-8 relative overflow-hidden">
+          {step === 5 && <div className="absolute inset-0 bg-green-50/50 z-0 animate-fade-in pointer-events-none"></div>}
+          
+          <div className="relative flex items-center gap-20 z-10 w-full justify-center">
+             {/* Local Folder */}
+             <div className="flex flex-col items-center relative">
+               <div className={`w-20 h-20 rounded-2xl flex items-center justify-center shadow-lg transition-all duration-500 ${step >= 1 ? 'bg-purple-600 text-white ring-4 ring-purple-200' : 'bg-white text-slate-300 border border-slate-200'}`}>
+                 <Laptop size={40} />
+               </div>
+               {step >= 1 && (
+                 <div className="absolute -left-6 top-1 flex flex-col gap-0.5 animate-fade-in">
+                   <div className="flex items-center gap-1 bg-white rounded px-1.5 py-0.5 shadow-sm border border-slate-200 text-[9px] text-slate-600 font-mono">
+                     <FileText size={8} className="text-blue-500 shrink-0" />code.js
+                   </div>
+                 </div>
+               )}
+               {step === 2 && (
+                 <div className="absolute -bottom-2 bg-yellow-100 text-yellow-700 text-[10px] px-2 py-0.5 rounded-full font-bold animate-fade-in whitespace-nowrap border border-yellow-200">
+                   已進入資料夾
+                 </div>
+               )}
+               {step === 3 && (
+                 <div className="absolute -bottom-2 bg-blue-100 text-blue-700 text-[10px] px-2 py-0.5 rounded-full font-bold animate-fade-in whitespace-nowrap border border-blue-200 flex items-center gap-1">
+                   <Search size={10} /> 狀態乾淨
+                 </div>
+               )}
+               {step === 4 && (
+                 <div className="absolute -bottom-2 bg-green-100 text-green-700 text-[10px] px-2 py-0.5 rounded-full font-bold animate-fade-in whitespace-nowrap border border-green-200">
+                   已修改並存檔
+                 </div>
+               )}
+               <span className="mt-4 font-bold text-slate-600">Local (你的電腦)</span>
+             </div>
+
+             {/* Connection Line */}
+             <div className="absolute left-10 right-10 top-10 h-1 bg-slate-200 -z-10 rounded-full">
+               <div className={`h-full rounded-full transition-all duration-1000 ease-out bg-purple-500 ${step >= 1 ? 'w-full opacity-50' : 'w-0'} ${step === 5 ? 'opacity-100 bg-green-500 shadow-[0_0_10px_rgba(34,197,94,0.5)]' : ''}`}></div>
+             </div>
+             
+             {step === 1 && (
+               <div className="absolute top-7 left-1/2 -translate-x-1/2 z-20 animate-pulse text-purple-600">
+                 <ArrowRight size={24} className="rotate-180" />
+               </div>
+             )}
+             
+             {step === 5 && (
+               <div className="absolute top-4 left-1/2 -translate-x-1/2 z-20 animate-fade-in px-3 py-1 rounded-full text-xs font-bold bg-green-100 text-green-700 border border-green-200 flex items-center gap-1">
+                 <CheckCircle size={14} /> 更新成功！
+               </div>
+             )}
+
+             {/* GitHub Repo */}
+             <div className="flex flex-col items-center relative">
+               <div className="w-20 h-20 rounded-2xl bg-slate-800 text-white flex items-center justify-center shadow-lg">
+                 <Github size={40} />
+               </div>
+               <span className="mt-4 font-bold text-slate-600">Remote (GitHub)</span>
+             </div>
+          </div>
+        </div>
+      </div>
+
+      <div className="mt-8">
+        <TerminalSim logs={logs} promptLabel={step >= 2 ? "cool-project $" : "~ $"} height="h-48" />
+      </div>
+
+      {/* Git Status Cheatsheet */}
+      <div className="mt-8">
+        <Card className="bg-slate-50 border-slate-200">
+           <h3 className="font-bold text-slate-800 mb-3 flex items-center gap-2">
+             <Search size={18} className="text-slate-600" /> Git Status 狀態解碼速查表
+           </h3>
+           <p className="text-sm text-slate-600 mb-4">輸入 <code>git status</code> 後，終端機會用不同顏色告訴你檔案目前的狀態：</p>
+           
+           <div className="overflow-x-auto">
+             <table className="w-full text-sm text-left text-slate-600 border-collapse bg-white rounded-lg overflow-hidden shadow-sm border border-slate-200">
+               <thead className="bg-slate-100 text-slate-700">
+                 <tr>
+                   <th className="px-4 py-3 border-b">狀態名稱</th>
+                   <th className="px-4 py-3 border-b">顏色顯示</th>
+                   <th className="px-4 py-3 border-b">代表什麼意思？</th>
+                   <th className="px-4 py-3 border-b">下一步該怎麼做？</th>
+                 </tr>
+               </thead>
+               <tbody>
+                 <tr className="border-b">
+                   <td className="px-4 py-3 font-mono font-bold text-slate-800">Untracked files</td>
+                   <td className="px-4 py-3 text-red-500 font-bold">紅色</td>
+                   <td className="px-4 py-3">這是你剛建立的「新檔案」，Git 還不認識它。</td>
+                   <td className="px-4 py-3">輸入 <code>git add .</code> 把它加入暫存區。</td>
+                 </tr>
+                 <tr className="border-b">
+                   <td className="px-4 py-3 font-mono font-bold text-slate-800">Changes not staged</td>
+                   <td className="px-4 py-3 text-red-500 font-bold">紅色</td>
+                   <td className="px-4 py-3">舊檔案被你「修改」了，但還沒放進準備存檔的區域。</td>
+                   <td className="px-4 py-3">輸入 <code>git add .</code> 把它加入暫存區。</td>
+                 </tr>
+                 <tr className="border-b">
+                   <td className="px-4 py-3 font-mono font-bold text-slate-800">Changes to be committed</td>
+                   <td className="px-4 py-3 text-green-500 font-bold">綠色</td>
+                   <td className="px-4 py-3">檔案已經在「暫存區」了，準備好要存檔了！</td>
+                   <td className="px-4 py-3">輸入 <code>git commit -m "..."</code> 正式存檔。</td>
+                 </tr>
+                 <tr>
+                   <td className="px-4 py-3 font-mono font-bold text-slate-800">nothing to commit</td>
+                   <td className="px-4 py-3 text-slate-500 font-bold">無色</td>
+                   <td className="px-4 py-3">工作區超級乾淨，所有修改都已經存檔完畢。</td>
+                   <td className="px-4 py-3">安心去喝杯咖啡，或是 <code>git push</code> 上傳。</td>
+                 </tr>
+               </tbody>
+             </table>
+           </div>
+        </Card>
+      </div>
+
+      {/* Emergency Escape Bag */}
+      <div className="mt-8">
+        <Card className="bg-red-50 border-red-200">
+           <h3 className="font-bold text-red-800 mb-3 flex items-center gap-2">
+             <LifeBuoy size={18} /> 緊急逃生包：Oops! 我搞砸了怎麼辦？
+           </h3>
+           <p className="text-sm text-red-700 mb-4">
+             打錯字或加錯檔案時很容易恐慌（例如不小心把全部檔案都 <code>git add .</code> 了，但其實只想傳一個）。別擔心，這幾個指令能救你：
+           </p>
+           <div className="grid md:grid-cols-2 gap-4">
+             <div className="bg-white p-4 rounded border border-red-100 shadow-sm">
+               <div className="font-bold text-slate-800 mb-2 flex items-center gap-2">😭 案發現場 1：不小心 Add 錯檔案</div>
+               <p className="text-xs text-slate-600 mb-2">我把還沒寫完的檔案送進暫存區了，我想把它拿出來！</p>
+               <div className="bg-slate-900 rounded p-2 font-mono text-xs text-green-400">
+                 $ git restore --staged &lt;檔案名&gt;
+               </div>
+               <p className="text-[10px] text-slate-500 mt-2">* 這只會把它移出暫存區，不會刪除你的程式碼。</p>
+             </div>
+             
+             <div className="bg-white p-4 rounded border border-red-100 shadow-sm">
+               <div className="font-bold text-slate-800 mb-2 flex items-center gap-2">💥 案發現場 2：把程式碼改壞了</div>
+               <p className="text-xs text-slate-600 mb-2">剛剛亂改一通，程式全壞了，我想讓這個檔案回到最後一次 Commit 的狀態！</p>
+               <div className="bg-slate-900 rounded p-2 font-mono text-xs text-green-400">
+                 $ git restore &lt;檔案名&gt;
+               </div>
+               <p className="text-[10px] text-red-500 font-bold mt-2">⚠️ 警告：這會讓你剛寫的程式碼永遠消失，請小心使用！</p>
+             </div>
+           </div>
+        </Card>
+      </div>
+    </div>
+  );
+};

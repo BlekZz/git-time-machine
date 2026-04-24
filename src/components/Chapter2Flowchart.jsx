@@ -1,0 +1,129 @@
+import React from 'react';
+import { SectionTitle, Card, Badge, InstructionalText } from './Shared';
+import { GitBranch, Map, ArrowRight, Laptop, Github, Download, PlusCircle } from 'lucide-react';
+
+export const Chapter2Flowchart = () => (
+  <div className="space-y-8 animate-fade-in">
+    <SectionTitle title="2. 情境總覽與流程介紹" subtitle="搞懂兩大起手式，你就不會再迷路" />
+
+    <InstructionalText title="在開始之前，你必須先知道你處於哪個「情境」" icon={<Map size={18} className="text-indigo-600" />}>
+      <p>初學者最常犯的錯誤，就是亂下指令。在你要輸入任何 <code>git</code> 指令前，請先問自己一個問題：<br />
+      <strong>「這個專案是全新的（我剛剛在電腦裡開的資料夾），還是已經存在於 GitHub 上了？」</strong></p>
+    </InstructionalText>
+
+    <div className="grid md:grid-cols-2 gap-8 relative">
+      {/* 裝飾分隔線 */}
+      <div className="hidden md:block absolute left-1/2 top-4 bottom-4 w-px bg-slate-200 -translate-x-1/2"></div>
+      <div className="hidden md:flex absolute left-1/2 top-1/2 -translate-x-1/2 -translate-y-1/2 w-8 h-8 rounded-full bg-white border border-slate-200 items-center justify-center text-xs font-bold text-slate-400 z-10">VS</div>
+
+      {/* 情境 A */}
+      <Card className="bg-indigo-50/50 border-indigo-100 hover:shadow-lg transition-all relative overflow-hidden group">
+        <div className="absolute top-0 right-0 p-4 opacity-10 group-hover:opacity-20 transition-opacity">
+          <PlusCircle size={100} />
+        </div>
+        <div className="relative z-10">
+          <Badge color="indigo">情境 A</Badge>
+          <h3 className="text-xl font-bold text-indigo-900 mt-3 mb-2 flex items-center gap-2">
+            自己當造物主：從零開始
+          </h3>
+          <p className="text-sm text-indigo-700 mb-6 h-10">
+            你自己在電腦裡寫好了一些 Code，現在你想把它們推上 GitHub 備份。
+          </p>
+
+          <div className="space-y-3 relative">
+            <div className="absolute left-4 top-4 bottom-4 w-0.5 bg-indigo-200"></div>
+            
+            <div className="flex items-center gap-4 relative">
+              <div className="w-8 h-8 rounded-full bg-indigo-600 text-white flex items-center justify-center text-sm font-bold shadow-md z-10">1</div>
+              <div className="flex-1 bg-white p-3 rounded-lg border border-indigo-100 shadow-sm">
+                <div className="font-bold text-slate-700 text-sm">初始化 (Init)</div>
+                <code className="text-xs text-indigo-600 bg-indigo-50 px-1 rounded">git init</code>
+              </div>
+            </div>
+            
+            <div className="flex items-center gap-4 relative">
+              <div className="w-8 h-8 rounded-full bg-indigo-500 text-white flex items-center justify-center text-sm font-bold shadow-md z-10">2</div>
+              <div className="flex-1 bg-white p-3 rounded-lg border border-indigo-100 shadow-sm">
+                <div className="font-bold text-slate-700 text-sm">暫存與存檔 (Add & Commit)</div>
+                <code className="text-xs text-indigo-600 bg-indigo-50 px-1 rounded">git add .</code> / <code className="text-xs text-indigo-600 bg-indigo-50 px-1 rounded">git commit</code>
+              </div>
+            </div>
+
+            <div className="flex items-center gap-4 relative">
+              <div className="w-8 h-8 rounded-full bg-indigo-400 text-white flex items-center justify-center text-sm font-bold shadow-md z-10">3</div>
+              <div className="flex-1 bg-white p-3 rounded-lg border border-indigo-100 shadow-sm">
+                <div className="font-bold text-slate-700 text-sm">連結遠端 (Remote Add)</div>
+                <code className="text-xs text-indigo-600 bg-indigo-50 px-1 rounded">git remote add origin</code>
+              </div>
+            </div>
+
+            <div className="flex items-center gap-4 relative">
+              <div className="w-8 h-8 rounded-full bg-indigo-300 text-white flex items-center justify-center text-sm font-bold shadow-md z-10">4</div>
+              <div className="flex-1 bg-white p-3 rounded-lg border border-indigo-100 shadow-sm">
+                <div className="font-bold text-slate-700 text-sm">推上雲端 (Push)</div>
+                <code className="text-xs text-indigo-600 bg-indigo-50 px-1 rounded">git push -u origin main</code>
+              </div>
+            </div>
+          </div>
+        </div>
+      </Card>
+
+      {/* 情境 B */}
+      <Card className="bg-purple-50/50 border-purple-100 hover:shadow-lg transition-all relative overflow-hidden group">
+        <div className="absolute top-0 right-0 p-4 opacity-10 group-hover:opacity-20 transition-opacity">
+          <Download size={100} />
+        </div>
+        <div className="relative z-10">
+          <Badge color="purple">情境 B</Badge>
+          <h3 className="text-xl font-bold text-purple-900 mt-3 mb-2 flex items-center gap-2">
+            加入大部隊：參與現有專案
+          </h3>
+          <p className="text-sm text-purple-700 mb-6 h-10">
+            專案已經存在於 GitHub 上（例如公司的專案，或是別人的開源專案），你要下載下來開發。
+          </p>
+
+          <div className="space-y-3 relative">
+            <div className="absolute left-4 top-4 bottom-4 w-0.5 bg-purple-200"></div>
+            
+            <div className="flex items-center gap-4 relative">
+              <div className="w-8 h-8 rounded-full bg-purple-600 text-white flex items-center justify-center text-sm font-bold shadow-md z-10">1</div>
+              <div className="flex-1 bg-white p-3 rounded-lg border border-purple-100 shadow-sm">
+                <div className="font-bold text-slate-700 text-sm">下載專案 (Clone)</div>
+                <code className="text-xs text-purple-600 bg-purple-50 px-1 rounded">git clone &lt;URL&gt;</code>
+              </div>
+            </div>
+            
+            <div className="flex items-center gap-4 relative">
+              <div className="w-8 h-8 rounded-full bg-purple-500 text-white flex items-center justify-center text-sm font-bold shadow-md z-10">2</div>
+              <div className="flex-1 bg-white p-3 rounded-lg border border-purple-100 shadow-sm">
+                <div className="font-bold text-slate-700 text-sm">進入資料夾</div>
+                <code className="text-xs text-purple-600 bg-purple-50 px-1 rounded">cd &lt;專案名稱&gt;</code>
+              </div>
+            </div>
+
+            <div className="flex items-center gap-4 relative">
+              <div className="w-8 h-8 rounded-full bg-purple-400 text-white flex items-center justify-center text-sm font-bold shadow-md z-10">3</div>
+              <div className="flex-1 bg-white p-3 rounded-lg border border-purple-100 shadow-sm">
+                <div className="font-bold text-slate-700 text-sm">開發與存檔 (Add & Commit)</div>
+                <code className="text-xs text-purple-600 bg-purple-50 px-1 rounded">git add .</code> / <code className="text-xs text-purple-600 bg-purple-50 px-1 rounded">git commit</code>
+              </div>
+            </div>
+
+            <div className="flex items-center gap-4 relative">
+              <div className="w-8 h-8 rounded-full bg-purple-300 text-white flex items-center justify-center text-sm font-bold shadow-md z-10">4</div>
+              <div className="flex-1 bg-white p-3 rounded-lg border border-purple-100 shadow-sm">
+                <div className="font-bold text-slate-700 text-sm">推上雲端 (Push)</div>
+                <code className="text-xs text-purple-600 bg-purple-50 px-1 rounded">git push</code>
+              </div>
+            </div>
+          </div>
+        </div>
+      </Card>
+    </div>
+    
+    <div className="bg-yellow-50 border border-yellow-200 rounded-lg p-5 flex items-center justify-center gap-3 text-yellow-800">
+       <span className="font-bold">接下來的兩個章節，我們將分別帶你實際演練這兩條路線！</span>
+       <ArrowRight size={20} className="animate-bounce" />
+    </div>
+  </div>
+);
