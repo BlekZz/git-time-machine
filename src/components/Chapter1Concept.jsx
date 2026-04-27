@@ -1,10 +1,55 @@
 import React from 'react';
 import { SectionTitle, Card, Badge } from './Shared';
-import { GitGraph, Server, Monitor, Laptop, Cpu, CheckCircle, Key, Info, Folder, AlertCircle, HardDrive, Database, Cloud, Github, ArrowRight, Terminal } from 'lucide-react';
+import { GitGraph, Server, Monitor, Laptop, Cpu, CheckCircle, Key, Info, Folder, AlertCircle, HardDrive, Database, Cloud, Github, ArrowRight, Terminal, Users, Sparkles, BookOpen, TrendingUp } from 'lucide-react';
 
 export const Chapter1Concept = () => (
   <div className="space-y-8 animate-fade-in">
     <SectionTitle title="1. 觀念與準備" subtitle="在開始你的時光機之旅前，我們先把裝備確認好" />
+
+    {/* 學會後能做到的事 */}
+    <div className="bg-gradient-to-br from-indigo-600 via-purple-600 to-pink-600 rounded-2xl p-6 text-white shadow-xl">
+      <div className="flex items-center gap-3 mb-5">
+        <div className="p-2 bg-white/20 rounded-lg">
+          <Sparkles size={22} />
+        </div>
+        <h3 className="text-xl font-bold">學會 Git + GitHub，你就能夠……</h3>
+      </div>
+
+      <div className="grid md:grid-cols-2 gap-5">
+        {/* TA 1: 文組生 */}
+        <div className="bg-white/10 backdrop-blur-sm rounded-xl p-4 border border-white/20">
+          <div className="flex items-center gap-2 mb-3">
+            <BookOpen size={16} className="text-yellow-300" />
+            <span className="text-sm font-bold text-yellow-200">✍️ 給文組生 / 完全零基礎的你</span>
+          </div>
+          <ul className="space-y-2 text-sm text-white/90">
+            <li className="flex items-start gap-2"><span className="text-green-300 font-bold mt-0.5">✓</span>把你的小說、部落格草稿、設計稿的每個版本都保存下來，再也不怕「改了之後後悔」</li>
+            <li className="flex items-start gap-2"><span className="text-green-300 font-bold mt-0.5">✓</span>和同學線上共同編輯一份報告，不再需要傳「最終版」「最終最終版」「真的最終版」</li>
+            <li className="flex items-start gap-2"><span className="text-green-300 font-bold mt-0.5">✓</span>讓面試官看到你認真維護的 GitHub 主頁，這比任何履歷都有說服力</li>
+            <li className="flex items-start gap-2"><span className="text-green-300 font-bold mt-0.5">✓</span>參與任何開源專案、在業界做任何「跨部門協作」的基礎技能</li>
+          </ul>
+        </div>
+
+        {/* TA 2: 數據分析菜鳥 */}
+        <div className="bg-white/10 backdrop-blur-sm rounded-xl p-4 border border-white/20">
+          <div className="flex items-center gap-2 mb-3">
+            <TrendingUp size={16} className="text-cyan-300" />
+            <span className="text-sm font-bold text-cyan-200">📊 給會用 Python / Excel 的數據分析新手</span>
+          </div>
+          <ul className="space-y-2 text-sm text-white/90">
+            <li className="flex items-start gap-2"><span className="text-green-300 font-bold mt-0.5">✓</span>把你的 Jupyter Notebook、Python 清洗腳本放上 GitHub，告別只存在自己電腦的「孤島作品」</li>
+            <li className="flex items-start gap-2"><span className="text-green-300 font-bold mt-0.5">✓</span>和工程師同事用同一套流程協作，從此說「單機世界」再見，正式進入 MMO 合作模式</li>
+            <li className="flex items-start gap-2"><span className="text-green-300 font-bold mt-0.5">✓</span>追蹤每次調整模型參數、特徵工程的版本，再也不會問「這個 model 上週跑的結果在哪？」</li>
+            <li className="flex items-start gap-2"><span className="text-green-300 font-bold mt-0.5">✓</span>當工程師說「把你的 code 丟到 repo 來」，你直接秒懂並完成，不再需要尷尬地問「什麼是 repo？」</li>
+          </ul>
+        </div>
+      </div>
+
+      <div className="mt-4 bg-white/10 rounded-lg px-4 py-3 text-sm text-white/80 flex items-start gap-2">
+        <span className="text-yellow-300 text-base leading-none mt-0.5">💡</span>
+        <span>這門課結束後，你就正式從「單機存檔玩家」升級為「多人線上協作工程師」。準備好了嗎？</span>
+      </div>
+    </div>
     
     {/* Jargon Dictionary */}
     <Card className="bg-gradient-to-br from-indigo-50 to-blue-50 border-indigo-100 mb-6">

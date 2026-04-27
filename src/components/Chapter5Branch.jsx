@@ -37,6 +37,23 @@ export const Chapter5Branch = () => {
     <div className="space-y-6 animate-fade-in">
       <SectionTitle title="5. 分支與宇宙跳躍" subtitle="在不搞壞主線的情況下，大膽嘗試新功能" />
 
+      {/* 進入狀態提示 */}
+      <div className="bg-slate-800 rounded-xl px-5 py-4 flex flex-col gap-3 shadow-md mb-2">
+        <div className="text-xs font-bold text-slate-400 uppercase tracking-widest mb-1">⚡ 進入狀態：讀完再動</div>
+        <div className="flex items-start gap-3">
+          <span className="text-pink-400 text-base leading-none mt-0.5">🌿</span>
+          <p className="text-sm text-slate-300"><strong className="text-white">切換分支（checkout）前，你必須先確認自己已經建立了目標分支。</strong>沒有先建立的話，切換會失敗並報錯。</p>
+        </div>
+        <div className="flex items-start gap-3">
+          <span className="text-blue-400 text-base leading-none mt-0.5">📋</span>
+          <p className="text-sm text-slate-300"><strong className="text-white">不知道現在有哪些分支？先查清楚再決定。</strong>輸入 <code className="bg-slate-700 px-1 rounded">git branch</code> 可以列出所有本地分支，前面有 <code className="bg-slate-700 px-1 rounded">*</code> 星號的就是你目前所在的分支。</p>
+        </div>
+        <div className="flex items-start gap-3">
+          <span className="text-yellow-400 text-base leading-none mt-0.5">💡</span>
+          <p className="text-sm text-slate-300"><strong className="text-white">最常用的懶人指令：<code className="bg-slate-700 px-1 rounded">git checkout -b 分支名</code></strong>，一次完成「建立 + 切換」，不需要分兩步做。</p>
+        </div>
+      </div>
+
       <InstructionalText title="什麼是分支 (Branch)？" icon={<GitBranch size={18} className="text-pink-600" />}>
         <p>分支就像是「平行宇宙」。當你想開發一個新功能（例如登入頁面），你可以從主線 (main) 複製一個一模一樣的宇宙出來。<br/>
         在這個新的宇宙裡，你愛怎麼改就怎麼改，完全不會影響到主線！等到功能寫好、測試沒問題了，再把它合併 (Merge) 回主線。</p>

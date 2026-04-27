@@ -6,6 +6,19 @@
 
 ---
 
+## ✅ 開始前確認 Checklist
+
+> 在動手安裝任何東西之前，請先確認以下項目！
+
+| 項目 | 說明 | 符合嗎？ |
+|------|------|------|
+| 🖥️ 你有一台電腦 | Windows 10+ 或 macOS 10.15+，需要能安裝軟體 | ☐ |
+| 🌐 連上了網路 | 安裝軟體時需要下載，建議有穩定的 Wi-Fi | ☐ |
+| 📞 能單獨操作這台電腦 | 需要有管理員權限來安裝軟體 | ☐ |
+| ⏰ 預計耗時 | 整個指南大約30～60分鐘，請找時間完整完成，不要中斷 | ☐ |
+
+---
+
 ## 步驟一：註冊 GitHub 帳號
 
 GitHub 是全球最大的工程師社群與程式碼代管平台，未來的作業都會上傳到這裡。
@@ -179,3 +192,50 @@ http://localhost:5173/
 ---
 
 > 🛑 **關閉教學網頁的方法**：回到終端機，按下鍵盤上的 `Ctrl + C`（Mac 也是 Ctrl，不是 Command），網頁就會停止運作。下次要再開，重新執行 `npm run dev` 即可。
+
+---
+
+## 🎉 全部完成後 Checklist
+
+> 恭喜你完成了所有步驟！在單打歡呼之前，用下面的清單确認一下你的準備狀態：
+
+| 項目 | 如何驗證成功 | 完成了嗎？ |
+|------|------|------|
+| GitHub 帳號註冊 | 能登入 github.com 看到主頁 | ☐ |
+| Node.js 安裝 | `node -v` 顯示 v18+ 以上版本號 | ☐ |
+| Git 安裝 | `git -v` 顯示 git version 2.x.x | ☐ |
+| GitHub CLI (gh) 安裝 | `gh --version` 顯示版本號 | ☐ |
+| gh 帳號連線 | `gh auth status` 顯示 Logged in as 你的帳號 | ☐ |
+| VSCode 安裝 | 能正常開啟 VSCode | ☐ |
+| Git Graph 外掛安裝 | 在 VSCode 左側列能看到 Git Graph 圖示 | ☐ |
+| GitLens 外掛安裝 | 在 VSCode 左側列能看到 GitLens 功能 | ☐ |
+| 教學網頁啟動 | 眀覽器開啟 `http://localhost:5173/` 能看到教學頁面 | ☐ |
+
+> 💡 **如果有任何一項打不了勾，就回到對應的步驟重做一次。前面準備得越完整，後面的章節就會越順。**
+
+---
+
+## ❓ 常見問題
+
+| 問題 | 解決方法 |
+|------|----------|
+| `npm install` 失敗 | 確認 Node.js 版本 ≥ 18（在終端機輸入 `node -v` 確認），使用 PowerShell 或 VSCode Terminal |
+| `npm run dev` 無畫面 | 確認瀀覽器已開啟 `http://localhost:5173/` |
+| `git push` 沒權限 | 確認已登入 GitHub（在終端機執行 `gh auth login`） |
+| `gh auth login` 失敗 | 確認已安裝 GitHub CLI (`gh --version`)，並將瀀覽器允許彈出視窗進行授權 |
+| 看到紅色的 `ERR!` | 截圖發給老師，不要假設它不重要 |
+
+---
+
+## 🔧 環境損壞時的重置方法
+
+如果你的教學環境出問題（例如不小心對 `learner-commits` 資料夾做了錯誤操作），可以执行以下指令重置：
+
+```bash
+git reset --hard
+git pull
+npm install
+```
+
+> ⚠️ **警告**：`git reset --hard` 會將所有未儲存的本地修改清空。如果你有重要的修改還沒有 commit，請先備份！
+

@@ -7,6 +7,23 @@ export const Chapter7Team = () => {
     <div className="animate-fade-in space-y-12">
       <SectionTitle title="7. 團隊合併與 PR" subtitle="Pull Request：不是請求你拉取，而是請求你合併" />
 
+      {/* 進入狀態提示 */}
+      <div className="bg-slate-800 rounded-xl px-5 py-4 flex flex-col gap-3 shadow-md mb-2">
+        <div className="text-xs font-bold text-slate-400 uppercase tracking-widest mb-1">⚡ 進入狀態：發 PR 前必讀</div>
+        <div className="flex items-start gap-3">
+          <span className="text-pink-400 text-base leading-none mt-0.5">🌿</span>
+          <p className="text-sm text-slate-300"><strong className="text-white">發 PR 的前提：你必須已經有一個獨立的 Branch（分支），</strong>並且已經把它 <code className="bg-slate-700 px-1 rounded">git push -u origin 分支名</code> 推上 GitHub。沒有分支就沒有 PR。</p>
+        </div>
+        <div className="flex items-start gap-3">
+          <span className="text-purple-400 text-base leading-none mt-0.5">🔀</span>
+          <p className="text-sm text-slate-300"><strong className="text-white">PR 是「請求把你的分支合併回 main」，</strong>不是下載最新進度。目標分支通常是 <code className="bg-slate-700 px-1 rounded">main</code> 或 <code className="bg-slate-700 px-1 rounded">develop</code>，請在發 PR 前確認清楚要合併去哪裡。</p>
+        </div>
+        <div className="flex items-start gap-3">
+          <span className="text-yellow-400 text-base leading-none mt-0.5">🔑</span>
+          <p className="text-sm text-slate-300"><strong className="text-white">你需要在 GitHub 上已連線的帳號，</strong>且對目標 Repository 有寫入權限（被加為 Collaborator），才能看到 Compare & pull request 的按鈕。</p>
+        </div>
+      </div>
+
       {/* Part 1: PR Concepts */}
       <section>
         <InstructionalText title="核心觀念：版本推拉 vs 分支合併" icon={<AlertCircle size={18} className="text-indigo-600" />}>

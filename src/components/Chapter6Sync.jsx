@@ -104,6 +104,23 @@ export const Chapter6Sync = () => {
     <div className="animate-fade-in space-y-12">
       <SectionTitle title="6. 遠端同步與衝突" subtitle="Push 與 Pull 的日常拔河，以及兩條宇宙的碰撞" />
 
+      {/* 進入狀態提示 */}
+      <div className="bg-slate-800 rounded-xl px-5 py-4 flex flex-col gap-3 shadow-md mb-2">
+        <div className="text-xs font-bold text-slate-400 uppercase tracking-widest mb-1">⚡ 進入狀態：讀完再動</div>
+        <div className="flex items-start gap-3">
+          <span className="text-yellow-400 text-base leading-none mt-0.5">🔑</span>
+          <p className="text-sm text-slate-300"><strong className="text-white">你的 GitHub 帳號必須已經連線（gh auth login 完成）。</strong>否則 Push 時會出現 403 Permission Denied 或要求密碼。</p>
+        </div>
+        <div className="flex items-start gap-3">
+          <span className="text-blue-400 text-base leading-none mt-0.5">⬇️</span>
+          <p className="text-sm text-slate-300"><strong className="text-white">黃金法則：先 Pull 再 Push。</strong>每次開始工作前，先 <code className="bg-slate-700 px-1 rounded">git pull</code> 把同事的最新進度同步下來，再開始你的修改，能大幅減少衝突的機率。</p>
+        </div>
+        <div className="flex items-start gap-3">
+          <span className="text-red-400 text-base leading-none mt-0.5">💥</span>
+          <p className="text-sm text-slate-300"><strong className="text-white">衝突（Conflict）不是 Bug，是正常現象。</strong>遇到衝突別慌，打開 VSCode，它會用顏色高亮標示出衝突的行，讓你選擇保留哪一方。</p>
+        </div>
+      </div>
+
       {/* Part 1: Push and Pull */}
       <section>
         <div className="flex items-center gap-2 mb-4">
