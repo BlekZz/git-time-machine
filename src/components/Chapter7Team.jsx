@@ -20,7 +20,7 @@ export const Chapter7Team = () => {
         </div>
         <div className="flex items-start gap-3">
           <span className="text-yellow-400 text-base leading-none mt-0.5">🔑</span>
-          <p className="text-sm text-slate-300"><strong className="text-white">你需要在 GitHub 上已連線的帳號，</strong>且對目標 Repository 有寫入權限（被加為 Collaborator），才能看到 Compare & pull request 的按鈕。</p>
+          <p className="text-sm text-slate-300"><strong className="text-white">你需要在 GitHub 上已連線的帳號，</strong>並且已將你的分支 push 到 GitHub（推到你的 Fork 或有寫入權限的 repo），才能看到 Compare &amp; pull request 的按鈕。不需要是 Collaborator——Fork 後 push 到自己的副本，同樣可以發起 PR！</p>
         </div>
         <div className="flex items-start gap-3">
           <span className="text-slate-400 text-base leading-none mt-0.5">ℹ️</span>

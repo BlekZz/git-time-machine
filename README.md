@@ -96,7 +96,7 @@ npm run dev
 |------|----------|
 | `npm install` 失敗 | 確認 Node.js 版本 ≥ 20（在終端機輸入 `node -v` 確認），使用 PowerShell 或 VSCode Terminal |
 | `npm run dev` 無畫面 | 確認瀏覽器已開啟 `http://localhost:5173/` |
-| `git push` 沒權限 | 確認已登入 GitHub（透過 `gh auth login`、git credential 或 SSH key） |
+| `git push` 沒權限（403） | 如果是對別人的 repo push，請先 Fork 再更新 remote URL（見 Chapter 8）。如果是登入問題，執行 `gh auth login` |
 
 ---
 

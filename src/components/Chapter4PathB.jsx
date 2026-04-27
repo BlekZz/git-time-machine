@@ -92,8 +92,8 @@ export const Chapter4PathB = () => {
             <p className="mt-2 text-slate-400">這是正常的，代表保護機制在正常運作！</p>
             <div className="mt-2 bg-slate-700/50 rounded-lg p-3 space-y-1">
               <div className="text-white font-bold text-xs">✅ 本章的練習方式：</div>
-              <p className="text-xs">我們會在模擬中示範 Push 的流程。真正練習 Push，請等到 <strong className="text-white">Chapter 8 實戰演練</strong>——那裡你會先建立自己的 Branch，再 Push 這個分支，就不會有權限問題。</p>
-              <p className="text-xs text-slate-400 mt-1">（Branch 的概念會在 Chapter 5 詳細說明，這裡只需要知道：有了自己的 Branch 就可以合法 Push！）</p>
+              <p className="text-xs">我們會在模擬中示範 Push 的流程。真正練習 Push，請等到 <strong className="text-white">Chapter 8 實戰演練</strong>——那裡會教你先 <strong className="text-white">Fork</strong> 取得屬於你自己的 repo 副本，再建立 Branch 並 Push，就不會有權限問題。</p>
+              <p className="text-xs text-slate-400 mt-1">（光是建立 Branch 並不會給你 Push 權限——Push 權限取決於你對那個 repo 是否有寫入權限，或是你有沒有自己的 Fork。）</p>
             </div>
           </div>
         </div>

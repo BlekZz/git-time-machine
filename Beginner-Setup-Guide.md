@@ -289,7 +289,7 @@ http://localhost:5173/
 |------|----------|
 | `npm install` 失敗 | 確認 Node.js 版本 ≥ 20（在終端機輸入 `node -v` 確認），使用 PowerShell 或 VSCode Terminal |
 | `npm run dev` 無畫面 | 確認瀀覽器已開啟 `http://localhost:5173/` |
-| `git push` 沒權限 | 確認已登入 GitHub（在終端機執行 `gh auth login`） |
+| `git push` 沒權限（403） | 如果是在 Chapter 8 實戰演練中出現，代表你需要先 Fork 再更新 remote URL（教學裡有說明）。如果是登入問題，執行 `gh auth login` |
 | `gh auth login` 失敗 | 確認已安裝 GitHub CLI (`gh --version`)，並將瀀覽器允許彈出視窗進行授權 |
 | 看到紅色的 `ERR!` | 截圖發給老師，不要假設它不重要 |
 

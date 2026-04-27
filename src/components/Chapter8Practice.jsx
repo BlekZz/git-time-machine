@@ -9,12 +9,50 @@ export const Chapter8Practice = () => {
 
       {/* Part 1: The Mission */}
       <section>
+        {/* 情境切換說明 */}
+        <div className="bg-amber-50 border border-amber-300 rounded-xl p-5 mb-6">
+          <div className="text-sm font-bold text-amber-800 mb-3 flex items-center gap-2">⚠️ 重要！先搞清楚你現在在哪個情境</div>
+          <p className="text-sm text-slate-700 mb-3">在前面幾章，你都是對<strong>自己的專案</strong>練習（情境 A），或是模擬操作（情境 B）。但 Chapter 8 不一樣——<strong>你現在要去別人的 GitHub 專案做出真正的貢獻</strong>，這才是真實世界 Open Source Contribution 的場景！</p>
+          <div className="grid grid-cols-3 gap-2 text-xs text-center">
+            <div className="bg-indigo-100 rounded-lg p-2"><div className="font-bold text-indigo-700 mb-1">📘 Ch.3 情境 A</div><div className="text-indigo-600">你的 repo → 你是 Owner → push ✅</div></div>
+            <div className="bg-red-100 rounded-lg p-2"><div className="font-bold text-red-700 mb-1">📕 Ch.4 情境 B</div><div className="text-red-600">別人的 repo → 無寫入權限 → push 403 ❌</div></div>
+            <div className="bg-green-100 rounded-lg p-2"><div className="font-bold text-green-700 mb-1">🎯 Ch.8 今天</div><div className="text-green-600">Fork → 你的副本 → push ✅ → PR 回原 repo</div></div>
+          </div>
+          <div className="mt-3 text-xs text-amber-800 bg-amber-100 rounded p-2">💡 <strong>關鍵理解：</strong>你在 Ch.4 push 失敗不是因為 Branch 建錯，而是因為你沒有那個 repo 的寫入權限。<strong>Fork 才是解法。</strong></div>
+        </div>
+
+        {/* Fork 概念說明 */}
+        <div className="bg-white border border-slate-200 rounded-xl p-5 mb-6 shadow-sm">
+          <div className="text-sm font-bold text-slate-800 mb-3">🍴 Fork 是什麼？為什麼需要它？</div>
+
+          <div className="space-y-4 text-sm text-slate-700 mb-4">
+            <p><strong>先想一個問題：</strong>如果你今天走進一間超商，直接把商品放進自己口袋走出去，那叫搶劫。但如果你先付錢、讓店員確認、拿到收據，那叫購物。</p>
+            <p><code className="bg-slate-100 px-1.5 py-0.5 rounded text-slate-800">git push</code> 就像是強行把東西放進別人的倉庫——它是<strong>直接、強制的寫入動作</strong>。對自己的 repo push 沒問題，但對別人的 repo 直接 push，是<strong>邏輯上不合理、也在技術上被禁止</strong>的事。</p>
+            <div className="bg-slate-50 border border-slate-200 rounded-lg p-4">
+              <div className="font-bold text-slate-800 mb-2">那貢獻者要怎麼辦？這就帶出了 PR 的本質：</div>
+              <p className="text-slate-600"><strong>PR（Pull Request）= 拜託你接受我的更動。</strong><br/>你不能直接推進去，所以你先在自己的副本做好，再向對方說「嘿，我這裡有些改動，你看看要不要拉進你的 repo 裡？」。維護者看了、審查了、覺得 OK，才點 Merge。這才是合理的協作流程。</p>
+            </div>
+            <p><strong>Fork</strong> 就是這個流程的起點——在 GitHub 上點一下，把別人的 repo <strong>完整複製一份到你自己的帳號下</strong>，讓你有一個可以合法 push 的副本，再從那裡向原 repo 發 PR。</p>
+          </div>
+
+          <div className="overflow-x-auto">
+            <table className="w-full text-xs border-collapse">
+              <thead><tr className="bg-slate-100"><th className="px-3 py-2 text-left border border-slate-200"></th><th className="px-3 py-2 border border-slate-200">Fork</th><th className="px-3 py-2 border border-slate-200">Clone</th></tr></thead>
+              <tbody>
+                <tr><td className="px-3 py-2 border border-slate-200 font-medium">在哪裡發生</td><td className="px-3 py-2 border border-slate-200 text-center">GitHub 網站（點按鈕）</td><td className="px-3 py-2 border border-slate-200 text-center">Terminal（下指令）</td></tr>
+                <tr className="bg-slate-50"><td className="px-3 py-2 border border-slate-200 font-medium">產生的結果</td><td className="px-3 py-2 border border-slate-200 text-center">GitHub 上出現你的副本</td><td className="px-3 py-2 border border-slate-200 text-center">電腦上出現本地副本</td></tr>
+                <tr><td className="px-3 py-2 border border-slate-200 font-medium">Push 權限</td><td className="px-3 py-2 border border-slate-200 text-center text-green-600 font-bold">你的 Fork ✅</td><td className="px-3 py-2 border border-slate-200 text-center text-red-500">取決於原 repo 設定</td></tr>
+              </tbody>
+            </table>
+          </div>
+        </div>
+
         <InstructionalText title="任務說明：這不是演習！" icon={<Target size={18} className="text-red-600" />}>
-          <p className="mb-2">現在你要離開這個模擬網頁，<strong>打開你電腦真實的終端機與 VSCode</strong> 來完成這項任務。</p>
+          <p className="mb-2">現在你要離開這個模擬網頁，<strong>打開你電腦真實的終端機與瀏覽器</strong>來完成這項任務。</p>
           <ul className="list-disc pl-5 space-y-1">
-            <li><strong>任務流程：</strong> 在專案中先建立（Branch）出自己的分支 ➡️ 進行數次的版本迭代與存檔 ➡️ Commit 且 Push 上去 ➡️ 最後對專案發出 PR (Pull Request)。</li>
-            <li><strong>最終目標：</strong> 讓寫有你名字的 Markdown 筆記成功被合併進 main 主線中。</li>
-            <li><strong>注意事項：</strong> 請確保你是在正確的作業專案（git-time-machine 或講師指定的 Repo）下操作，不要搞錯資料夾囉！</li>
+            <li><strong>任務流程：</strong> Fork 原 repo（GitHub 上點按鈕）➡️ 更新本地 Remote 連結 ➡️ 建立 Branch ➡️ 新增 md 檔並 Commit ➡️ Push 到你的 Fork ➡️ 對原 repo 發出 PR。</li>
+            <li><strong>最終目標：</strong> 讓寫有你名字的 Markdown 筆記成功被合併進原 repo 的 main 主線中。</li>
+            <li><strong>注意事項：</strong> 請確保你在 git-time-machine 資料夾下操作，不要搞錯位置囉！</li>
           </ul>
         </InstructionalText>
       </section>
@@ -73,100 +111,136 @@ export const Chapter8Practice = () => {
         {/* 實戰示意圖 */}
         <Card className="bg-slate-900 mb-8 border-slate-700 overflow-hidden">
           <div className="w-full overflow-x-auto">
-            <div style={{ minWidth: '850px' }} className="py-4">
-              <svg viewBox="0 0 850 320" xmlns="http://www.w3.org/2000/svg" className="w-full h-auto" style={{ maxHeight: '320px' }}>
+            <div style={{ minWidth: '900px' }} className="py-4">
+              <svg viewBox="0 0 900 380" xmlns="http://www.w3.org/2000/svg" className="w-full h-auto" style={{ maxHeight: '380px' }}>
                 <defs>
-                  <marker id="arrow-blue" viewBox="0 0 10 10" refX="8" refY="5" markerWidth="6" markerHeight="6" orient="auto-start-reverse">
+                  <marker id="arr-amber" viewBox="0 0 10 10" refX="8" refY="5" markerWidth="6" markerHeight="6" orient="auto-start-reverse">
+                    <path d="M 0 0 L 10 5 L 0 10 z" fill="#f59e0b" />
+                  </marker>
+                  <marker id="arr-blue" viewBox="0 0 10 10" refX="8" refY="5" markerWidth="6" markerHeight="6" orient="auto-start-reverse">
                     <path d="M 0 0 L 10 5 L 0 10 z" fill="#3b82f6" />
                   </marker>
-                  <marker id="arrow-green" viewBox="0 0 10 10" refX="8" refY="5" markerWidth="6" markerHeight="6" orient="auto-start-reverse">
+                  <marker id="arr-green" viewBox="0 0 10 10" refX="8" refY="5" markerWidth="6" markerHeight="6" orient="auto-start-reverse">
                     <path d="M 0 0 L 10 5 L 0 10 z" fill="#22c55e" />
                   </marker>
-                  <marker id="arrow-purple" viewBox="0 0 10 10" refX="8" refY="5" markerWidth="6" markerHeight="6" orient="auto-start-reverse">
+                  <marker id="arr-purple" viewBox="0 0 10 10" refX="8" refY="5" markerWidth="6" markerHeight="6" orient="auto-start-reverse">
                     <path d="M 0 0 L 10 5 L 0 10 z" fill="#a855f7" />
                   </marker>
                 </defs>
 
                 {/* Track Labels */}
-                <text x="20" y="65" fill="#a5b4fc" fontSize="14" fontWeight="bold">☁️ 雲端 main</text>
-                <text x="20" y="135" fill="#93c5fd" fontSize="14" fontWeight="bold">💻 本地 main</text>
-                <text x="20" y="205" fill="#86efac" fontSize="14" fontWeight="bold">💻 本地分支</text>
-                <text x="20" y="275" fill="#d8b4fe" fontSize="14" fontWeight="bold">☁️ 雲端分支</text>
+                <text x="12" y="58" fill="#fcd34d" fontSize="13" fontWeight="bold">☁️ 原 Repo</text>
+                <text x="12" y="148" fill="#fbbf24" fontSize="13" fontWeight="bold">☁️ 你的 Fork</text>
+                <text x="12" y="238" fill="#93c5fd" fontSize="13" fontWeight="bold">💻 本地 main</text>
+                <text x="12" y="328" fill="#86efac" fontSize="13" fontWeight="bold">💻 本地分支</text>
 
                 {/* Track Lines */}
-                <line x1="150" y1="60" x2="820" y2="60" stroke="#6366f1" strokeWidth="4" strokeOpacity="0.4" strokeLinecap="round" />
-                <line x1="210" y1="130" x2="820" y2="130" stroke="#3b82f6" strokeWidth="4" strokeOpacity="0.4" strokeLinecap="round" />
-                <line x1="290" y1="200" x2="820" y2="200" stroke="#22c55e" strokeWidth="4" strokeOpacity="0.4" strokeLinecap="round" strokeDasharray="8 4" />
-                <line x1="370" y1="270" x2="820" y2="270" stroke="#a855f7" strokeWidth="4" strokeOpacity="0.4" strokeLinecap="round" strokeDasharray="8 4" />
+                <line x1="130" y1="52" x2="870" y2="52" stroke="#f59e0b" strokeWidth="3" strokeOpacity="0.3" strokeLinecap="round" />
+                <line x1="200" y1="142" x2="870" y2="142" stroke="#fbbf24" strokeWidth="3" strokeOpacity="0.3" strokeLinecap="round" strokeDasharray="6 3" />
+                <line x1="280" y1="232" x2="870" y2="232" stroke="#3b82f6" strokeWidth="3" strokeOpacity="0.3" strokeLinecap="round" />
+                <line x1="370" y1="322" x2="870" y2="322" stroke="#22c55e" strokeWidth="3" strokeOpacity="0.3" strokeLinecap="round" strokeDasharray="6 3" />
 
-                {/* Connecting Arrows */}
-                <path d="M 140 60 C 160 60, 170 130, 195 130" fill="none" stroke="#3b82f6" strokeWidth="2" strokeDasharray="4" markerEnd="url(#arrow-blue)" />
-                <path d="M 200 130 C 220 130, 240 200, 275 200" fill="none" stroke="#22c55e" strokeWidth="2" strokeDasharray="4" markerEnd="url(#arrow-green)" />
-                <path d="M 280 200 C 300 200, 320 270, 355 270" fill="none" stroke="#a855f7" strokeWidth="2" strokeDasharray="4" markerEnd="url(#arrow-purple)" />
-                <path d="M 580 200 C 610 200, 640 270, 675 270" fill="none" stroke="#a855f7" strokeWidth="2" strokeDasharray="4" markerEnd="url(#arrow-purple)" />
-                <path d="M 680 270 C 720 270, 720 60, 775 60" fill="none" stroke="#a855f7" strokeWidth="2" strokeDasharray="4" markerEnd="url(#arrow-purple)" />
+                {/* Step 1: Fork (原 Repo → Fork) */}
+                <circle cx="130" cy="52" r="8" fill="#f59e0b" stroke="#0f172a" strokeWidth="3" />
+                <path d="M 138 52 C 158 52, 168 142, 188 142" fill="none" stroke="#f59e0b" strokeWidth="2" strokeDasharray="5" markerEnd="url(#arr-amber)" />
+                <circle cx="200" cy="142" r="8" fill="#fbbf24" stroke="#0f172a" strokeWidth="3" />
+                <text x="165" y="95" fill="#fcd34d" fontSize="11" fontFamily="monospace" textAnchor="middle">1. Fork</text>
+                <text x="165" y="108" fill="#fcd34d" fontSize="10" fontFamily="monospace" textAnchor="middle" opacity="0.8">(GitHub 網站)</text>
 
-                {/* Nodes */}
-                <circle cx="140" cy="60" r="8" fill="#6366f1" stroke="#0f172a" strokeWidth="3" />
-                
-                <circle cx="200" cy="130" r="8" fill="#3b82f6" stroke="#0f172a" strokeWidth="3" />
-                <text x="210" y="120" fill="#93c5fd" fontSize="12" fontFamily="monospace">1. clone (雙 main)</text>
+                {/* Clone: Fork → 本地 main (already done) */}
+                <path d="M 208 142 C 228 142, 258 232, 268 232" fill="none" stroke="#3b82f6" strokeWidth="2" strokeDasharray="4" markerEnd="url(#arr-blue)" />
+                <circle cx="280" cy="232" r="8" fill="#3b82f6" stroke="#0f172a" strokeWidth="3" />
+                <text x="244" y="182" fill="#93c5fd" fontSize="11" fontFamily="monospace" textAnchor="middle">clone</text>
+                <text x="244" y="195" fill="#93c5fd" fontSize="10" textAnchor="middle" opacity="0.7">(已完成)</text>
 
-                <circle cx="280" cy="200" r="8" fill="#22c55e" stroke="#0f172a" strokeWidth="3" />
-                <text x="290" y="180" fill="#86efac" fontSize="12" fontFamily="monospace">2. checkout -b</text>
-                <text x="290" y="195" fill="#86efac" fontSize="11" opacity="0.8">(產生 branch)</text>
+                {/* Step 2: Update Remote (label on local main track) */}
+                <text x="320" y="220" fill="#fbbf24" fontSize="10" fontFamily="monospace">2. set-url origin</text>
 
-                <circle cx="360" cy="270" r="8" fill="#a855f7" stroke="#0f172a" strokeWidth="3" />
-                <text x="360" y="295" fill="#d8b4fe" fontSize="12" textAnchor="middle" fontFamily="monospace">3. push -u</text>
-                <text x="360" y="310" fill="#d8b4fe" fontSize="11" textAnchor="middle" opacity="0.8">(建立雲端分支)</text>
+                {/* Step 3: checkout -b (本地 main → 本地分支) */}
+                <path d="M 288 232 C 308 232, 348 322, 368 322" fill="none" stroke="#22c55e" strokeWidth="2" strokeDasharray="4" markerEnd="url(#arr-green)" />
+                <circle cx="380" cy="322" r="8" fill="#22c55e" stroke="#0f172a" strokeWidth="3" />
+                <text x="380" y="350" fill="#86efac" fontSize="11" fontFamily="monospace" textAnchor="middle">3. checkout -b</text>
+                <text x="380" y="363" fill="#86efac" fontSize="10" textAnchor="middle" opacity="0.8">(建立分支)</text>
 
-                <circle cx="480" cy="200" r="8" fill="#4ade80" stroke="#0f172a" strokeWidth="3" />
-                <text x="480" y="225" fill="#86efac" fontSize="12" textAnchor="middle" fontFamily="monospace">建立 md 檔</text>
-                <text x="480" y="240" fill="#86efac" fontSize="11" textAnchor="middle" opacity="0.8">(add &amp; commit)</text>
+                {/* Step 4: commits on branch */}
+                <circle cx="500" cy="322" r="7" fill="#4ade80" stroke="#0f172a" strokeWidth="2" />
+                <circle cx="580" cy="322" r="7" fill="#4ade80" stroke="#0f172a" strokeWidth="2" />
+                <text x="540" y="350" fill="#86efac" fontSize="11" fontFamily="monospace" textAnchor="middle">4. add &amp; commit × n</text>
 
-                <circle cx="580" cy="200" r="8" fill="#4ade80" stroke="#0f172a" strokeWidth="3" />
-                <text x="580" y="225" fill="#86efac" fontSize="12" textAnchor="middle" fontFamily="monospace">重複數次</text>
-                <text x="580" y="240" fill="#86efac" fontSize="11" textAnchor="middle" opacity="0.8">(add &amp; commit)</text>
+                {/* Step 5: Push to Fork (本地分支 → Fork) */}
+                <path d="M 588 322 C 618 322, 648 142, 668 142" fill="none" stroke="#fbbf24" strokeWidth="2" strokeDasharray="5" markerEnd="url(#arr-amber)" />
+                <circle cx="680" cy="142" r="8" fill="#fbbf24" stroke="#0f172a" strokeWidth="3" />
+                <text x="680" y="118" fill="#fcd34d" fontSize="11" fontFamily="monospace" textAnchor="middle">5. push</text>
+                <text x="680" y="131" fill="#fcd34d" fontSize="10" textAnchor="middle" opacity="0.8">(到你的 Fork)</text>
 
-                <circle cx="680" cy="270" r="8" fill="#a855f7" stroke="#0f172a" strokeWidth="3" />
-                <text x="680" y="295" fill="#d8b4fe" fontSize="12" textAnchor="middle" fontFamily="monospace">4. push</text>
-                <text x="680" y="310" fill="#d8b4fe" fontSize="11" textAnchor="middle" opacity="0.8">(更新雲端)</text>
-
-                <circle cx="780" cy="60" r="10" fill="#a855f7" stroke="#0f172a" strokeWidth="3" />
-                <text x="780" y="30" fill="#d8b4fe" fontSize="14" textAnchor="middle" fontWeight="bold">5. 發出 PR</text>
-                <text x="780" y="45" fill="#d8b4fe" fontSize="11" textAnchor="middle">合併至主線</text>
+                {/* Step 6: PR (Fork → 原 Repo) */}
+                <path d="M 688 142 C 728 142, 748 52, 798 52" fill="none" stroke="#a855f7" strokeWidth="2.5" markerEnd="url(#arr-purple)" />
+                <circle cx="810" cy="52" r="10" fill="#a855f7" stroke="#0f172a" strokeWidth="3" />
+                <text x="810" y="25" fill="#d8b4fe" fontSize="13" textAnchor="middle" fontWeight="bold">6. PR</text>
+                <text x="810" y="40" fill="#d8b4fe" fontSize="10" textAnchor="middle">合併回原 repo</text>
               </svg>
             </div>
           </div>
         </Card>
-        
+
+
         <div className="space-y-6">
           
-          {/* Step 1 */}
-          <Card className="border-indigo-200 shadow-sm relative overflow-hidden bg-slate-50">
-             <div className="absolute top-0 left-0 w-1.5 h-full bg-slate-400"></div>
-             <div className="flex items-start gap-4 opacity-70">
-               <div className="w-10 h-10 rounded-full bg-slate-200 text-slate-500 flex items-center justify-center font-bold text-xl shrink-0 mt-1">1</div>
+          {/* Step 1: Fork */}
+          <Card className="border-amber-200 shadow-sm relative overflow-hidden">
+             <div className="absolute top-0 left-0 w-1.5 h-full bg-amber-400"></div>
+             <div className="flex items-start gap-4">
+               <div className="w-10 h-10 rounded-full bg-amber-100 text-amber-700 flex items-center justify-center font-bold text-xl shrink-0 mt-1">1</div>
                <div className="flex-1">
-                 <h4 className="font-bold text-lg text-slate-600 mb-2 flex items-center gap-2 line-through">
-                   <Terminal size={18} /> 下載專案並進入資料夾 (Clone & CD)
+                 <h4 className="font-bold text-lg text-slate-800 mb-2 flex items-center gap-2">
+                   🍴 Fork 原 repo 到你的帳號
                  </h4>
-                 <div className="mt-2 bg-slate-100 border border-slate-200 rounded p-3 text-sm text-slate-600 flex items-start gap-2">
-                   <CheckCircle size={16} className="mt-0.5 shrink-0 text-slate-500" />
-                   <div>
-                     <strong>✅ 你其實已經完成了！</strong><br/>
-                     因為你現在正看著這個跑在你電腦上的教學網頁，這代表你稍早已經成功執行了 <code>git clone</code> 並 <code>cd</code> 進來了。所以這步我們直接打勾跳過！請打開你 VSCode 下方的終端機，準備進行下一步。
-                   </div>
+                 <p className="text-slate-600 mb-3 text-sm">這步在 <strong>GitHub 網站</strong>上完成，不需要用終端機。</p>
+                 <div className="bg-slate-50 border border-slate-200 rounded-lg p-4 space-y-2 text-sm text-slate-700">
+                   <ol className="list-decimal pl-4 space-y-2">
+                     <li>打開瀏覽器，前往原 repo 頁面：<code className="bg-slate-100 px-1 rounded text-xs">github.com/BlekZz/git-time-machine</code></li>
+                     <li>點擊右上角的 <strong>Fork</strong> 按鈕（在 Star 旁邊）</li>
+                     <li>確認 Owner 是你自己的帳號，點 <strong>Create fork</strong></li>
+                     <li>幾秒後，你的帳號下會出現 <code className="bg-slate-100 px-1 rounded text-xs">你的帳號/git-time-machine</code></li>
+                   </ol>
+                 </div>
+                 <div className="mt-3 bg-green-50 border border-green-200 rounded p-3 text-sm text-green-800 flex items-start gap-2">
+                   <CheckCircle size={16} className="mt-0.5 shrink-0 text-green-600" />
+                   <div><strong>✅ 驗證成功：</strong> 瀏覽器網址變成 <code>github.com/你的帳號/git-time-machine</code>，頁面左上角顯示「forked from BlekZz/git-time-machine」</div>
                  </div>
                </div>
              </div>
           </Card>
 
-          {/* Step 2 */}
+          {/* Step 2: Update Remote */}
+          <Card className="border-amber-200 shadow-sm relative overflow-hidden">
+             <div className="absolute top-0 left-0 w-1.5 h-full bg-amber-400"></div>
+             <div className="flex items-start gap-4">
+               <div className="w-10 h-10 rounded-full bg-amber-100 text-amber-700 flex items-center justify-center font-bold text-xl shrink-0 mt-1">2</div>
+               <div className="flex-1">
+                 <h4 className="font-bold text-lg text-slate-800 mb-2 flex items-center gap-2">
+                   <Terminal size={18} /> 將本地 Remote 指向你的 Fork
+                 </h4>
+                 <p className="text-slate-600 mb-3 text-sm">你電腦裡的 git-time-machine 目前的 <code>origin</code> 指向原 repo（BlekZz 的），你沒有 push 權限。現在要把它改成指向你自己 Fork 後的副本。</p>
+                 <div className="bg-slate-900 rounded p-4 font-mono text-sm text-green-400 space-y-2">
+                   <div className="text-slate-400 text-xs mb-1"># 把 origin 改成你自己的 Fork URL（把「你的帳號」換成你的 GitHub 帳號名稱）</div>
+                   <div>$ git remote set-url origin https://github.com/你的帳號/git-time-machine.git</div>
+                   <div className="text-slate-400 text-xs mt-2 mb-1"># 驗證是否修改成功</div>
+                   <div>$ git remote -v</div>
+                 </div>
+                 <div className="mt-3 bg-green-50 border border-green-200 rounded p-3 text-sm text-green-800 flex items-start gap-2">
+                   <CheckCircle size={16} className="mt-0.5 shrink-0 text-green-600" />
+                   <div><strong>✅ 驗證成功：</strong> <code>git remote -v</code> 的輸出中，兩行都應該顯示 <code>https://github.com/你的帳號/git-time-machine.git</code>，不再是 BlekZz 的網址。</div>
+                 </div>
+               </div>
+             </div>
+          </Card>
+
+          {/* Step 3 */}
           <Card className="border-indigo-200 shadow-sm relative overflow-hidden">
              <div className="absolute top-0 left-0 w-1.5 h-full bg-indigo-500"></div>
              <div className="flex items-start gap-4">
-               <div className="w-10 h-10 rounded-full bg-indigo-100 text-indigo-700 flex items-center justify-center font-bold text-xl shrink-0 mt-1">2</div>
+               <div className="w-10 h-10 rounded-full bg-indigo-100 text-indigo-700 flex items-center justify-center font-bold text-xl shrink-0 mt-1">3</div>
                <div className="flex-1">
                  <h4 className="font-bold text-lg text-slate-800 mb-2 flex items-center gap-2">
                    <GitBranch size={18} /> 建立專屬分支 (Branch)
@@ -186,11 +260,11 @@ export const Chapter8Practice = () => {
              </div>
           </Card>
 
-          {/* Step 3 */}
+          {/* Step 4 */}
           <Card className="border-indigo-200 shadow-sm relative overflow-hidden">
              <div className="absolute top-0 left-0 w-1.5 h-full bg-indigo-500"></div>
              <div className="flex items-start gap-4">
-               <div className="w-10 h-10 rounded-full bg-indigo-100 text-indigo-700 flex items-center justify-center font-bold text-xl shrink-0 mt-1">3</div>
+               <div className="w-10 h-10 rounded-full bg-indigo-100 text-indigo-700 flex items-center justify-center font-bold text-xl shrink-0 mt-1">4</div>
                <div className="flex-1">
                  <h4 className="font-bold text-lg text-slate-800 mb-2 flex items-center gap-2">
                    <FileText size={18} /> 新增檔案並存檔 (Add & Commit)
@@ -226,16 +300,16 @@ export const Chapter8Practice = () => {
              </div>
           </Card>
 
-          {/* Step 4 */}
+          {/* Step 5 */}
           <Card className="border-indigo-200 shadow-sm relative overflow-hidden">
              <div className="absolute top-0 left-0 w-1.5 h-full bg-indigo-500"></div>
              <div className="flex items-start gap-4">
-               <div className="w-10 h-10 rounded-full bg-indigo-100 text-indigo-700 flex items-center justify-center font-bold text-xl shrink-0 mt-1">4</div>
+               <div className="w-10 h-10 rounded-full bg-indigo-100 text-indigo-700 flex items-center justify-center font-bold text-xl shrink-0 mt-1">5</div>
                <div className="flex-1">
                  <h4 className="font-bold text-lg text-slate-800 mb-2 flex items-center gap-2">
-                   <ArrowUpCircle size={18} /> 推送到 GitHub (Push)
+                   <ArrowUpCircle size={18} /> 推送到你的 Fork (Push)
                  </h4>
-                 <p className="text-slate-600 mb-3 text-sm">因為這是一個全新的分支，遠端 GitHub 上還沒有它，所以第一次 Push 時需要加上 <code>-u origin</code> 來建立連結。</p>
+                 <p className="text-slate-600 mb-3 text-sm">因為這是一個全新的分支，遠端還沒有它，所以第一次 Push 時需要加上 <code>-u origin</code>。這次 push 會上傳到你自己的 Fork（因為剛才已經更新了 remote URL）。</p>
                  <div className="bg-slate-900 rounded p-4 font-mono text-sm text-green-400">
                    $ git push -u origin feat/your-name
                  </div>
@@ -250,16 +324,19 @@ export const Chapter8Practice = () => {
              </div>
           </Card>
 
-          {/* Step 5 */}
+          {/* Step 6 */}
           <Card className="border-indigo-200 shadow-sm relative overflow-hidden bg-indigo-50/30">
              <div className="absolute top-0 left-0 w-1.5 h-full bg-indigo-500"></div>
              <div className="flex items-start gap-4">
-               <div className="w-10 h-10 rounded-full bg-indigo-600 text-white flex items-center justify-center font-bold text-xl shrink-0 mt-1 shadow-md">5</div>
+               <div className="w-10 h-10 rounded-full bg-indigo-600 text-white flex items-center justify-center font-bold text-xl shrink-0 mt-1 shadow-md">6</div>
                <div className="flex-1">
                  <h4 className="font-bold text-lg text-indigo-900 mb-2 flex items-center gap-2">
-                   <GitPullRequest size={18} /> 發起 Pull Request
+                   <GitPullRequest size={18} /> 發起 Pull Request（跨 repo 的 PR）
                  </h4>
-                 <p className="text-slate-700 mb-3 text-sm">現在你已經把分支推上去了，最後一步就是告訴專案維護者（老師）請他把你的作業合併進主線。</p>
+                 <p className="text-slate-700 mb-3 text-sm">你已經把分支推到你的 Fork 了。最後一步是<strong>從你的 Fork 向原 repo 發起 PR</strong>，請維護者把你的貢獻合併進原 repo 的 main。</p>
+                 <div className="bg-blue-50 border border-blue-200 rounded-lg p-3 mb-3 text-xs text-blue-800">
+                   <strong>💡 PR 的方向：</strong> 你的 Fork 的 <code>feat/your-name</code> → 原 repo（BlekZz/git-time-machine）的 <code>main</code>
+                 </div>
                  
                  <div className="grid md:grid-cols-2 gap-4 mt-4">
                    <div className="bg-white p-4 border border-slate-200 rounded-lg">
@@ -318,8 +395,18 @@ export const Chapter8Practice = () => {
                          </p>
                        </div>
                      </div>
-                   </div>
-                 </div>
+                      <div className="flex items-start gap-3 p-3 bg-red-50 border border-red-200 rounded-lg">
+                        <span className="text-red-500 text-base leading-none mt-0.5">🚫</span>
+                        <div>
+                          <div className="font-bold text-red-800">維護者 Close PR（關閉，不接受）</div>
+                          <p className="text-red-700 text-xs mt-1">
+                            PR 被關閉，代表這個貢獻不會被合併。常見原因：內容不符合專案方向、格式不對、或維護者選擇了其他方案。<br/>
+                            <strong>這非常正常。</strong>你可以在 PR 留言詢問原因，了解後修正再重新開一個 PR。開源世界裡，每個大神都有過被 Close 的 PR——重要的是從中學習。
+                          </p>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
                </div>
              </div>
           </Card>
