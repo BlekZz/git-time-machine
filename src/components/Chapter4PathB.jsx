@@ -44,23 +44,31 @@ export const Chapter4PathB = () => {
   };
 
   const handleCommit = () => {
-    if (step >= 4) return;
-    addLog('echo "hello" > new_feature.txt', 'input', 'cool-project $');
-    addLog('git add .', 'input', 'cool-project $');
+    if (step !== 4) return;
     addLog('git commit -m "Add new feature"', 'input', 'cool-project $');
     setTimeout(() => {
       addLog('[main 7f8g9h] Add new feature', 'success');
-      setStep(4);
+      setStep(5);
     }, 400);
   };
 
+  const handleAdd = () => {
+    if (step >= 4) return; // step 4 以上才算 Add 完成
+    addLog('echo "hello" > new_feature.txt', 'input', 'cool-project $');
+    addLog('git add .', 'input', 'cool-project $');
+    setTimeout(() => {
+      addLog('Changes staged for commit.', 'success');
+      setStep(4);
+    }, 300);
+  };
+
   const handlePush = () => {
-    if (step >= 5) return;
+    if (step >= 6) return;
     addLog('git push', 'input', 'cool-project $');
     setTimeout(() => {
       addLog(`To ${repoUrl}`, 'success');
       addLog(`   1a2b3c..7f8g9h  main -> main`, 'success');
-      setStep(5);
+      setStep(6);
     }, 800);
   };
 
@@ -78,7 +86,16 @@ export const Chapter4PathB = () => {
         <div className="text-xs font-bold text-slate-400 uppercase tracking-widest mb-1">⚡ 進入狀態：讀完再動</div>
         <div className="flex items-start gap-3">
           <span className="text-yellow-400 text-base leading-none mt-0.5">🔑</span>
-          <p className="text-sm text-slate-300"><strong className="text-white">你的 GitHub 帳號需要有這個 Repository 的存取權。</strong>（簡單來說，至少你要在網頁看得到這個 repo 的內容！）如果是公開專案可以直接 Clone，但要 Push 的話，需要確認你已被加入協作者名單或有 Fork 一份。</p>
+          <div className="text-sm text-slate-300">
+            <strong className="text-white">關於 Push 權限：你需要了解這件事！</strong>
+            <p className="mt-1">如果你是 Clone 別人的 repo（包括這個教學 repo），你沒有直接 Push 到對方 main 分支的權限。直接 `git push` 會得到 <code className="bg-slate-700 px-1 rounded text-red-300">403 Permission Denied</code>。</p>
+            <p className="mt-2 text-slate-400">這是正常的，代表保護機制在正常運作！</p>
+            <div className="mt-2 bg-slate-700/50 rounded-lg p-3 space-y-1">
+              <div className="text-white font-bold text-xs">✅ 本章的練習方式：</div>
+              <p className="text-xs">我們會在模擬中示範 Push 的流程。真正練習 Push，請等到 <strong className="text-white">Chapter 8 實戰演練</strong>——那裡你會先建立自己的 Branch，再 Push 這個分支，就不會有權限問題。</p>
+              <p className="text-xs text-slate-400 mt-1">（Branch 的概念會在 Chapter 5 詳細說明，這裡只需要知道：有了自己的 Branch 就可以合法 Push！）</p>
+            </div>
+          </div>
         </div>
         <div className="flex items-start gap-3">
           <span className="text-green-400 text-base leading-none mt-0.5">💻</span>
@@ -100,6 +117,10 @@ export const Chapter4PathB = () => {
             <div className="flex justify-between items-center mb-4">
               <h3 className="font-bold text-slate-700 flex items-center gap-2"><Download size={18} /> 操作步驟</h3>
               <button onClick={reset} className="text-xs text-slate-500 hover:text-purple-600 underline">重新開始</button>
+            </div>
+            <div className="bg-blue-50 border border-blue-200 rounded-lg px-3 py-2 mb-3 text-xs text-blue-800 flex items-start gap-2">
+              <span className="shrink-0 mt-0.5">💡</span>
+              <span>以下是<strong>示意模擬</strong>，點「執行」可以看到邏輯流程。<strong>實際操作請在你電腦真正的 Terminal 裡輸入同樣的指令。</strong>關於 Push 的實際練習，請等到 Chapter 8。</span>
             </div>
             
             <div className="space-y-3">
@@ -136,23 +157,34 @@ export const Chapter4PathB = () => {
                 <div className="text-xs text-slate-500 mt-2">好習慣：養成隨時看 status 的習慣，確認目前狀態是否乾淨。</div>
               </div>
 
-              {/* Step 4 */}
+              {/* Step 4a: git add */}
               <div className={`p-3 border rounded-lg transition-all ${step === 3 ? 'bg-white border-purple-300 shadow-md ring-2 ring-purple-50' : step > 3 ? 'bg-green-50 border-green-200 opacity-60' : 'bg-slate-50 border-slate-200 opacity-40'}`}>
                 <div className="flex items-center justify-between">
-                  <div className="font-mono text-sm text-slate-700">$ git add . <br/>$ git commit -m "..."</div>
-                  <button onClick={handleCommit} disabled={step !== 3} className={`px-3 py-1 rounded text-xs font-bold text-white shrink-0 ${step > 3 ? 'bg-green-500' : step === 3 ? 'bg-purple-600 hover:bg-purple-700' : 'bg-slate-300'}`}>
+                  <div className="font-mono text-sm text-slate-700">$ git add .</div>
+                  <button onClick={handleAdd} disabled={step !== 3} className={`px-3 py-1 rounded text-xs font-bold text-white ${step > 3 ? 'bg-green-500' : step === 3 ? 'bg-purple-600 hover:bg-purple-700' : 'bg-slate-300'}`}>
                     {step > 3 ? '完成' : '執行'}
                   </button>
                 </div>
-                <div className="text-xs text-slate-500 mt-2">（模擬）你修改了程式碼，然後把它們存檔。</div>
+                <div className="text-xs text-slate-500 mt-2">把修改過的檔案放進「暫存區」，準備好存檔。（實際操作中這步不能省！）</div>
+              </div>
+
+              {/* Step 4b: git commit */}
+              <div className={`p-3 border rounded-lg transition-all ${step === 4 ? 'bg-white border-purple-300 shadow-md ring-2 ring-purple-50' : step > 4 ? 'bg-green-50 border-green-200 opacity-60' : 'bg-slate-50 border-slate-200 opacity-40'}`}>
+                <div className="flex items-center justify-between">
+                  <div className="font-mono text-sm text-slate-700">$ git commit -m "Add new feature"</div>
+                  <button onClick={handleCommit} disabled={step !== 4} className={`px-3 py-1 rounded text-xs font-bold text-white ${step > 4 ? 'bg-green-500' : step === 4 ? 'bg-purple-600 hover:bg-purple-700' : 'bg-slate-300'}`}>
+                    {step > 4 ? '完成' : '執行'}
+                  </button>
+                </div>
+                <div className="text-xs text-slate-500 mt-2">正式建立快照！<code>-m</code> 後面是這次存檔的說明文字。</div>
               </div>
 
               {/* Step 5 */}
-              <div className={`p-3 border rounded-lg transition-all ${step === 4 ? 'bg-white border-purple-300 shadow-md ring-2 ring-purple-50' : step > 4 ? 'bg-green-50 border-green-200' : 'bg-slate-50 border-slate-200 opacity-40'}`}>
+              <div className={`p-3 border rounded-lg transition-all ${step === 5 ? 'bg-white border-purple-300 shadow-md ring-2 ring-purple-50' : step > 5 ? 'bg-green-50 border-green-200' : 'bg-slate-50 border-slate-200 opacity-40'}`}>
                 <div className="flex items-center justify-between">
                   <div className="font-mono text-sm text-slate-700">$ git push</div>
-                  <button onClick={handlePush} disabled={step !== 4} className={`px-3 py-1 rounded text-xs font-bold text-white ${step > 4 ? 'bg-green-500' : step === 4 ? 'bg-purple-600 hover:bg-purple-700 animate-pulse' : 'bg-slate-300'}`}>
-                    {step > 4 ? '完成' : '執行'}
+                  <button onClick={handlePush} disabled={step !== 5} className={`px-3 py-1 rounded text-xs font-bold text-white ${step > 5 ? 'bg-green-500' : step === 5 ? 'bg-purple-600 hover:bg-purple-700 animate-pulse' : 'bg-slate-300'}`}>
+                    {step > 5 ? '完成' : '執行'}
                   </button>
                 </div>
                 <div className="text-xs text-slate-500 mt-2">因為 Clone 時已經有 origin 連結了，所以以後修改完直接 push 即可！</div>
@@ -163,7 +195,7 @@ export const Chapter4PathB = () => {
 
         {/* Visual Feedback */}
         <div className="flex items-center justify-center bg-slate-100 rounded-xl border border-slate-200 p-8 relative overflow-hidden">
-          {step === 5 && <div className="absolute inset-0 bg-green-50/50 z-0 animate-fade-in pointer-events-none"></div>}
+          {step === 6 && <div className="absolute inset-0 bg-green-50/50 z-0 animate-fade-in pointer-events-none"></div>}
           
           <div className="relative flex items-center gap-20 z-10 w-full justify-center">
              {/* Local Folder */}
@@ -189,6 +221,11 @@ export const Chapter4PathB = () => {
                  </div>
                )}
                {step === 4 && (
+                 <div className="absolute -bottom-2 bg-indigo-100 text-indigo-700 text-[10px] px-2 py-0.5 rounded-full font-bold animate-fade-in whitespace-nowrap border border-indigo-200">
+                   已暫存 (git add)
+                 </div>
+               )}
+               {step === 5 && (
                  <div className="absolute -bottom-2 bg-green-100 text-green-700 text-[10px] px-2 py-0.5 rounded-full font-bold animate-fade-in whitespace-nowrap border border-green-200">
                    已修改並存檔
                  </div>
@@ -198,7 +235,7 @@ export const Chapter4PathB = () => {
 
              {/* Connection Line */}
              <div className="absolute left-10 right-10 top-10 h-1 bg-slate-200 -z-10 rounded-full">
-               <div className={`h-full rounded-full transition-all duration-1000 ease-out bg-purple-500 ${step >= 1 ? 'w-full opacity-50' : 'w-0'} ${step === 5 ? 'opacity-100 bg-green-500 shadow-[0_0_10px_rgba(34,197,94,0.5)]' : ''}`}></div>
+               <div className={`h-full rounded-full transition-all duration-1000 ease-out bg-purple-500 ${step >= 1 ? 'w-full opacity-50' : 'w-0'} ${step === 6 ? 'opacity-100 bg-green-500 shadow-[0_0_10px_rgba(34,197,94,0.5)]' : ''}`}></div>
              </div>
              
              {step === 1 && (
@@ -207,7 +244,7 @@ export const Chapter4PathB = () => {
                </div>
              )}
              
-             {step === 5 && (
+             {step === 6 && (
                <div className="absolute top-4 left-1/2 -translate-x-1/2 z-20 animate-fade-in px-3 py-1 rounded-full text-xs font-bold bg-green-100 text-green-700 border border-green-200 flex items-center gap-1">
                  <CheckCircle size={14} /> 更新成功！
                </div>

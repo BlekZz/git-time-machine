@@ -108,7 +108,15 @@ export const Chapter7Team = () => {
                      <ol className="text-xs text-slate-600 space-y-1 list-decimal pl-4">
                        <li>打開 GitHub 專案頁面</li>
                        <li>點擊黃色提示框的 <strong>Compare &amp; pull request</strong></li>
-                       <li>寫標題，點 <strong>Create pull request</strong></li>
+                       <li>
+                         寫標題與描述，點 <strong>Create pull request</strong>
+                         <div className="mt-1 bg-slate-50 border border-slate-200 rounded p-2 font-mono text-[10px] text-slate-600">
+                           <div className="text-slate-400 mb-1">標題範例：</div>
+                           <div>feat: 新增 your-name 的學習筆記</div>
+                           <div className="text-slate-400 mt-1 mb-1">描述範例：</div>
+                           <div>這是我的第一個 PR，包含了 Chapter 8 實戰演練中新增的個人筆記。</div>
+                         </div>
+                       </li>
                      </ol>
                    </div>
 

@@ -72,7 +72,16 @@ export const Chapter3PathA = () => {
         </div>
         <div className="flex items-start gap-3">
           <span className="text-blue-400 text-base leading-none mt-0.5">📂</span>
-          <p className="text-sm text-slate-300"><strong className="text-white">先在 GitHub 網頁上建好一個空白的新 Repository，</strong>（點擊右上角的 "+" 或尋找綠色的 🟩 <strong>New</strong> 按鈕），然後複製它的 HTTPS 網址備用（格式： <code className="text-slate-300 bg-slate-700 px-1 rounded">https://github.com/你的帳號/專案名.git</code>）。</p>
+          <div className="text-sm text-slate-300">
+            <strong className="text-white">先在 GitHub 網頁上建好一個空白的新 Repository：</strong>
+            <ol className="list-decimal pl-5 mt-2 space-y-1 text-slate-300">
+              <li>登入 GitHub，點右上角的 <strong className="text-white">"+"</strong> → <strong className="text-white">New repository</strong></li>
+              <li>取一個 Repository 名稱（例如 <code className="bg-slate-700 px-1 rounded">my-first-repo</code>）</li>
+              <li>選擇 <strong className="text-white">Public</strong></li>
+              <li className="text-red-300 font-bold">⚠️ 關鍵：「Add a README file」、「Add .gitignore」、「Choose a license」這三個選項全部<strong>不要勾選</strong>，保持完全空白！（勾了會造成歷史衝突，Push 時會被拒絕）</li>
+              <li>點 <strong className="text-white">Create repository</strong>，然後複製頁面上的 HTTPS 網址備用（格式：<code className="bg-slate-700 px-1 rounded text-slate-300">https://github.com/你的帳號/專案名.git</code>）</li>
+            </ol>
+          </div>
         </div>
       </div>
 
@@ -83,9 +92,13 @@ export const Chapter3PathA = () => {
       <div className="grid md:grid-cols-2 gap-8">
         <div className="space-y-6">
           <Card className="bg-slate-50">
-            <div className="flex justify-between items-center mb-4">
+            <div className="flex justify-between items-start mb-1">
               <h3 className="font-bold text-slate-700 flex items-center gap-2"><PlusCircle size={18} /> 操作步驟</h3>
               <button onClick={reset} className="text-xs text-slate-500 hover:text-indigo-600 underline">重新開始</button>
+            </div>
+            <div className="bg-blue-50 border border-blue-200 rounded-lg px-3 py-2 mb-3 text-xs text-blue-800 flex items-start gap-2">
+              <span className="shrink-0 mt-0.5">💡</span>
+              <span>以下是<strong>示意模擬</strong>，點「執行」可以看到邏輯流程。<strong>實際操作請在你電腦真正的 Terminal 裡輸入同樣的指令。</strong></span>
             </div>
             
             <div className="space-y-3">
@@ -250,6 +263,17 @@ export const Chapter3PathA = () => {
              node_modules/<br/>
              .env<br/>
              *.log
+           </div>
+           <div className="bg-purple-50 border border-purple-200 rounded-lg p-3 mt-3">
+             <div className="text-xs font-bold text-purple-800 mb-2">📊 數據分析菜鳥版（Python / Jupyter）</div>
+             <div className="bg-slate-900 rounded p-2 font-mono text-xs text-green-400">
+               # Python 數據分析常見需要忽略的<br/>
+               __pycache__/<br/>
+               .ipynb_checkpoints/<br/>
+               .env<br/>
+               *.pyc<br/>
+               data/raw/&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;# 原始資料通常不放 Git
+             </div>
            </div>
         </Card>
 

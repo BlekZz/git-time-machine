@@ -52,6 +52,17 @@ export const Chapter5Branch = () => {
           <span className="text-yellow-400 text-base leading-none mt-0.5">💡</span>
           <p className="text-sm text-slate-300"><strong className="text-white">最常用的懶人指令：<code className="bg-slate-700 px-1 rounded">git checkout -b 分支名</code></strong>，一次完成「建立 + 切換」，不需要分兩步做。</p>
         </div>
+        <div className="flex items-start gap-3">
+          <span className="text-red-400 text-base leading-none mt-0.5">⚠️</span>
+          <p className="text-sm text-slate-300">
+            <strong className="text-white">切換分支前，先確認工作區是乾淨的！</strong>
+            輸入 <code className="bg-slate-700 px-1 rounded">git status</code>，確認顯示 <code className="bg-slate-700 px-1 rounded">nothing to commit</code>，再執行 checkout。
+            <span className="block text-slate-400 text-xs mt-1">
+              如果你有未完成的修改，切換分支時 Git 可能會把那些修改「帶過去」，讓你以為自己搞壞了。
+              解法：先 <code className="bg-slate-600 px-1 rounded">git commit</code>（建議）或 <code className="bg-slate-600 px-1 rounded">git stash</code>（暫時保存），再切換。
+            </span>
+          </p>
+        </div>
       </div>
 
       <InstructionalText title="什麼是分支 (Branch)？" icon={<GitBranch size={18} className="text-pink-600" />}>
@@ -177,6 +188,24 @@ export const Chapter5Branch = () => {
           </div>
         </div>
       </div>
+
+      <Card className="bg-indigo-50 border-indigo-200 mt-6 p-5">
+         <h3 className="font-bold text-indigo-900 mb-2 flex items-center gap-2">
+           <span className="text-xl">💡</span> 重要觀念：本地分支 vs 雲端分支
+         </h3>
+         <p className="text-sm text-indigo-800 mb-4 leading-relaxed">
+           請記住：<strong>你在電腦上用 checkout 建立的分支，只有你自己看得到！</strong> 雲端（GitHub）此時還不知道有這個宇宙的存在。這就是為什麼只在本地新增分支時，別人是無法拉取 (pull) 到你的進度的。
+         </p>
+         <div className="bg-white p-4 rounded-lg border border-indigo-100 shadow-sm">
+           <div className="font-bold text-sm text-slate-800 mb-2">要把分支「上傳並在雲端建立」，你需要執行：</div>
+           <code className="text-xs text-indigo-600 bg-indigo-50 px-2 py-1 rounded block mb-3 font-mono">git push -u origin &lt;你的分支名&gt;</code>
+           <ul className="text-sm text-slate-600 space-y-1 list-disc pl-4">
+             <li><code className="bg-slate-100 px-1 rounded text-xs">-u</code> (set-upstream) 的意思是「建立上下游連線」。</li>
+             <li>這告訴 Git：「請在 GitHub 也建立一個一模一樣的分支，並把它們綁定在一起」。</li>
+             <li>綁定之後，未來你在這個分支只要簡單打 <code className="bg-slate-100 px-1 rounded text-xs">git push</code>，它就會知道要推送到雲端的對應分支了！</li>
+           </ul>
+         </div>
+      </Card>
 
       <div className="mt-8">
         <TerminalSim logs={logs} promptLabel={`~/project (${activeBranch})`} height="h-40" />

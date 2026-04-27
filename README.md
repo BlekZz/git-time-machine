@@ -11,29 +11,9 @@
 > ⚠️ **【完全零基礎的新手請注意】** ⚠️
 >
 > 如果你是完全沒有接觸過寫程式、終端機（Terminal）或 Git 的小白，請**務必先閱讀** [👶 零基礎新手安裝與準備指南](./Beginner-Setup-Guide.md)！
-> 它會教你如何打開終端機，並一步一步在 Windows/Mac 上安裝必備軟體。請完成那份指南後，再回來繼續往下看。
+> 它會手把手教你安裝必備軟體，並在最後直接帶你啟動這個教學網頁。**完成指南後，你就可以直接開始學習，不需要回來看這份 README 的安裝步驟。**
 
 ---
-
-## 🚀 學會 Git + GitHub，你就能夠……
-
-> **不同背景的你，都能找到學這門課的理由：**
-
-### ✍️ 給文組生 / 完全零基礎的你
-- 把你的小說草稿、部落格文章、設計稿的每個版本都保存下來，再也不怕「改了之後後悔」
-- 和同學線上共同編輯一份報告，告別「最終版」「最終最終版」「真的最終版」的循環
-- 讓面試官看到你認真維護的 GitHub 主頁，比任何履歷都更有說服力
-- 具備參與任何開源專案、跨部門協作的基礎技能
-
-### 📊 給會用 Python / Excel 的數據分析新手
-- 把你的 Jupyter Notebook、清洗腳本放上 GitHub，告別只存在自己電腦的「孤島作品」
-- 和工程師同事用同一套工作流程協作，從此說「單機世界」再見，正式進入 MMO 合作模式
-- 追蹤每次調整模型參數、特徵工程的版本，不再找不回「上週那個跑得最好的模型」
-- 當工程師說「把你的 code 丟到 repo 來」，你直接秒懂並完成
-
----
-
-
 
 ### 📖 八大互動章節
 
@@ -59,47 +39,9 @@
 ## 🛠 環境需求
 
 請確保你已經根據 [零基礎新手安裝與準備指南](./Beginner-Setup-Guide.md) 安裝好以下軟體：
-- **Node.js** 18+ 
+- **Node.js** 20+
 - **Git** 
 - **VSCode** 搭配 Git Graph / GitLens 插件
-
----
-
-## 🚀 快速開始
-
-> 💡 **零基礎的同學**：如果你還沒裝好 Node.js 和 Git，請先閱讀 [👶 零基礎新手安裝與準備指南](./Beginner-Setup-Guide.md)。那份指南的最後會直接帶你完成以下步驟，不用再回來這裡。
-
-### 1. 下載本專案
-
-打開你的終端機 (Terminal / PowerShell)，輸入：
-
-```bash
-git clone https://github.com/BlekZz/git-time-machine.git
-cd git-time-machine
-```
-
-> **✅ 驗證**：如果你在終端機看到類似 `Receiving objects: 100%` 的字樣，且沒有報錯，代表下載完畢！
-
-### 2. 安裝依賴 (下載魔法工具包)
-
-```bash
-npm install
-```
-
-> **⏳ 等待與驗證**：這一步會從網路下載工具，畫面會跑很多文字，屬於正常現象。
->
-> - 黃色 `npm warn deprecated` → 正常，忽略
-> - `found X vulnerabilities` → 正常，忽略
-> - 最後出現 `added X packages` → ✅ 安裝成功
-> - 紅色 `ERR!` → 真正的錯誤，截圖給老師
-
-### 3. 啟動開發伺服器 (讓網頁跑起來)
-
-```bash
-npm run dev
-```
-
-> **✅ 驗證**：如果你在終端機看到 `VITE vX.X.X  ready in X ms` 並且有一行綠色的字寫著 `➜  Local:   http://localhost:5173/`，代表已經啟動成功！接著，打開你的瀏覽器，輸入網址 `http://localhost:5173/` 就可以開始互動學習啦！
 
 ---
 
@@ -121,13 +63,40 @@ git-time-machine/
 
 ---
 
+## 🚀 快速開始 (老手專區)
+
+> 💡 **零基礎新手請注意**：請直接前往 [👶 零基礎新手安裝與準備指南](./Beginner-Setup-Guide.md)，那裡有專為你寫的詳細圖文教學！
+
+### 1. 下載本專案
+
+```bash
+git clone https://github.com/BlekZz/git-time-machine.git
+cd git-time-machine
+```
+
+### 2. 安裝依賴
+
+```bash
+npm install
+```
+
+### 3. 啟動開發伺服器
+
+```bash
+npm run dev
+```
+
+接著打開瀏覽器，前往 `http://localhost:5173/` 即可開始使用。
+
+---
+
 ## ❓ 常見問題
 
 | 問題 | 解決方法 |
 |------|----------|
 | `npm install` 失敗 | 確認 Node.js 版本 ≥ 20（在終端機輸入 `node -v` 確認），使用 PowerShell 或 VSCode Terminal |
 | `npm run dev` 無畫面 | 確認瀏覽器已開啟 `http://localhost:5173/` |
-| `git push` 沒權限 | 確認已登入 GitHub（git credential 或 SSH key） |
+| `git push` 沒權限 | 確認已登入 GitHub（透過 `gh auth login`、git credential 或 SSH key） |
 
 ---
 
@@ -140,6 +109,8 @@ git reset --hard
 git pull
 npm install
 ```
+
+> ⚠️ **警告**：`git reset --hard` 會將所有未儲存的本地修改清空。如果有重要的修改還沒有 commit，請先備份！
 
 ---
 

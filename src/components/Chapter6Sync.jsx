@@ -163,8 +163,11 @@ export const Chapter6Sync = () => {
                   disabled={!pendingChanges}
                   className={`w-full flex items-center gap-2 justify-between transition-all font-medium px-4 py-2 rounded-lg ${pendingChanges ? 'bg-indigo-600 text-white shadow hover:bg-indigo-700 active:scale-95' : 'bg-slate-200 text-slate-400 cursor-not-allowed'}`}
                 >
-                  <span className="flex items-center gap-2"><GitCommit size={16} /> 2. 存檔 (Commit)</span>
+                  <span className="flex items-center gap-2"><GitCommit size={16} /> 2. 暫存 + 存檔 (add + commit)</span>
                 </button>
+                <div className="text-[10px] text-slate-400 pl-1">
+                  ⚠️ 模擬中合併為一步，實際 Terminal 需先 <code>git add .</code> 再 <code>git commit -m "..."</code>
+                </div>
 
                 <hr className="border-slate-200 my-4" />
                 
@@ -374,9 +377,21 @@ export const Chapter6Sync = () => {
            </div>
            
            <p className="text-sm text-slate-600 mt-4 text-center">
-             當兩個人「剛好改到了同一個檔案的同一行」，Git 會不知道該聽誰的，這時候就會爆發 <strong>Conflict</strong>。<br/>
-             解法很簡單：打開 VSCode，它會高亮衝突的地方，讓你手動選擇要保留 A、保留 B，還是兩者都保留，然後重新 Commit！
-           </p>
+              當兩個人「剛好改到了同一個檔案的同一行」，Git 會不知道該聽誰的，這時候就會爆發 <strong>Conflict</strong>。
+            </p>
+            <div className="mt-4 bg-white border border-slate-200 rounded-lg p-4 text-sm text-slate-700">
+              <div className="font-bold mb-3">🛠 解決衝突的完整流程：</div>
+              <ol className="space-y-2 list-decimal pl-5">
+                <li>打開 VSCode，找到被高亮標示衝突的檔案（側邊欄會有紅色驚嘆號）</li>
+                <li>在衝突標記之間選擇：保留「你的修改」、「對方的修改」，或兩者都保留</li>
+                <li>存檔並關閉衝突標記</li>
+                <li className="font-bold text-indigo-700">執行 <code className="bg-indigo-50 px-1 rounded">git add .</code>（這步很多人忘記！解決完衝突還需要重新暫存）</li>
+                <li className="font-bold text-indigo-700">執行 <code className="bg-indigo-50 px-1 rounded">git commit</code>（不需要加 -m，Git 會自動產生 Merge Commit 訊息）</li>
+              </ol>
+              <div className="mt-3 bg-amber-50 border border-amber-200 rounded p-2 text-xs text-amber-800">
+                ⚠️ 少做第 4 步是最常見的錯誤——解決完衝突直接 push，Git 會說「還有未解決的 merge」，讓你以為沒有修好。
+              </div>
+            </div>
         </Card>
       </section>
 

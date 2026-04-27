@@ -140,42 +140,20 @@ export const Chapter1Concept = () => (
       <div>
         <h4 className="font-bold text-green-800 mb-1">你準備好了嗎？</h4>
         <p className="text-sm text-green-700">
-          如果你還沒有安裝 Git, Node.js 或 VSCode，請立刻去查看專案根目錄的 <code className="bg-green-100 px-1 rounded">Beginner-Setup-Guide.md</code>。
+          如果你還沒有安裝 Git, Node.js 或 VSCode，請立刻查看{' '}
+          <a href="https://github.com/BlekZz/git-time-machine/blob/main/Beginner-Setup-Guide.md"
+             target="_blank" rel="noopener noreferrer"
+             className="underline font-bold text-green-800 hover:text-green-900">
+            👶 零基礎新手安裝與準備指南
+          </a>
+          （如果你已經下載了這個教材，也可以直接在資料夾裡找到 <code className="bg-green-100 px-1 rounded">Beginner-Setup-Guide.md</code>）。
           以下章節假設你已經安裝完畢，並且知道如何打開 Terminal（終端機）！
         </p>
       </div>
     </div>
 
-    {/* --- 設置身份 --- */}
-    <div>
-      <h3 className="text-lg font-bold text-slate-800 mb-4 flex items-center gap-2">
-        <Key size={20} className="text-amber-500" /> Local 端身份設定
-      </h3>
-      <Card className="bg-slate-50">
-        <p className="text-sm text-slate-600 mb-3">每次 Commit 都會記錄「是誰做的」。安裝完 Git 後，第一件事就是設定你的身份：</p>
-        <div className="bg-slate-900 rounded-lg p-4 font-mono text-sm text-slate-200 space-y-2">
-          <div><span className="text-green-400">$</span> git config --global user.name <span className="text-amber-300">"Your Name"</span></div>
-          <div><span className="text-green-400">$</span> git config --global user.email <span className="text-amber-300">"you@example.com"</span></div>
-          <div className="border-t border-slate-700 pt-2 mt-2">
-            <span className="text-slate-500"># 確認設定</span>
-          </div>
-          <div><span className="text-green-400">$</span> git config --list</div>
-        </div>
-        <div className="mt-3 grid sm:grid-cols-2 gap-3">
-          <div className="bg-amber-50 border border-amber-200 rounded-lg p-3 text-xs text-amber-800 flex items-start gap-2">
-            <Info size={14} className="shrink-0 mt-0.5" />
-            <span><strong>--global</strong> 代表全域設定，適用於你電腦上所有 Git 專案。</span>
-          </div>
-          <div className="bg-blue-50 border border-blue-200 rounded-lg p-3 text-xs text-blue-800 flex items-start gap-2">
-            <Info size={14} className="shrink-0 mt-0.5" />
-            <span>如果你未來要推上 GitHub，這裡的 <strong>email 需要和 GitHub 帳號一致</strong>，大頭貼才會正確顯示。</span>
-          </div>
-        </div>
-      </Card>
-    </div>
-
     {/* --- .git 資料夾警告 --- */}
-    <div>
+    <div className="mt-8">
       <h3 className="text-lg font-bold text-slate-800 mb-4 flex items-center gap-2">
         <Folder size={20} className="text-red-500" /> .git 資料夾 = 你的存檔本體
       </h3>
@@ -224,6 +202,34 @@ export const Chapter1Concept = () => (
                 </div>
               </div>
             </div>
+          </div>
+        </div>
+      </Card>
+    </div>
+
+    {/* --- 設置身份 --- */}
+    <div className="mt-8">
+      <h3 className="text-lg font-bold text-slate-800 mb-4 flex items-center gap-2">
+        <Key size={20} className="text-amber-500" /> 🎉 歡迎登艦！你的第一步：Local 端身份設定
+      </h3>
+      <Card className="bg-gradient-to-br from-amber-50 to-orange-50 border-amber-200 shadow-sm">
+        <p className="text-sm text-slate-700 mb-3 font-medium">太棒了！基本觀念都吸收完畢了吧？現在讓我們正式開始。每次存檔 (Commit) 時，Git 都會記錄「是誰做的」。所以我們上船後的第一件事，就是設定你的專屬身份名牌：</p>
+        <div className="bg-slate-900 rounded-lg p-4 font-mono text-sm text-slate-200 space-y-2 shadow-inner">
+          <div><span className="text-green-400">$</span> git config --global user.name <span className="text-amber-300">"Your Name"</span></div>
+          <div><span className="text-green-400">$</span> git config --global user.email <span className="text-amber-300">"you@example.com"</span></div>
+          <div className="border-t border-slate-700 pt-2 mt-2">
+            <span className="text-slate-500"># 敲完上面兩行後，可以輸入這行確認設定是否成功！</span>
+          </div>
+          <div><span className="text-green-400">$</span> git config --list</div>
+        </div>
+        <div className="mt-3 grid sm:grid-cols-2 gap-3">
+          <div className="bg-white border border-amber-200 rounded-lg p-3 text-xs text-amber-800 flex items-start gap-2 shadow-sm">
+            <Info size={14} className="shrink-0 mt-0.5 text-amber-500" />
+            <span><strong>--global</strong> 代表全域設定，設定一次就好，這台電腦上所有的 Git 專案都會認識你。</span>
+          </div>
+          <div className="bg-white border border-amber-200 rounded-lg p-3 text-xs text-blue-800 flex items-start gap-2 shadow-sm">
+            <Info size={14} className="shrink-0 mt-0.5 text-blue-500" />
+            <span>如果你未來要把作品推上 GitHub，這裡的 <strong>email 請務必填寫和 GitHub 註冊時相同的信箱</strong>，大頭貼才會漂亮地顯示出來喔！</span>
           </div>
         </div>
       </Card>
