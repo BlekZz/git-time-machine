@@ -61,18 +61,18 @@ export const Chapter3PathA = () => {
 
       {/* 進入狀態提示 */}
       <div className="bg-slate-800 rounded-xl px-5 py-4 flex flex-col gap-3 shadow-md mb-2">
-        <div className="text-xs font-bold text-slate-400 uppercase tracking-widest mb-1">⚡ 進入狀態：読完再動</div>
+        <div className="text-xs font-bold text-slate-400 uppercase tracking-widest mb-1">⚡ 進入狀態：讀完再動</div>
         <div className="flex items-start gap-3">
           <span className="text-green-400 text-base leading-none mt-0.5">💻</span>
-          <p className="text-sm text-slate-300"><strong className="text-white">本章所有操作都透過 Terminal 指令完成。</strong>請確保你已經打開終端機（建議用 VSCode 內建終端），並且檔案總管學會如何操作它。</p>
+          <p className="text-sm text-slate-300"><strong className="text-white">本章所有操作都透過 Terminal 指令完成。</strong>請確保你已經打開終端機（建議用 VSCode 內建終端），並且知道如何在裡面操作目錄。</p>
         </div>
         <div className="flex items-start gap-3">
           <span className="text-yellow-400 text-base leading-none mt-0.5">🔑</span>
-          <p className="text-sm text-slate-300"><strong className="text-white">需要一個已登入且連線的 GitHub 帳號。</strong>如果還沒有註冊 / 登入 GitHub，請先回到魚基癸新手安裝指南完成註冊。</p>
+          <p className="text-sm text-slate-300"><strong className="text-white">需要一個已登入且連線的 GitHub 帳號。</strong>如果還沒有註冊 / 登入 GitHub，請先回到零基礎新手安裝指南完成註冊。</p>
         </div>
         <div className="flex items-start gap-3">
           <span className="text-blue-400 text-base leading-none mt-0.5">📂</span>
-          <p className="text-sm text-slate-300"><strong className="text-white">先在 GitHub 網頁上建好一個空白的新 Repository，</strong>然後複製它的 HTTPS 網址備用（格式： <code className="text-slate-300 bg-slate-700 px-1 rounded">https://github.com/你的帳號/專案名.git</code>）。</p>
+          <p className="text-sm text-slate-300"><strong className="text-white">先在 GitHub 網頁上建好一個空白的新 Repository，</strong>（點擊右上角的 "+" 或尋找綠色的 🟩 <strong>New</strong> 按鈕），然後複製它的 HTTPS 網址備用（格式： <code className="text-slate-300 bg-slate-700 px-1 rounded">https://github.com/你的帳號/專案名.git</code>）。</p>
         </div>
       </div>
 

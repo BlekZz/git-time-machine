@@ -78,15 +78,15 @@ export const Chapter4PathB = () => {
         <div className="text-xs font-bold text-slate-400 uppercase tracking-widest mb-1">⚡ 進入狀態：讀完再動</div>
         <div className="flex items-start gap-3">
           <span className="text-yellow-400 text-base leading-none mt-0.5">🔑</span>
-          <p className="text-sm text-slate-300"><strong className="text-white">你的 GitHub 帳號需要有這個 Repository 的存取權。</strong>如果是公開專案可以直接 Clone，但要 Push 的話，需要確認你已被加入協作者名單或有 Fork 一份。</p>
+          <p className="text-sm text-slate-300"><strong className="text-white">你的 GitHub 帳號需要有這個 Repository 的存取權。</strong>（簡單來說，至少你要在網頁看得到這個 repo 的內容！）如果是公開專案可以直接 Clone，但要 Push 的話，需要確認你已被加入協作者名單或有 Fork 一份。</p>
         </div>
         <div className="flex items-start gap-3">
           <span className="text-green-400 text-base leading-none mt-0.5">💻</span>
-          <p className="text-sm text-slate-300"><strong className="text-white">所有操作都在 Terminal 完成。</strong>Clone 完之後，<strong className="text-white">記得用 <code className="bg-slate-700 px-1 rounded">cd 專案名稱</code> 進入資料夾，</strong>否則後續所有 git 指令都會找不到專案！</p>
+          <p className="text-sm text-slate-300"><strong className="text-white">所有操作都在 Terminal 完成。</strong>Clone 完之後，<strong className="text-white">記得用 <code className="bg-slate-700 px-1 rounded">cd 專案名稱</code> 進入資料夾</strong>（例如終端機提示字元從 <code className="text-slate-400">~ $</code> 變成 <code className="text-slate-400">~/cool-project $</code> 才算進入），否則後續所有 git 指令都會找不到專案！</p>
         </div>
         <div className="flex items-start gap-3">
           <span className="text-blue-400 text-base leading-none mt-0.5">🔍</span>
-          <p className="text-sm text-slate-300"><strong className="text-white">進入專案後，養成先 <code className="bg-slate-700 px-1 rounded">git status</code> 的習慣。</strong>確認工作區是乾淨的，再開始你的修改。這樣才知道「改了什麼」是你自己的。</p>
+          <p className="text-sm text-slate-300"><strong className="text-white">進入專案後，養成先 <code className="bg-slate-700 px-1 rounded">git status</code> 的習慣。</strong>確認工作區是乾淨的，再開始你的修改。這樣才知道「改了什麼」是你自己的。<br/><span className="text-slate-400 text-xs mt-1 block">💡 請往下查看 <strong>Git Status 狀態解碼速查表</strong> 來了解不同狀態的意義。</span></p>
         </div>
       </div>
 

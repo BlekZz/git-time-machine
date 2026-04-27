@@ -46,7 +46,7 @@ export const Chapter5Branch = () => {
         </div>
         <div className="flex items-start gap-3">
           <span className="text-blue-400 text-base leading-none mt-0.5">📋</span>
-          <p className="text-sm text-slate-300"><strong className="text-white">不知道現在有哪些分支？先查清楚再決定。</strong>輸入 <code className="bg-slate-700 px-1 rounded">git branch</code> 可以列出所有本地分支，前面有 <code className="bg-slate-700 px-1 rounded">*</code> 星號的就是你目前所在的分支。</p>
+          <p className="text-sm text-slate-300"><strong className="text-white">不知道現在有哪些分支？先查清楚再決定。</strong>單純輸入 <code className="bg-slate-700 px-1 rounded">git branch</code> 可以列出所有本地分支，前面有 <code className="bg-slate-700 px-1 rounded">*</code> 星號的就是你目前所在的分支。（注意：如果在指令後面加上文字，例如 <code className="bg-slate-700 px-1 rounded">git branch abc</code>，就會建立名為 abc 的新分支喔！）</p>
         </div>
         <div className="flex items-start gap-3">
           <span className="text-yellow-400 text-base leading-none mt-0.5">💡</span>

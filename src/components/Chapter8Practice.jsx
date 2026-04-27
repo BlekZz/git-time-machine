@@ -12,7 +12,8 @@ export const Chapter8Practice = () => {
         <InstructionalText title="任務說明：這不是演習！" icon={<Target size={18} className="text-red-600" />}>
           <p className="mb-2">現在你要離開這個模擬網頁，<strong>打開你電腦真實的終端機與 VSCode</strong> 來完成這項任務。</p>
           <ul className="list-disc pl-5 space-y-1">
-            <li><strong>最終目標：</strong> 在真正的 GitHub 倉庫中，發起一個 Pull Request，將寫有你名字的 Markdown 筆記合併進專案中。</li>
+            <li><strong>任務流程：</strong> 在專案中先建立（Branch）出自己的分支 ➡️ 進行數次的版本迭代與存檔 ➡️ Commit 且 Push 上去 ➡️ 最後對專案發出 PR (Pull Request)。</li>
+            <li><strong>最終目標：</strong> 讓寫有你名字的 Markdown 筆記成功被合併進 main 主線中。</li>
             <li><strong>注意事項：</strong> 請確保你是在正確的作業專案（git-time-machine 或講師指定的 Repo）下操作，不要搞錯資料夾囉！</li>
           </ul>
         </InstructionalText>
@@ -24,6 +25,44 @@ export const Chapter8Practice = () => {
           <Badge color="blue">任務步驟</Badge>
           <h3 className="text-xl font-bold text-slate-800">請跟著以下步驟，一步步在你的電腦上執行：</h3>
         </div>
+
+        {/* 實戰示意圖 */}
+        <Card className="bg-slate-800 mb-8 border-slate-700 overflow-x-auto">
+          <div className="min-w-[600px] h-48 relative flex items-center justify-center">
+            {/* Main branch line */}
+            <div className="absolute top-1/4 left-10 right-10 h-1.5 bg-indigo-500/50 rounded-full"></div>
+            <div className="absolute left-4 top-1/4 -translate-y-1/2 text-xs font-bold text-indigo-300">main 主線</div>
+            <div className="absolute left-20 top-1/4 -translate-y-1/2 w-4 h-4 rounded-full bg-indigo-500 ring-4 ring-slate-800"></div>
+            
+            {/* Learner branch line */}
+            <div className="absolute top-[75%] left-32 right-32 h-1.5 bg-green-500/30 rounded-full border border-dashed border-green-500/50"></div>
+            
+            {/* Step 1 & 2: Branch out */}
+            <svg className="absolute inset-0 w-full h-full pointer-events-none">
+              <path d="M 80 25% C 100 25%, 110 75%, 140 75%" fill="none" stroke="rgba(34, 197, 94, 0.5)" strokeWidth="3" strokeDasharray="4" />
+            </svg>
+            <div className="absolute left-[140px] top-[75%] -translate-y-1/2 w-4 h-4 rounded-full bg-green-500 ring-4 ring-slate-800"></div>
+            <div className="absolute left-[140px] top-[85%] -translate-x-1/2 text-[10px] text-green-400 font-mono">1 & 2. checkout -b</div>
+
+            {/* Step 3: Iterations (Commits) */}
+            <div className="absolute left-[240px] top-[75%] -translate-y-1/2 w-4 h-4 rounded-full bg-green-400 ring-4 ring-slate-800"></div>
+            <div className="absolute left-[340px] top-[75%] -translate-y-1/2 w-4 h-4 rounded-full bg-green-400 ring-4 ring-slate-800"></div>
+            <div className="absolute left-[290px] top-[85%] -translate-x-1/2 text-[10px] text-green-400 font-mono">3. 數次 add & commit</div>
+
+            {/* Step 4: Push */}
+            <div className="absolute left-[440px] top-[75%] -translate-y-1/2 w-4 h-4 rounded-full bg-green-400 ring-4 ring-slate-800 animate-pulse"></div>
+            <div className="absolute left-[440px] top-[85%] -translate-x-1/2 text-[10px] text-green-400 font-mono">4. push</div>
+
+            {/* Step 5: PR (Merge) */}
+            <svg className="absolute inset-0 w-full h-full pointer-events-none">
+              <path d="M 440 75% C 470 75%, 480 25%, 520 25%" fill="none" stroke="rgba(168, 85, 247, 0.8)" strokeWidth="3" strokeDasharray="4" />
+            </svg>
+            <div className="absolute left-[520px] top-1/4 -translate-y-1/2 w-5 h-5 rounded-full bg-purple-500 ring-4 ring-slate-800 flex items-center justify-center">
+               <GitPullRequest size={12} className="text-white" />
+            </div>
+            <div className="absolute left-[520px] top-[10%] -translate-x-1/2 text-[10px] text-purple-300 font-bold bg-purple-900/50 px-2 py-0.5 rounded">5. 發出 PR</div>
+          </div>
+        </Card>
         
         <div className="space-y-6">
           
