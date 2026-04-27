@@ -2,6 +2,12 @@
 
 一個互動式 Git 教學網頁應用，透過視覺化模擬讓初學者從零開始理解版本控制。
 
+## 🌐 不想安裝任何東西？
+
+> **線上版即將推出** — 部署完成後，你可以直接在瀏覽器裡學習，不需要安裝任何軟體。
+
+---
+
 > ⚠️ **【完全零基礎的新手請注意】** ⚠️
 >
 > 如果你是完全沒有接觸過寫程式、終端機（Terminal）或 Git 的小白，請**務必先閱讀** [👶 零基礎新手安裝與準備指南](./Beginner-Setup-Guide.md)！
@@ -39,7 +45,9 @@
 
 ---
 
-## 🚀 快速開始 (適合已經裝好 Node.js 與 Git 的人)
+## 🚀 快速開始
+
+> 💡 **零基礎的同學**：如果你還沒裝好 Node.js 和 Git，請先閱讀 [👶 零基礎新手安裝與準備指南](./Beginner-Setup-Guide.md)。那份指南的最後會直接帶你完成以下步驟，不用再回來這裡。
 
 ### 1. 下載本專案
 
@@ -58,7 +66,12 @@ cd git-time-machine
 npm install
 ```
 
-> **⏳ 等待與驗證**：這一步會去網路上抓取執行網頁所需的工具，**如果畫面卡住還在跑，請耐心等待安裝**。如果看到 `added X packages, and audited X packages in X s`，代表已經安裝完畢！若出現 npm vulnerability 警告，不用理會即可。
+> **⏳ 等待與驗證**：這一步會從網路下載工具，畫面會跑很多文字，屬於正常現象。
+>
+> - 黃色 `npm warn deprecated` → 正常，忽略
+> - `found X vulnerabilities` → 正常，忽略
+> - 最後出現 `added X packages` → ✅ 安裝成功
+> - 紅色 `ERR!` → 真正的錯誤，截圖給老師
 
 ### 3. 啟動開發伺服器 (讓網頁跑起來)
 
@@ -92,7 +105,7 @@ git-time-machine/
 
 | 問題 | 解決方法 |
 |------|----------|
-| `npm install` 失敗 | 確認 Node.js 版本 ≥ 18，使用 PowerShell 或 VSCode Terminal |
+| `npm install` 失敗 | 確認 Node.js 版本 ≥ 20（在終端機輸入 `node -v` 確認），使用 PowerShell 或 VSCode Terminal |
 | `npm run dev` 無畫面 | 確認瀏覽器已開啟 `http://localhost:5173/` |
 | `git push` 沒權限 | 確認已登入 GitHub（git credential 或 SSH key） |
 

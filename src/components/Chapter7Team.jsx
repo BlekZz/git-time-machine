@@ -79,10 +79,27 @@ export const Chapter7Team = () => {
               <div className="w-[calc(100%-4rem)] md:w-[calc(50%-2.5rem)] p-4 rounded border border-purple-200 bg-purple-50 shadow-sm relative">
                  <div className="absolute -right-2 -top-2 bg-purple-600 text-white text-[10px] px-2 py-1 rounded-full font-bold shadow animate-pulse">Action!</div>
                  <h4 className="font-bold text-purple-900 mb-2 flex items-center gap-2"><Github size={16}/> 發起 Pull Request</h4>
-                 <p className="text-sm text-purple-800 mb-3">在 GitHub 網頁上點擊 "Compare & pull request"，寫下你做了什麼改變。</p>
-                 <div className="bg-slate-900 rounded p-2 text-xs font-mono text-green-400">
-                    # 或是使用超快的 gh CLI 指令<br/>
-                    $ gh pr create
+                 <p className="text-sm text-purple-800 mb-3">在 GitHub 網頁上點擊 "Compare &amp; pull request"，寫下你做了什麼改變。</p>
+
+                 <div className="space-y-3">
+                   <div className="bg-white rounded border border-purple-100 p-3">
+                     <div className="text-xs font-bold text-slate-600 mb-2">🌐 方法一：瀏覽器操作（推薦初學者）</div>
+                     <ol className="text-xs text-slate-600 space-y-1 list-decimal pl-4">
+                       <li>打開 GitHub 專案頁面</li>
+                       <li>點擊黃色提示框的 <strong>Compare &amp; pull request</strong></li>
+                       <li>寫標題，點 <strong>Create pull request</strong></li>
+                     </ol>
+                   </div>
+
+                   <div className="bg-slate-900 rounded p-3">
+                     <div className="text-xs font-bold text-green-400 mb-2">💻 方法二：GitHub CLI（記得嗎？這就是當初裝它的原因！）</div>
+                     <div className="font-mono text-xs text-green-400">
+                       $ gh pr create
+                     </div>
+                     <div className="text-[10px] text-slate-400 mt-2">
+                       這個工具在 Beginner-Setup-Guide 的步驟二安裝的。輸入這一行，它會互動式地問你標題、描述，幾秒內 PR 就建好了。
+                     </div>
+                   </div>
                  </div>
               </div>
            </div>
@@ -104,7 +121,7 @@ export const Chapter7Team = () => {
                  <GitMerge size={18} />
               </div>
               <div className="w-[calc(100%-4rem)] md:w-[calc(50%-2.5rem)] p-4 rounded border border-green-200 bg-green-50 shadow-sm">
-                 <h4 className="font-bold text-green-900 mb-2 flex items-center gap-2"><CheckCircle size={16}/> Approve & Merge</h4>
+                 <h4 className="font-bold text-green-900 mb-2 flex items-center gap-2"><CheckCircle size={16}/> Approve &amp; Merge</h4>
                  <p className="text-sm text-green-800">審查通過！維護者點擊 <strong>Merge pull request</strong>。你的分支完美融入 main 宇宙，任務圓滿達成！🎉</p>
                  <div className="mt-3 p-2 bg-white rounded border border-green-200 text-xs text-green-700">
                     <strong>💡 合併後會怎樣？</strong><br/>

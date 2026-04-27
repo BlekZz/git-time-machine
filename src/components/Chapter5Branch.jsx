@@ -178,22 +178,26 @@ export const Chapter5Branch = () => {
              <p className="text-xs text-blue-700">分支是為了解決某個特定的功能 (Feature) 或修復 (Bug) 而短暫存在的。當任務完成並合併 (Merge) 回主線後，該分支的使命就結束了，通常會被刪除或封存。長期讓兩個分支平行存在而不合併，是非常危險且容易產生大量衝突的不良設計。</p>
            </div>
            
-           <div className="relative w-full h-64 overflow-x-auto overflow-y-hidden scrollbar-thin scrollbar-thumb-slate-300">
-             <div className="min-w-[700px] h-full flex items-center">
-               <svg className="w-full h-full min-w-[700px]" viewBox="0 0 700 256">
+           <div className="w-full overflow-x-auto">
+             <div style={{ minWidth: '600px' }}>
+               <svg
+                 viewBox="0 0 700 256"
+                 xmlns="http://www.w3.org/2000/svg"
+                 className="w-full h-auto"
+                 style={{ maxHeight: '256px' }}
+               >
                  {/* Main Line */}
                  <line x1="0" y1="128" x2="700" y2="128" stroke="#cbd5e1" strokeWidth="6" />
-                 
+
                  {/* Pink (UI) Branch: y=48 */}
                  <path d="M 100 128 C 130 128, 140 48, 180 48 L 320 48 C 360 48, 370 128, 400 128" fill="none" stroke="#ec4899" strokeWidth="5" />
-                 
+
                  {/* Blue (API) Branch: y=168 */}
                  <path d="M 260 128 C 290 128, 300 168, 340 168 L 360 168 C 380 168, 390 128, 400 128" fill="none" stroke="#3b82f6" strokeWidth="5" />
-                 
+
                  {/* Yellow (DB) Branch: y=218 */}
                  <path d="M 100 128 C 130 128, 140 218, 180 218 L 450 218 C 500 218, 510 128, 550 128" fill="none" stroke="#eab308" strokeWidth="5" />
 
-                 {/* Nodes and Text */}
                  {/* v1.0 Base */}
                  <circle cx="100" cy="128" r="10" fill="#6366f1" stroke="white" strokeWidth="4" />
                  <text x="100" y="152" fill="#475569" fontSize="12" textAnchor="middle" fontWeight="bold" fontFamily="monospace">v1.0</text>
@@ -215,10 +219,10 @@ export const Chapter5Branch = () => {
 
                  {/* Merge Nodes */}
                  <circle cx="400" cy="128" r="10" fill="#6366f1" stroke="white" strokeWidth="4" />
-                 <text x="400" y="152" fill="#475569" fontSize="12" textAnchor="middle" fontWeight="bold" fontFamily="monospace">v1.1 (UI+API合體)</text>
+                 <text x="400" y="152" fill="#475569" fontSize="11" textAnchor="middle" fontWeight="bold" fontFamily="monospace">v1.1 (UI+API)</text>
 
                  <circle cx="550" cy="128" r="10" fill="#6366f1" stroke="white" strokeWidth="4" />
-                 <text x="550" y="152" fill="#475569" fontSize="12" textAnchor="middle" fontWeight="bold" fontFamily="monospace">v1.2 (DB合體)</text>
+                 <text x="550" y="152" fill="#475569" fontSize="11" textAnchor="middle" fontWeight="bold" fontFamily="monospace">v1.2 (DB)</text>
                </svg>
              </div>
            </div>

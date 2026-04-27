@@ -44,7 +44,7 @@ const App = () => {
         
         {/* Navigation Tabs */}
         <div className="flex flex-wrap gap-2 mb-6 bg-white p-2 rounded-xl shadow-lg border border-slate-200">
-          {tabs.map(tab => (
+          {tabs.map((tab, index) => (
             <button
               key={tab.id}
               onClick={() => setActiveTab(tab.id)}
@@ -56,7 +56,7 @@ const App = () => {
             >
               {tab.icon}
               <span className="hidden sm:inline">{tab.label}</span>
-              <span className="sm:hidden">{tab.id.toUpperCase().substring(0,4)}</span>
+              <span className="sm:hidden">Ch.{index + 1}</span>
             </button>
           ))}
         </div>

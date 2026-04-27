@@ -365,9 +365,14 @@ export const Chapter6Sync = () => {
 
       {/* Part 3: Merge vs Rebase */}
       <section>
-        <div className="flex items-center gap-2 mb-4">
+        <div className="flex items-center gap-2 mb-2">
           <Badge color="orange">Part 3</Badge>
+          <Badge color="gray">進階概念</Badge>
           <h3 className="text-xl font-bold text-slate-800">Merge 與 Rebase：你喜歡怎樣的歷史？</h3>
+        </div>
+        <div className="bg-amber-50 border border-amber-200 rounded-lg px-4 py-3 mb-4 text-sm text-amber-800 flex items-start gap-2">
+          <span className="text-lg leading-none mt-0.5">⭐</span>
+          <span><strong>這是進階概念</strong>，第一次學習時看不懂完全正常。建議先完成 Chapter 7 和 8 的實戰演練，再回來看這裡。</span>
         </div>
 
         <div className="bg-white rounded-xl border border-slate-200 overflow-hidden shadow-lg mb-8">
