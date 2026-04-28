@@ -4,7 +4,7 @@
 
 ## 🌐 不想安裝任何東西？
 
-> **線上版即將推出** — 部署完成後，你可以直接在瀏覽器裡學習，不需要安裝任何軟體。
+> **[👉 點此開啟線上版](https://blekzz.github.io/git-time-machine/)** — 直接在瀏覽器裡學習，不需要安裝任何軟體。
 
 ---
 
@@ -117,3 +117,35 @@ npm install
 ## 📄 License
 
 MIT
+
+---
+
+## 🔩 維護紀錄
+
+### 線上版網址
+
+https://blekzz.github.io/git-time-machine/
+
+### Branch 說明
+
+| Branch | 用途 |
+|--------|------|
+| `main` | 原始碼，日常開發與維護 |
+| `gh-pages` | 自動產生的 build 產物，勿手動修改 |
+
+### 日常指令
+
+```bash
+# 本地開發
+npm run dev
+
+# 更新線上版（會自動 build 再推到 gh-pages）
+npm run deploy
+
+# 備份版本到 main
+git add .
+git commit -m "feat: ..."
+git push
+```
+
+> `npm run deploy` 和 `git push` 互相獨立，兩個都要跑才能同時更新線上版與原始碼備份。
